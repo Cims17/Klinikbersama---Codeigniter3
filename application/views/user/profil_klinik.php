@@ -31,7 +31,7 @@
 			<div class="row">
 				<div class="col-lg-8 info">
 					<div class="thumb">
-						<img src="<?= base_url() ?>/assets/user/img/2440x1578.png" alt="Thumb">
+						<img src="<?= base_url() ?>assets/admin/images/klinik/default.png" alt="Thumb">
 						<div class="title">
 							<h3><?= $knk['nama_klinik'] ?></h3>
 							<span>Dokter yang tersedia: <?= $jumlah_dokter ?></span>

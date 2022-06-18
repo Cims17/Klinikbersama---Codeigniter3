@@ -12,10 +12,7 @@ class Login extends CI_Controller{
 		$this->form_validation->set_rules('email', 'email', 'required', ['required' => 'Email / No.HP wajib diisi!']);
 		$this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Password wajib diisi!']);
 		if ($this->form_validation->run() == FALSE) {
-			// $this->load->view('auth/template/header');
-
-			// $this->load->view('auth/login');
-			// $this->load->view('auth/template/footer');
+			$this->load->view('user/auth/login');
 		} else {
 			$auth = $this->Model_login->cek_login_user();
 

@@ -155,9 +155,8 @@
  <?php if ($this->uri->segment(1) == 'Peta') { ?>
  	<script src="<?= base_url() ?>assets/admin/plugins/leaflet/leaflet.js"></script>
  	<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.1/dist/L.Control.Locate.min.js" charset="utf-8"></script>
- 	<script src="<?= site_url() ?>admin/data_klinik/map_data_klinik"></script>
- 	<script src="<?= site_url() ?>Peta/User_lokasi"></script>
- 	<script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-map.init.js"></script>
+ 	<script src="<?= site_url() ?>Peta/Map_data_klinik"></script>
+ 	<script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-map-user.init.js"></script>
  <?php } else { }?>
 
 

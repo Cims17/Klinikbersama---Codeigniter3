@@ -31,7 +31,7 @@
     					<div class="single-item col-lg-4 col-md-6">
     						<div class="item">
     							<div class="thumb">
-    								<img src="<?= base_url() ?>assets/user/img/800x600.png" alt="Thumb">
+    								<img src="<?= base_url() ?>assets/admin/images/klinik/default.png" alt="Thumb">
     							</div>
     							<div class="info">
     								<h4><a href="#"><?php echo $knk['nama_klinik'] ?></a></h4>

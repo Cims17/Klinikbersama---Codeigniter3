@@ -76,7 +76,7 @@
 							</li>
 						<?php } else { ?>
 							<li>
-								<a href="<?= base_url() ?>Auth/Login">Masuk</a>
+								<a href="<?= base_url() ?>Auth/Login">Login</a>
 							</li>
 						<?php } ?>
 					</ul>

@@ -22,7 +22,30 @@ $(function(){
 		L.marker([data.latitude_klinik, data.longitude_klinik]).addTo(mymap)
 			.bindPopup("<b>"+ data.nama_klinik +"</b>");
 	}
+
+	//cek lokasi user
 	
+	if(!navigator.geolocation) {
+        console.log("Your browser doesn't support geolocation feature!")
+    } else {
+        setInterval(() => {
+            navigator.geolocation.getCurrentPosition(getPosition)
+        }, 5000);
+    }
+
+    function getPosition(position){
+        // console.log(position)
+        var lat = position.coords.latitude
+        var long = position.coords.longitude
+        var accuracy = position.coords.accuracy
+
+        console.log("Your coordinate is: Lat: "+ lat +" Long: "+ long+ " Accuracy: "+ accuracy)
+    }
+
+
+	L.control.locate().addTo(mymap);
+
+
 	var popup = L.popup();
 
 	function onMapClick(e) {

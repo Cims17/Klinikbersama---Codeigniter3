@@ -31,7 +31,7 @@
 	<div class="container">
 		<?php foreach ($dokter as $knk) { ?>
 			<div class="row">
-				<div class="col-lg-8 info">
+				<div class="col-lg-8 daftar">
 					<div class="thumb">
 						<img src="<?= base_url() ?>/assets/user/img/2440x1578.png" alt="Thumb">
 						<div class="title">
@@ -42,54 +42,53 @@
 						<div class="form">
 							<div class="appoinment-box text-center wow fadeInRight">
 								<div class="heading">
-									<h4>Make an Appointment</h4>
+									<h4>Form Pendaftaran Berobat</h4>
 								</div>
-								<form action="#">
+								<form action="<?php echo base_url() ?>Dokter/Daftar_antrean" method="post" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<input class="form-control" id="f_name" name="name" placeholder="Name" type="text">
+												<input class="form-control" id="id_dokter" name="id_dokter" type="text" value="<?= $knk['id_dokter'] ?>" hidden>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<input class="form-control" id="f_phone" name="phone" placeholder="Phone" type="text">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<select>
-													<option value="1">Male</option>
-													<option value="2">Female</option>
-													<option value="3">Child</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<select>
-													<option value="1">Department</option>
-													<option value="2">Medecine</option>
-													<option value="4">Dental Care</option>
-													<option value="5">Traumatology</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<input class="form-control" id="f_date" name="date" placeholder="Date" type="text">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<input class="form-control" id="f_time" name="time" placeholder="Time" type="text">
+												<input class="form-control input" id="tanggal_berobat" name="tanggal_berobat" placeholder=" " type="date">
+												<div class="cut cut-long2"></div>
+												<label for="tanggal_berobat" class="placeholder">Tanggal Berobat</label>
 											</div>
 										</div>
 										<div class="col-md-12">
-											<button type="submit" name="submit" id="f_submit">
-												Book Appoinment
-											</button>
+											<div class="form-group">
+												<select id="cara_bayar" name="cara_bayar" class="form-control input">
+													<option value="" selected disabled>Pilih Cara Bayar</option>
+													<option value="Bayar Sendiri">Bayar Sendiri</option>
+													<option value="BPJS Kesehatan">BPJS Kesehatan</option>
+												</select>
+												<div class="cut"></div>
+												<label for="cara_bayar" class="placeholder">Cara Bayar</label>
+											</div>
 										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<textarea id="keluhan" name="keluhan" class="form-control input textarea"> </textarea>
+												<div class="cut cut-short"></div>
+												<label for="keluhan" class="placeholder">Keluhan</label>
+											</div>
+										</div>
+										<?php if ($this->session->userdata('username') != null) { ?>
+											<div class="col-md-12">
+												<button type="submit" name="submit" id="f_submit">
+													Mendaftar
+												</button>
+											</div>
+										<?php } else { ?>
+											<div class="col-md-12">
+												<button type="submit" name="submit" id="f_submit">
+													Anda Belum Login
+												</button>
+											</div>
+										<?php } ?>
 									</div>
 								</form>
 							</div>
@@ -128,3 +127,20 @@
 </div>
 </div>
 <!-- End Department Single -->
+
+<script>
+	// Use Javascript
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+	var yyyy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd
+	}
+	if (mm < 10) {
+		mm = '0' + mm
+	}
+
+	today = yyyy + '-' + mm + '-' + dd;
+	document.getElementById("tanggal_berobat").setAttribute("min", today);
+</script>

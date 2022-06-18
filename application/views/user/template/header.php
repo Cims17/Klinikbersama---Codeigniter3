@@ -9,7 +9,7 @@
 	<meta name="description" content="Healdi - Medical & Health Template">
 
 	<!-- ========== Page Title ========== -->
-	<title>Healdi - Medical & Health Template</title>
+	<title>Klinik Praktik Bersama - KAB.Ponorogo</title>
 
 	<!-- ========== Favicon Icon ========== -->
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/user/img/favicon.png" type="image/x-icon">
