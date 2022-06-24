@@ -6,12 +6,16 @@
             <a href="<?php echo base_url() ?>Admin/Beranda" > <i class="fas fa-home align-self-center menu-icon"></i><span>Beranda</span></a>
         </li>
 
-		<li class="<?= ($this->uri->segment(2) == 'data_klinik') ? 'active' : '' ?>">
-            <a href="<?php echo base_url() ?>admin/data_klinik" class="<?= ($this->uri->segment(2) == 'data_klinik') ? 'active' : '' ?>"><i class="fas fa-hospital align-self-center menu-icon"></i><span>Data Klinik</span></a>
+		<li class="<?= ($this->uri->segment(2) == 'Data_klinik') ? 'active' : '' ?>">
+            <a href="<?php echo base_url() ?>Admin/Data_klinik" class="<?= ($this->uri->segment(2) == 'data_klinik') ? 'active' : '' ?>"><i class="fas fa-hospital align-self-center menu-icon"></i><span>Data Klinik</span></a>
         </li>
 
         <li>
-            <a href="<?php echo base_url() ?>admin/admin_klinik"><i class="fas fa-user align-self-center menu-icon"></i><span>Data Admin Klinik</span></a>
+            <a href="<?php echo base_url() ?>Admin/Admin_klinik"><i class="fas fa-user align-self-center menu-icon"></i><span>Data Admin Klinik</span></a>
+        </li>
+
+		<li class="<?= ($this->uri->segment(2) == 'Pasien') ? 'active' : '' ?>">
+            <a href="<?php echo base_url() ?>Admin/Pasien" class="<?= ($this->uri->segment(2) == 'Pasien') ? 'active' : '' ?>" ><i class="fas fa-users align-self-center menu-icon"></i><span>Data Akun Pasien</span></a>
         </li>
 
 		<?php } ?>
@@ -20,7 +24,11 @@
 
 		
 		<li>
-            <a href="<?php echo base_url() ?>Admin/Beranda" > <i data-feather="home" class="align-self-center menu-icon"></i><span>Beranda</span></a>
+            <a href="<?php echo base_url() ?>Admin/Beranda" > <i class="fas fa-home align-self-center menu-icon"></i><span>Beranda</span></a>
+        </li>
+
+		<li class="<?= ($this->uri->segment(2) == 'Profil_klinik') ? 'active' : '' ?>">
+            <a href="<?php echo base_url() ?>Admin/Profil_klinik" class="<?= ($this->uri->segment(2) == 'Profil_klinik') ? 'active' : '' ?>"> <i class="fas fa-hospital align-self-center menu-icon"></i><span>Profil Klinik</span></a>
         </li>
 
 		<li>
@@ -37,10 +45,6 @@
 
 		<li>
             <a href="<?php echo base_url() ?>Admin/Data_antrean"><i class="fas fa-users align-self-center menu-icon"></i><span>Data Antrean Pasien</span></a>
-        </li>
-
-		<li>
-            <a href="#"><i data-feather="user" class="align-self-center menu-icon"></i><span>Chat</span></a>
         </li>
 
 		<?php } ?>

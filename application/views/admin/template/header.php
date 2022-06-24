@@ -30,6 +30,9 @@
 
 	<!-- Leaflet -->
 	<link href="<?= base_url() ?>assets/admin/plugins/leaflet/leaflet.css" rel="stylesheet">
+	<link href="<?= base_url() ?>assets/admin/plugins/lightpick/lightpick.css" rel="stylesheet" />
+
+	<link href="<?= base_url() ?>assets/admin/plugins/dropify/css/dropify.min.css" rel="stylesheet">
 
   <!-- jvectormap -->
   <link href="<?= base_url() ?>assets/admin/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />

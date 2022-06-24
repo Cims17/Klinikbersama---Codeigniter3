@@ -18,31 +18,6 @@
     </div>
     <!-- End Breadcrumb -->
 
-    <!-- Start Team 
-    ============================================= -->
-    <div class="team-default-area bg-gray default-padding bottom-less">
-    	<div class="container">
-    		<div class="team-items text-center">
-    			<div class="row">
-    				<div class="col-lg-12">
-    					<div class="card">
-    						<div class="card-header bg-gradient">
-    							<h4 class="card-title text-light">Sistem Informasi Geografis Klinik Praktik Bersama Kabupaten Ponorogo</h4>
-    						</div>
-    						<!--end card-header-->
-    						<!-- <div class="card-body">
-    							<div id="Leaf_default" class="" style="height: 400px"></div>
-    						</div> -->
-    						<!--end card-body-->
-    					</div>
-    					<!--end card-->
-    				</div> <!-- end col -->
-    			</div>
-    		</div>
-    	</div>
-    </div>
-    <!-- End Team -->
-
     <!-- Start Department Single 
     ============================================= -->
     <div class="department-single-area overflow-hidden default-padding">

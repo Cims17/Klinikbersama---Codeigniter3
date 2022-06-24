@@ -4293,7 +4293,7 @@ body,
 	position: absolute;
 	right: -25px;
 	top: 0;
-	content: "\f067";
+	/* content: "\f067"; */
 	font-family: "Font Awesome 5 Free";
 	font-weight: 600;
 	font-size: 20px;

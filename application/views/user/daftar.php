@@ -1,3 +1,4 @@
+<?= $this->session->flashdata('berhasil_jadwal') ?>
 <!-- Start Breadcrumb 
     ============================================= -->
 <div class="breadcrumb-area bg-gradient text-center">
@@ -38,7 +39,39 @@
 							<h3>Dokter <?= $knk['nama_dokter'] ?></h3>
 						</div>
 					</div>
-					<div class="consultation-area mt-5">
+					<!-- Start Fun Factor Area
+    ============================================= -->
+					<div class="fun-factor-area pb-5">
+						<div class="container">
+							<div class="title">
+								<h3>Antrean Tanggal <?= date("Y-m-d") ?> </h3>
+							</div>
+							<div class="fun-fact-items bg-gradient text-light text-center">
+
+								<div class="row">
+									<div class="col-lg-6 col-md-6 item">
+										<div class="fun-fact">
+											<?php if ($antrean == null) { ?>
+												<div class="timer" data-to="0" data-speed="500"></div>
+												<span class="medium">No Antrean dilayani</span>
+											<?php } else{?>
+												<div class="timer" data-to="<?= $antrean[0]['no_antrean'] ?>" data-speed="500"></div>
+												<span class="medium">No Antrean dilayani</span>
+												<?php } ?>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 item">
+										<div class="fun-fact">
+											<div class="timer" data-to="<?= $jmlantrean ?>" data-speed="500"></div>
+											<span class="medium">Jumlah Antrean</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End Fun Factor Area -->
+					<div class="consultation-area ">
 						<div class="form">
 							<div class="appoinment-box text-center wow fadeInRight">
 								<div class="heading">
@@ -62,8 +95,13 @@
 											<div class="form-group">
 												<select id="cara_bayar" name="cara_bayar" class="form-control input">
 													<option value="" selected disabled>Pilih Cara Bayar</option>
-													<option value="Bayar Sendiri">Bayar Sendiri</option>
-													<option value="BPJS Kesehatan">BPJS Kesehatan</option>
+													<?php if ($asuransi['asuransi'] == 'Tidak Ada Asuransi') { ?>
+														<option value="Bayar Sendiri">Bayar Sendiri</option>
+													<?php } ?>
+													<?php if ($asuransi['asuransi'] == 'BPJS Kesehatan') { ?>
+														<option value="Bayar Sendiri">Bayar Sendiri</option>
+														<option value="BPJS Kesehatan">BPJS Kesehatan</option>
+													<?php } ?>
 												</select>
 												<div class="cut"></div>
 												<label for="cara_bayar" class="placeholder">Cara Bayar</label>
@@ -71,7 +109,7 @@
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<textarea id="keluhan" name="keluhan" class="form-control input textarea"> </textarea>
+												<textarea id="keluhan" name="keluhan" class="form-control input textarea" required> </textarea>
 												<div class="cut cut-short"></div>
 												<label for="keluhan" class="placeholder">Keluhan</label>
 											</div>
@@ -94,6 +132,7 @@
 							</div>
 						</div>
 					</div>
+
 
 				</div>
 				<div class="col-lg-4 sidebar">

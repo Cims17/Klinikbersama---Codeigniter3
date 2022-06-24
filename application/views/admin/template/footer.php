@@ -25,10 +25,22 @@
 
 <?php } ?>
 
+<?php if ( $footer == 'profilklinik'  ) { ?>
+
+	<script src="<?= base_url() ?>assets/admin/plugins/leaflet/leaflet.js"></script> 
+    <script src="<?= base_url() ?>assets/admin/plugins/lightpick/lightpick.js"></script>
+	<script src="<?= site_url() ?>Admin/Profil_klinik/Map_data_byiduserklinik"></script>
+    <script src="<?= base_url() ?>assets/admin/pages/jquery.profile.init.js"></script> 
+	<script src="<?= base_url() ?>assets/admin/plugins/dropify/js/dropify.min.js"></script>
+    <script src="<?= base_url() ?>assets/admin/pages/jquery.form-upload.init.js"></script>
+	<script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-maptambah.init.js"></script> 
+
+<?php } ?>
+
 <?php if ( $footer == 'dataklinik'  ) { ?>
 
 		<script src="<?= base_url() ?>assets/admin/plugins/leaflet/leaflet.js"></script> 
-		<script src="<?= site_url() ?>admin/data_klinik/map_data_klinik"></script>
+		<script src="<?= site_url() ?>Admin/Data_klinik/Map_data_klinik"></script>
 		<script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-map.init.js"></script> 
 
 		<!-- Sweet-Alert  -->
@@ -138,6 +150,130 @@
     })	
 	</script>
 
+
+<?php } ?>
+
+<?php if ( $footer == 'dataakunpasien'  ) { ?>
+
+<!-- Sweet-Alert  -->
+<script src="<?= base_url() ?>assets/admin/plugins/sweet-alert2/sweetalert2.min.js"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
+<script src="<?= base_url() ?>assets/admin/pages/jquery.forms-advanced.js"></script>
+
+<script type="text/javascript">
+
+		!function ($) {
+
+			var SweetAlert = function () {
+				};
+			SweetAlert.prototype.init = function () {
+				$(".remove").click(function() {
+						var id = $(this).parents("tr").attr("id");
+						swal.fire({
+										title: 'Hapus Data Akun Pasien?',
+										text: "Anda tidak akan dapat mengembalikan data ini!",
+										type: 'warning',
+										showCancelButton: true,
+										confirmButtonText: 'Yes, delete it!',
+										cancelButtonText: 'No, cancel!',
+										reverseButtons: true
+									}).then(function(result) {
+										if (result.value) {
+											$.ajax({
+												url: '<?= base_url() ?>Admin/Pasien/Delete_pasien/' + id,
+												type: 'DELETE',
+												error: function() {
+														alert('Something is wrong');
+												},
+												success: function(data) {
+													swal.fire(
+												'Deleted!',
+												'Data Akun Pasien Dihapus',
+												'success'
+											).then(function() {
+																location.reload();
+														});
+												}
+										});
+											
+										} else if (
+											// Read more about handling dismissals
+											result.dismiss === Swal.DismissReason.cancel
+										) {
+											swal.fire(
+												'Cancelled',
+												'Data Akun Pasien Aman',
+												'error'
+											)
+										}
+									})
+				});
+			},
+				//init
+				$.SweetAlert = new SweetAlert, $.SweetAlert.Constructor = SweetAlert
+		}(window.jQuery),
+		//initializing
+		function ($) {
+						"use strict";
+						$.SweetAlert.init()
+				}(window.jQuery);
+</script>
+
+<?php } ?>
+
+<?php if ( $footer == 'tambahdataakunpasien') { ?>
+	<script src="<?= base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
+	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
+	<script src="<?= base_url() ?>assets/admin/pages/jquery.forms-advanced.js"></script>
+
+	<script type="text/javascript">
+		var select = document.getElementById("asuransi_pasien");
+		// select = function() {
+			if (select.value == "BPJS Kesehatan") {
+				document.getElementById("noasuransi_pasien").style.display = "inline";
+			} else {
+				document.getElementById("noasuransi_pasien").style.display = "none";
+			}
+
+		// }
+		select.onchange = function() {
+			if (select.value == "BPJS Kesehatan") {
+				document.getElementById("noasuransi_pasien").style.display = "inline";
+			} else {
+				document.getElementById("noasuransi_pasien").style.display = "none";
+			}
+
+		}
+	</script>
+
+<?php } ?>
+
+<?php if ( $footer == 'editdataakunpasien') { ?>
+	<script src="<?= base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
+	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
+	<script src="<?= base_url() ?>assets/admin/pages/jquery.forms-advanced.js"></script>
+
+	<script type="text/javascript">
+		var select = document.getElementById("asuransi_pasien");
+		// select = function() {
+			if (select.value == "BPJS Kesehatan") {
+				document.getElementById("noasuransi_pasien").style.display = "inline";
+			} else {
+				document.getElementById("noasuransi_pasien").style.display = "none";
+			}
+
+		// }
+		select.onchange = function() {
+			if (select.value == "BPJS Kesehatan") {
+				document.getElementById("noasuransi_pasien").style.display = "inline";
+			} else {
+				document.getElementById("noasuransi_pasien").style.display = "none";
+			}
+
+		}
+	</script>
 
 <?php } ?>
 

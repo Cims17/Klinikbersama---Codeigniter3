@@ -70,7 +70,9 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Akun</a>
 								<ul class="dropdown-menu">
 									<li><a>Selamat Datang <?= $nama[0] ?> !</a></li>
-									<li><a href="departments.html">Profil</a></li>
+									<li><a href="<?= base_url() ?>Profil">Profil</a></li>
+									<li><a href="departments.html">Antrean Berlangsung</a></li>
+									<li><a href="departments.html">Riwayat Antrean</a></li>
 									<li><a href="<?= base_url() ?>Auth/Login/Logout">Log Out</a></li>
 								</ul>
 							</li>

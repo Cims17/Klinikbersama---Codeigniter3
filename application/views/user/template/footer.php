@@ -133,7 +133,7 @@
  	<!-- End Footer Bottom -->
  </footer>
  <!-- End Footer -->
-
+ 
  <!-- jQuery Frameworks
     ============================================= -->
  <script src="<?= base_url() ?>assets/user/js/jquery-1.12.4.min.js"></script>
@@ -157,7 +157,7 @@
  	<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.1/dist/L.Control.Locate.min.js" charset="utf-8"></script>
  	<script src="<?= site_url() ?>Peta/Map_data_klinik"></script>
  	<script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-map-user.init.js"></script>
- <?php } else { }?>
+ <?php } ?>
 
 
  </body>

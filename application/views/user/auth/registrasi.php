@@ -52,7 +52,7 @@
 						<img src="<?= base_url() ?>assets/user/img/logo.png" class="bg-white logo mb-3" alt="Logo">
 						<h4>Form Registrasi Pasien</h4>
 					</div>
-					<form action="<?= base_url() ?>Auth/Registrasi/registrasi_pasien" method="post" enctype="multipart/form-data">
+					<form action="<?= base_url() ?>Auth/Registrasi/Registrasi_pasien" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
@@ -87,7 +87,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
-										<input id="tanggal_lahir" name="tanggal_lahir" type="date" class="input" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31" placeholder=" " />
+										<input id="tanggal_lahir" name="tanggal_lahir" type="date" class="input" placeholder="dd-mm-yyyy" value="" placeholder=" " />
 										<div class="cut"></div>
 										<label for="tanggal_lahir" class="placeholder">Tanggal Lahir</label>
 									</div>
@@ -109,6 +109,24 @@
 
 							<div class="col-md-12">
 								<div class="form-group">
+									<div class="input-container ic-2">
+										<select id="agama_pasien" name="agama_pasien" class="form-control input">
+											<option value="" selected disabled> Pilih Agama</option>
+											<option value="Islam">Islam</option>
+											<option value="Protestan">Protestan</option>
+											<option value="Katolik">Katolik</option>
+											<option value="Hindu">Hindu</option>
+											<option value="Buddha">Buddha</option>
+											<option value="Khonghucu">Khonghucu</option>
+										</select>
+										<div class="cut cut-short"></div>
+										<label for="agama_pasien" class="placeholder">Agama</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="form-group">
 									<!-- <div class="input-container ic-2"> -->
 									<textarea id="alamat_pasien" name="alamat_pasien" class="form-control input textarea"> </textarea>
 									<div class="cut cut-short"></div>
@@ -121,8 +139,8 @@
 								<div class="form-group">
 									<div class="input-container ic-2">
 										<select id="asuransi_pasien" name="asuransi_pasien" class="form-control input">
-											<option value="1">Tidak Ada Asuransi</option>
-											<option value="2">BPJS</option>
+											<option value="Tidak Ada Asuransi">Tidak Ada Asuransi</option>
+											<option value="BPJS Kesehatan">BPJS Kesehatan</option>
 										</select>
 										<div class="cut cut-long"></div>
 										<label for="asuransi_pasien" class="placeholder">Pilih Asuransi</label>
@@ -208,7 +226,7 @@
 	<script type="text/javascript">
 		var select = document.getElementById("asuransi_pasien");
 		select.onchange = function() {
-			if (select.value == "2") {
+			if (select.value == "BPJS Kesehatan") {
 				document.getElementById("noasuransi_pasien").style.display = "inline";
 			} else {
 				document.getElementById("noasuransi_pasien").style.display = "none";
@@ -237,6 +255,23 @@
 
 		icon.addEventListener('click', togglePassword, false);
 		passwordInput.addEventListener('keyup', checkInput, false);
+	</script>
+
+	<script>
+		// Use Javascript
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+		var yyyy = today.getFullYear();
+		if (dd < 10) {
+			dd = '0' + dd
+		}
+		if (mm < 10) {
+			mm = '0' + mm
+		}
+
+		today = yyyy + '-' + mm + '-' + dd;
+		document.getElementById("tanggal_lahir").setAttribute("max", today);
 	</script>
 
 </body>

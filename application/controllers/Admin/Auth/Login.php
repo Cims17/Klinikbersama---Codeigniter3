@@ -44,6 +44,6 @@ class Login extends CI_Controller{
 	// fungsi log-out
 	public function logout() {
 		$this->session->sess_destroy();
-		redirect('admin/auth/login');
+		redirect('Admin/Auth/Login');
 	}
 }

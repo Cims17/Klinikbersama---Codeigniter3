@@ -1,4 +1,5 @@
-    <!-- Start Breadcrumb 
+<?php echo $this->session->flashdata('berhasil_jadwal') ?>
+<!-- Start Breadcrumb 
     ============================================= -->
     <div class="breadcrumb-area bg-gradient text-center">
     	<!-- Fixed BG -->

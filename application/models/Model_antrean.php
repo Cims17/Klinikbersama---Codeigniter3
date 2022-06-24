@@ -13,6 +13,16 @@ class Model_antrean extends CI_Model {
         return $this->db->get();
     }
 
+	public function get_max_noantrean($id_dokter, $tanggal_berobat)
+	{
+		$this->db->select('*');
+        $this->db->from('tb_antrean');
+		$this->db->having('id_dokter', $id_dokter);
+		$this->db->having('tanggal_berobat', $tanggal_berobat);
+		// $this->db->where('tb_antrean.id_dokter', $id_user);
+		return $this->db->get();
+	}
+
 	public function insert_data($tabel, $data){
 
         return $this->db->insert($tabel, $data);

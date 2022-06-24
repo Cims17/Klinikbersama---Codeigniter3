@@ -20,7 +20,7 @@ $(function(){
 	for(i=0;i<data_klinik.length;i++) {
 		var data = data_klinik[i];
 		L.marker([data.latitude_klinik, data.longitude_klinik]).addTo(mymap)
-			.bindPopup("<b>"+ data.nama_klinik +"</b>");
+			.bindPopup("<b>"+ data.nama_klinik +"</b><br><a target='_blank' "+ "href="+ data.link_gmap + ">"+ data.link_gmap + "</a>");
 	}
 
 	//cek lokasi user
@@ -48,14 +48,14 @@ $(function(){
 
 	var popup = L.popup();
 
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent("You clicked the map at " + e.latlng.toString())
-			.openOn(mymap);
-	}
+	// function onMapClick(e) {
+	// 	popup
+	// 		.setLatLng(e.latlng)
+	// 		.setContent("You clicked the map at " + e.latlng.toString())
+	// 		.openOn(mymap);
+	// }
 
-	mymap.on('click', onMapClick);
+	// mymap.on('click', onMapClick);
 
     
 })

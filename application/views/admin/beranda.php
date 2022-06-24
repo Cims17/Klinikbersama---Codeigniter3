@@ -31,7 +31,7 @@
                                 <div class="row d-flex justify-content-center">
                                     <div class="col">
                                         <p class="text-dark mb-0 fw-semibold">Total Klinik</p>
-                                        <h3 class="m-0">10</h3>
+                                        <h3 class="m-0"><?= $klinik ?></h3>
                                     </div>
                                     <div class="col-auto align-self-center">
                                         <div class="report-main-icon bg-light-alt">
@@ -51,7 +51,7 @@
                                 <div class="row d-flex justify-content-center">
                                     <div class="col">
                                         <p class="text-dark mb-0 fw-semibold">Total Dokter</p>
-                                        <h3 class="m-0">35</h3>
+                                        <h3 class="m-0"><?= $dokter ?></h3>
                                     </div>
                                     <div class="col-auto align-self-center">
                                         <div class="report-main-icon bg-light-alt">
@@ -71,7 +71,7 @@
                                 <div class="row d-flex justify-content-center">
                                     <div class="col">
                                         <p class="text-dark mb-0 fw-semibold">Total Pasien</p>
-                                        <h3 class="m-0">60</h3>
+                                        <h3 class="m-0"><?= $pasien ?></h3>
                                     </div>
                                     <div class="col-auto align-self-center">
                                         <div class="report-main-icon bg-light-alt">

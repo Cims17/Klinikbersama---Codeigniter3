@@ -90,7 +90,7 @@ class Data_klinik extends CI_Controller{
         }
 	}
 
-	public function map_data_klinik() {
+	public function Map_data_klinik() {
 		$response=[];
 			$get_klinik = $this->Model_klinik->get_klinik()->result_array();
 			foreach ($get_klinik as $knk) {
@@ -98,6 +98,7 @@ class Data_klinik extends CI_Controller{
 				$data['nama_klinik']= $knk['nama_klinik'];
 				$data['latitude_klinik']=$knk['latitude_klinik'];
 				$data['longitude_klinik']=$knk['longitude_klinik'];
+				$data['link_gmap']=$knk['link_gmap'];
 				$response[]=$data;
 			}
 			echo "var data_klinik=".json_encode($response,JSON_PRETTY_PRINT);
