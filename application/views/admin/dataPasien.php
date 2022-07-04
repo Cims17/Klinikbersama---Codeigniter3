@@ -25,11 +25,6 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h4 class="card-title">Tabel Data Pasien Aplikasi Pendaftaran Pasien</h4>
-						<a href="<?php echo base_url()  ?>Admin/Data_pasien/Tambah_pasien">
-                        <button type="button" class="btn btn-sm btn-soft-primary">
-                            <i class="fas fa-plus me-2"></i>Tambah Data Pasien
-                        </button>
-						</a>
                         <!-- <a class=" btn btn-sm btn-soft-success" href="#" role="button"><i class="fas fa-plus me-2"></i>Tambah Saldo</a> -->
                     </div>
                     <div class="card-body">

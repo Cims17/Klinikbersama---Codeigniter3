@@ -7,11 +7,11 @@
         </li>
 
 		<li class="<?= ($this->uri->segment(2) == 'Data_klinik') ? 'active' : '' ?>">
-            <a href="<?php echo base_url() ?>Admin/Data_klinik" class="<?= ($this->uri->segment(2) == 'data_klinik') ? 'active' : '' ?>"><i class="fas fa-hospital align-self-center menu-icon"></i><span>Data Klinik</span></a>
+            <a href="<?php echo base_url() ?>Admin/Data_klinik" class="<?= ($this->uri->segment(2) == 'Data_klinik') ? 'active' : '' ?>"><i class="fas fa-hospital align-self-center menu-icon"></i><span>Data Klinik</span></a>
         </li>
 
-        <li>
-            <a href="<?php echo base_url() ?>Admin/Admin_klinik"><i class="fas fa-user align-self-center menu-icon"></i><span>Data Admin Klinik</span></a>
+        <li class="<?= ($this->uri->segment(2) == 'Data_dokter') ? 'active' : '' ?>">
+            <a href="<?php echo base_url() ?>Admin/Data_dokter" class="<?= ($this->uri->segment(2) == 'Data_dokter') ? 'active' : '' ?>"><i class="fas fa-user-md align-self-center menu-icon"></i><span>Data Dokter</span></a>
         </li>
 
 		<li class="<?= ($this->uri->segment(2) == 'Pasien') ? 'active' : '' ?>">
@@ -31,20 +31,20 @@
             <a href="<?php echo base_url() ?>Admin/Profil_klinik" class="<?= ($this->uri->segment(2) == 'Profil_klinik') ? 'active' : '' ?>"> <i class="fas fa-hospital align-self-center menu-icon"></i><span>Profil Klinik</span></a>
         </li>
 
-		<li>
-            <a href="<?php echo base_url() ?>Admin/Data_dokter"><i class="fas fa-user-md align-self-center menu-icon"></i><span>Data Dokter</span></a>
+		<li class="<?= ($this->uri->segment(2) == 'Data_dokter') ? 'active' : '' ?>">
+            <a href="<?php echo base_url() ?>Admin/Data_dokter" class="<?= ($this->uri->segment(2) == 'Data_dokter') ? 'active' : '' ?>"><i class="fas fa-user-md align-self-center menu-icon"></i><span>Data Dokter</span></a>
         </li>
 
-		<li>
-            <a href="<?php echo base_url() ?>Admin/Data_jadwal"><i class="fas fa-calendar-alt align-self-center menu-icon"></i><span>Data Jadwal Dokter</span></a>
+		<li class="<?= ($this->uri->segment(2) == 'Data_jadwal') ? 'active' : '' ?>">
+            <a href="<?php echo base_url() ?>Admin/Data_jadwal" class="<?= ($this->uri->segment(2) == 'Data_jadwal') ? 'active' : '' ?>"><i class="fas fa-calendar-alt align-self-center menu-icon"></i><span>Data Jadwal Dokter</span></a>
         </li>
 
-		<li>
-            <a href="<?php echo base_url() ?>Admin/Data_pasien"><i class="fas fa-id-card align-self-center menu-icon"></i><span>Data Pasien</span></a>
+		<li class="<?= ($this->uri->segment(2) == 'Data_pasien') ? 'active' : '' ?>">
+            <a href="<?php echo base_url() ?>Admin/Data_pasien" class="<?= ($this->uri->segment(2) == 'Data_pasien') ? 'active' : '' ?>"><i class="fas fa-id-card align-self-center menu-icon"></i><span>Data Pasien</span></a>
         </li>
 
-		<li>
-            <a href="<?php echo base_url() ?>Admin/Data_antrean"><i class="fas fa-users align-self-center menu-icon"></i><span>Data Antrean Pasien</span></a>
+		<li class="<?= ($this->uri->segment(2) == 'Data_antrean') ? 'active' : '' ?>">
+            <a href="<?php echo base_url() ?>Admin/Data_antrean" class="<?= ($this->uri->segment(2) == 'Data_antrean') ? 'active' : '' ?>"><i class="fas fa-users align-self-center menu-icon"></i><span>Data Antrean Pasien</span></a>
         </li>
 
 		<?php } ?>

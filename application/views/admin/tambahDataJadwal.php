@@ -29,7 +29,7 @@
 							<div class="col-lg-6">
 								<div class="mb-3">
 									<label class="form-label" style="color: black;">Nama Dokter</label>
-									<select class="form-control select2 custom-select" name="id_dokter" required>
+									<select class="form-control select2 custom-select" name="id_dokter" >
                                             <option value="" selected disabled>Pilih Dokter</option>
 											<?php foreach($dokter as $dkt) { ?>
 												<?php if($dkt['id_user'] ==  $this->session->userdata('id_user') ) { ?>
@@ -40,7 +40,7 @@
 								</div>
 								<div class="mb-3">
 									<label class="form-label" style="color: black;">Hari Mulai</label>
-									<select class="form-control select2 custom-select" name="hari_mulai" required>
+									<select class="form-control select2 custom-select" name="hari_mulai" >
                                             <option value="" selected disabled>Pilih Hari Mulai</option>
 											<option value="Senin">Senin</option>
 											<option value="Selasa">Selasa</option>
@@ -53,7 +53,7 @@
 								</div>
 								<div class="mb-3">
 									<label class="form-label" style="color: black;">Hari Selesai</label>
-									<select class="form-control select2 custom-select" name="hari_selesai" required>
+									<select class="form-control select2 custom-select" name="hari_selesai" >
                                             <option value="" selected disabled>Pilih Hari Selesai</option>
 											<option value="Senin">Senin</option>
 											<option value="Selasa">Selasa</option>
@@ -67,17 +67,17 @@
 
 								<div class="mb-3">
 									<label class="form-label" style="color: black;">Jam Mulai</label>
-									<input class="form-control" id="timepicker" name="jam_mulai" placeholder="Pilih Jam Mulai" required>
+									<input class="form-control" id="timepicker" name="jam_mulai" placeholder="Pilih Jam Mulai" >
 								</div>
 								<div class="mb-3">
 									<label class="form-label" style="color: black;">Jam Selesai</label>
-									<input class="form-control" id="timepicker2" name="jam_selesai" placeholder="Pilih Jam Selesai" required>
+									<input class="form-control" id="timepicker2" name="jam_selesai" placeholder="Pilih Jam Selesai" >
 								</div>            
 							</div>
 						</div>
 						<hr />
-						<button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="reset" class="btn btn-danger">Cancel</button>                                                                      
+						<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        <button type="cancel" name="cancel" class="btn btn-danger">Cancel</button>                                                                      
 					</div><!--end card-body-->
 				</form>
 			</div><!--end card-->

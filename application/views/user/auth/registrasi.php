@@ -49,8 +49,8 @@
 			<div class="col-lg-12 form">
 				<div class="appoinment-box text-center wow fadeInRight">
 					<div class="heading">
-						<img src="<?= base_url() ?>assets/user/img/logo.png" class="bg-white logo mb-3" alt="Logo">
-						<h4>Form Registrasi Pasien</h4>
+						<img src="<?= base_url() ?>assets/user/img/logo-light.png" class="logo mb-3" alt="Logo">
+						<h4>Form Registrasi Calon Pasien</h4>
 					</div>
 					<form action="<?= base_url() ?>Auth/Registrasi/Registrasi_pasien" method="post" enctype="multipart/form-data">
 						<div class="row">
@@ -159,7 +159,7 @@
 							</div>
 							<hr size="1px" width="100%">
 
-							<div class="col-md-12">
+							<!-- <div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
 										<input id="email" name="email" class="form-control input" type="email" placeholder=" " />
@@ -167,14 +167,14 @@
 										<label for="email" class="placeholder">Email</label>
 									</div>
 								</div>
-							</div>
+							</div> -->
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
 										<input id="no_telepon" name="no_telepon" class="form-control input" type="number" placeholder=" " />
 										<div class="cut cut-short"></div>
-										<label for="no_telepon" class="placeholder">No. HP</label>
+										<label for="no_telepon" class="placeholder">Nomor Whatsapp</label>
 									</div>
 								</div>
 							</div>
@@ -188,6 +188,19 @@
 											<i id="eyeIcon" class="far fa-eye"></i>
 										</span>
 										<label for="password" class="placeholder">Password</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<div class="form-group">
+									<div class="input-container ic-2">
+										<input class="form-control input" name="konfirmasi_password" id="konfirmasi_password" placeholder=" " type="password">
+										<div class="cut cut-long"></div>
+										<span class="p-viewer">
+											<i id="eyeIcon2" class="far fa-eye"></i>
+										</span>
+										<label for="konfirmasi_password" class="placeholder">Konfirmasi Password</label>
 									</div>
 								</div>
 							</div>
@@ -255,6 +268,28 @@
 
 		icon.addEventListener('click', togglePassword, false);
 		passwordInput.addEventListener('keyup', checkInput, false);
+	</script>
+
+<script type="text/javascript">
+		let passwordInput2 = document.getElementById('konfirmasi_password'),
+			icon2 = document.getElementById('eyeIcon2');
+
+		function togglePassword2() {
+			if (passwordInput2.type === 'password') {
+				passwordInput2.type = 'text';
+				icon2.classList.add("fa-eye-slash");
+				//toggle.innerHTML = 'hide';
+			} else {
+				passwordInput2.type = 'password';
+				icon2.classList.remove("fa-eye-slash");
+				//toggle.innerHTML = 'show';
+			}
+		}
+
+		function checkInput2() {}
+
+		icon2.addEventListener('click', togglePassword2, false);
+		passwordInput2.addEventListener('keyup', checkInput2, false);
 	</script>
 
 	<script>

@@ -45,43 +45,16 @@
 	<!-- Start Consultation 
     ============================================= -->
 	<?= $this->session->flashdata('berhasil_daftar') ?>
-	<div class="consultation-area default-padding">
-		<div class="container pt-4">
-			<div class="row align-center">
-				<div class="col-lg-7 process">
-					<h2>
-						How to get a <br> consultation from us?
-					</h2>
-					<p>
-						Badies she basket season age her uneasy saw. Discourse unwilling am no described dejection incommode no listening of. Before nature his parish boy.
-					</p>
-					<div class="row">
-						<div class="col-lg-4 col-md-4 single-item">
-							<div class="item">
-								<i class="flaticon-calendar-1"></i>
-								<h5>Make Appointment</h5>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 single-item">
-							<div class="item">
-								<i class="flaticon-doctor"></i>
-								<h5>Select A Doctor</h5>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 single-item">
-							<div class="item">
-								<i class="flaticon-heartbeat-1"></i>
-								<h5>Confirm Consultation</h5>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="consultation-area" style="padding-top: 70px; padding-bottom: 50px;">
+		<div class="container pt-4 ">
+			<div class="row align-center justify-content-center">
 				<div class="col-lg-5 form">
 					<div class="appoinment-box text-center wow fadeInRight">
+					<img src="<?= base_url() ?>assets/user/img/logo-light.png" class=" logo mb-3" alt="Logo">
 						<div class="heading">
-							<h4>Form Login</h4>
+							<h4>Form Login Calon Pasien</h4>
 						</div>
-						<form action="<?php echo base_url() ?>Auth/Login/login_user" method="post" enctype="multipart/form-data">
+						<form action="<?php echo base_url() ?>Auth/Login/Login_user" method="post" enctype="multipart/form-data">
 
 							<div class="row">
 								<div class="col-md-12">
@@ -92,8 +65,9 @@
 								<!--end form-group-->
 								<div class="col-md-12">
 									<div class="form-group">
-										<input class="form-control" id="email" name="email" placeholder="Email" type="text">
+										<input class="form-control" id="no_whatsapp" name="no_whatsapp" value="<?php echo $this->session->flashdata('value_no_whatsapp') ?>" placeholder="Nomor Whatsapp" type="text">
 									</div>
+									<span class="text-danger"><?php echo  $this->session->flashdata('no_whatsapperr') ?></span> 
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
@@ -102,8 +76,10 @@
 											<i id="eyeIcon" class="far fa-eye"></i>
 										</span>
 									</div>
+									<span class="text-danger"><?php echo $this->session->flashdata('passworderr') ?></span>
 								</div>
 								<div class="col-md-12">
+									<a href="">Lupa Password ?</a>
 									<button type="submit" name="submit" id="f_submit">
 										Login
 									</button>

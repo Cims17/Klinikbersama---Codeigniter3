@@ -48,6 +48,35 @@ $(function(){
 
 	var popup = L.popup();
 
+
+function getPosition(position){
+	var lat = position.coords.latitude
+    var long = position.coords.longitude
+	Number.prototype.toRad = function() {
+		return this * Math.PI / 180;
+	 }
+	 
+	 var lat2 = lat; 
+	 var lon2 = long; 
+	 
+	 var lat1 = 42.806911; 
+	 var lon1 = -71.290611; 
+	 
+	 var R = 6371; // km 
+	 //has a problem with the .toRad() method below.
+	 var x1 = lat2-lat1;
+	 var dLat = x1.toRad();  
+	 var x2 = lon2-lon1;
+	 var dLon = x2.toRad();  
+	 var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+					 Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+					 Math.sin(dLon/2) * Math.sin(dLon/2);  
+	 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	 var d = R * c; 
+	 
+	 alert(Math.round(d));
+	}
+
 	// function onMapClick(e) {
 	// 	popup
 	// 		.setLatLng(e.latlng)

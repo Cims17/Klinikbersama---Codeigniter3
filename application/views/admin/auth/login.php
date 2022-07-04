@@ -19,30 +19,34 @@
                                 <div class="card-body">
                                      <!-- Tab panes -->
                                     <div class="p-3">                                       
-                                            <form action="<?php echo base_url() ?>admin/auth/login/login_admin" method="post" enctype="multipart/form-data" class="form-horizontal auth-form">
+                                            <form action="<?php echo base_url() ?>Admin/Auth/Login/Login_admin" method="post" enctype="multipart/form-data" class="form-horizontal auth-form">
                 
 												<div class="form-group mb-2">
-													<?php echo $this->session->flashdata('pesan') ?>                                  
+													<?php echo $this->session->flashdata('pesan') ?> 
+													                                 
                                                 </div><!--end form-group--> 
 
                                                 <div class="form-group mb-4">
                                                     <label class="form-label" for="username">Email</label>
                                                     <div class="input-group">                                                                                         
-                                                        <input type="text" class="form-control" name="email" id="email" placeholder="Masukkan Email" required>
-                                                    </div>                                    
+                                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo $this->session->flashdata('inputemail') ?>" placeholder="Masukkan Email" >
+														
+                                                    </div>       
+													<?php echo $this->session->flashdata('email') ?>                             
                                                 </div><!--end form-group--> 
                     
                                                 <div class="form-group mb-4">
                                                     <label class="form-label" for="userpassword">Password</label>                                            
                                                     <div class="input-group">                                  
-                                                        <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password" required>
+                                                        <input type="password" class="form-control" name="password" id="password" value="<?php echo $this->session->flashdata('inputpassword') ?>" placeholder="Masukkan password" >
 														<button class="btn btn-secondary" type="button" id="btnToggle"><i id="eyeIcon" class="far fa-eye"></i></button>
-                                                    </div>                               
+                                                    </div>
+													<?php echo $this->session->flashdata('password') ?>                                  
                                                 </div><!--end form-group--> 
                     
                                                 <div class="form-group mb-0 row">
                                                     <div class="col-12">
-                                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="button submit">Log In <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="button submit">Login <i class="fas fa-sign-in-alt ms-1"></i></button>
                                                     </div><!--end col--> 
                                                 </div> <!--end form-group-->                           
                                             </form><!--end form-->

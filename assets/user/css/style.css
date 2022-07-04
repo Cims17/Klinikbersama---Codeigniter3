@@ -154,7 +154,7 @@ iframe {
 }
 
 p {
-	color: #666666;
+	/* color: #666666; */
 	margin: 0 0 15px;
 	text-transform: none;
 	font-weight: 400;

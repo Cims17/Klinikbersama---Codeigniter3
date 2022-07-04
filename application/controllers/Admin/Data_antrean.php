@@ -1,24 +1,26 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Data_antrean extends CI_Controller{
+class Data_antrean extends CI_Controller
+{
 
-	public function __construct(){
-		
+	public function __construct()
+	{
+
 		parent::__construct();
-		if($this->session->userdata('id_user') == null) {
+		if ($this->session->userdata('id_user') == null) {
 			redirect('Admin/Auth/Login');
 		}
-
 	}
 
-	public function index() {
+	public function index()
+	{
 
-		
+
 		$data['antrean'] = $this->Model_antrean->get_antrean()->result_array();
 		$data['dokter'] = $this->Model_dokter->get_dokter()->result_array();
-		$data['footer'] = 'dataantrean' ;
-		
+		$data['footer'] = 'dataantrean';
+
 
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/template/sidebar');
@@ -26,8 +28,9 @@ class Data_antrean extends CI_Controller{
 		$this->load->view('admin/template/footer');
 	}
 
-	public function Tambah_antrean() {
-		$data['footer'] = 'tambahdataantrean' ;
+	public function Tambah_antrean()
+	{
+		$data['footer'] = 'tambahdataantrean';
 		$data['pasien'] = $this->Model_pasien->get_pasien()->result_array();
 		$data['dokter'] = $this->Model_dokter->get_dokter()->result_array();
 
@@ -37,31 +40,63 @@ class Data_antrean extends CI_Controller{
 		$this->load->view('admin/template/footer');
 	}
 
-	public function Simpan_antrean() {
-		$tanggal_periksa	= $this->input->post('tanggal_periksa');
-		$id_pasien			= $this->input->post('id_pasien');
-		$id_dokter			= $this->input->post('id_dokter');
+	public function formatNbr($nbr)
+	{
+		if ($nbr == 0 || $nbr == NULL)
+			return "001";
+		else if ($nbr < 10)
+			return "00" . $nbr;
+		elseif ($nbr >= 10 && $nbr < 100)
+			return "0" . $nbr;
+		else
+			return strval($nbr);
+	}
+
+	public function Simpan_antrean()
+	{
+		if (isset($_POST['submit'])) {
+			$id_dokter			= $this->input->post('id_dokter');
+			$tanggal_berobat	= $this->input->post('tanggal_berobat');
+			$keluhan			= $this->input->post('keluhan');
+			$cara_bayar			= $this->input->post('cara_bayar');
+			$idno_antrean 		= $this->Model_antrean->get_max_noantrean($id_dokter, $tanggal_berobat)->num_rows();
+			$no_antrean 		= $this->formatNbr($idno_antrean + 1);
+			$id_pasien			= $this->input->post('id_pasien');
 
 			$data2 = array(
-				'tanggal'			=> $tanggal_periksa,
 				'id_pasien'			=> $id_pasien,
 				'id_dokter'			=> $id_dokter,
-				'status_antrean'	=> 'Belum diperiksa',
+				'no_antrean'		=> $no_antrean,
+				'tanggal_berobat'	=> $tanggal_berobat,
+				'cara_bayar'		=> $cara_bayar,
+				'keluhan'			=> $keluhan,
 			);
-			$save2 = $this->Model_antrean->insert_data('tb_antrean',$data2);
-        if ($save2) {
-            $this->session->set_flashdata(
-                'berhasil_antrean',
-                '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+			$save2 = $this->Model_antrean->insert_data('tb_antrean', $data2);
+			if ($save2) {
+				$this->session->set_flashdata(
+					'berhasil_antrean',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 					<script type ="text/JavaScript">  
 					swal("Berhasil","Data Antrean Pasien Berhasil Ditambah","success")  
 					</script>'
-            );
-            redirect('Admin/Data_antrean');
-        }
+				);
+				redirect('Admin/Data_antrean');
+			}
+		}
+		if (isset($_POST['cancel'])) {
+			$this->session->set_flashdata(
+				'berhasil_antrean',
+				'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+								<script type ="text/JavaScript">  
+								swal("Cancel","Data Akun Pasien dan Antrean Gagal Ditambah","warning"); 
+								</script>'
+			);
+			redirect('Admin/Data_antrean');
+		}
 	}
 
-	public function Edit_jadwal($id) {
+	public function Edit_jadwal($id)
+	{
 		$data['jadwal'] = $this->Model_jadwal->get_jadwal_byid($id)->row();
 		$data['dokter'] = $this->Model_dokter->get_dokter()->result_array();
 		$data['footer'] = 'editdatajadwal';
@@ -72,52 +107,140 @@ class Data_antrean extends CI_Controller{
 		$this->load->view('admin/template/footer');
 	}
 
-	public function Update_jadwal($id) {
+	public function Tambah_pasien()
+	{
+		$data['footer'] = 'tambahdatapasienantrean';
+		$data['pasien'] = $this->Model_pasien->get_pasien()->result_array();
+		$data['dokter'] = $this->Model_dokter->get_dokter()->result_array();
 
-		if(isset($_POST['submit'])) {
-			$id_dokter		= $this->input->post('id_dokter');
-			$hari_mulai		= $this->input->post('hari_mulai');
-			$hari_selesai	= $this->input->post('hari_selesai');
-			$jam_mulai		= $this->input->post('jam_mulai');
-			$jam_selesai	= $this->input->post('jam_selesai');
-
-			$data2 = array(
-				'id_dokter'			=> $id_dokter,
-				'hari_mulai'		=> $hari_mulai,
-				'hari_selesai'		=> $hari_selesai,
-				'jam_mulai'			=> $jam_mulai,
-				'jam_selesai'		=> $jam_selesai,
-			);
-
-			$where = array('id_jadwal' => $id);
-
-			$this->db->update('tb_jadwal', $data2, $where);
-
-			$this->session->set_flashdata(
-			'berhasil_jadwal',
-			'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-                            <script type ="text/JavaScript">  
-                            swal("Sukses","Data Jadwal Dokter Berhasil Diedit","success"); 
-                            </script>'
-		);
-		redirect('Admin/Data_jadwal');
-		}	
-		if (isset($_POST['cancel'])) {
-			$this->session->set_flashdata(
-				'berhasil_jadwal',
-				'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-								<script type ="text/JavaScript">  
-								swal("Tidak Berubah","Data Jadwal Dokter Tidak Jadi Diedit","warning"); 
-								</script>'
-			);
-			redirect('Admin/Data_jadwal');
-		}
-		
+		$this->load->view('admin/template/header');
+		$this->load->view('admin/template/sidebar');
+		$this->load->view('admin/tambahDataPasienAntrean', $data);
+		$this->load->view('admin/template/footer');
 	}
 
-	public function Delete_jadwal($id) {
+	public function Simpan_pasien_antrean()
+	{
+		if (isset($_POST['submit'])) {
+			$no_identitas		= $this->input->post('no_identitas');
+			$nama_pasien		= $this->input->post('nama_pasien');
+			$tempat_lahir		= $this->input->post('tempat_lahir');
+			$tanggal_lahir		= $this->input->post('tanggal_lahir');
+			$jenis_kelamin		= $this->input->post('jenis_kelamin');
+			$agama_pasien		= $this->input->post('agama_pasien');
+			$alamat_pasien		= $this->input->post('alamat_pasien');
+			$asuransi_pasien	= $this->input->post('asuransi_pasien');
+			$noasuransi_pasien	= $this->input->post('no_asuransi');
+			$email				= $this->input->post('email_pasien');
+			$no_telepon			= $this->input->post('no_telepon');
+			$password			= password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
-		$this->db->delete('tb_jadwal', array('id_jadwal' => $id));
+			$id_dokter			= $this->input->post('id_dokter');
+			$tanggal_berobat	= $this->input->post('tanggal_berobat');
+			$keluhan			= $this->input->post('keluhan');
+			$cara_bayar			= $this->input->post('cara_bayar');
+			$idno_antrean 		= $this->Model_antrean->get_max_noantrean($id_dokter, $tanggal_berobat)->num_rows();
+			$no_antrean 		= $this->formatNbr($idno_antrean + 1);
 
+
+			$data2 = array(
+				'username'		=> $nama_pasien,
+				'email'			=> $email,
+				'no_telepon'	=> $no_telepon,
+				'password'		=> $password,
+				'role'			=> '3',
+			);
+			$save2 = $this->Model_klinik->insert_data('tb_user', $data2);
+
+			if ($save2) {
+				if ($asuransi_pasien == 'Tidak Ada Asuransi') {
+					$data3 = array(
+						'id_user'			=> $this->db->insert_id(),
+						'no_identitas'		=> $no_identitas,
+						'nama_pasien'		=> $nama_pasien,
+						'tempat_lahir'		=> $tempat_lahir,
+						'tanggal_lahir'		=> $tanggal_lahir,
+						'alamat_pasien'		=> $alamat_pasien,
+						'jenis_kelamin'		=> $jenis_kelamin,
+						'agama_pasien'		=> $agama_pasien,
+						'asuransi'			=> $asuransi_pasien,
+					);
+				}
+				if ($asuransi_pasien == 'BPJS Kesehatan') {
+					$data3 = array(
+						'id_user'			=> $this->db->insert_id(),
+						'no_identitas'		=> $no_identitas,
+						'nama_pasien'		=> $nama_pasien,
+						'tempat_lahir'		=> $tempat_lahir,
+						'tanggal_lahir'		=> $tanggal_lahir,
+						'alamat_pasien'		=> $alamat_pasien,
+						'jenis_kelamin'		=> $jenis_kelamin,
+						'agama_pasien'		=> $agama_pasien,
+						'asuransi'			=> $asuransi_pasien,
+						'no_asuransi'		=> $noasuransi_pasien,
+					);
+				}
+
+				$save3 = $this->Model_klinik->insert_data('tb_pasien', $data3);
+			}
+			if ($save3) {
+				$data4 = array(
+					'id_pasien'			=> $this->db->insert_id(),
+					'id_dokter'			=> $id_dokter,
+					'no_antrean'		=> $no_antrean,
+					'tanggal_berobat'	=> $tanggal_berobat,
+					'cara_bayar'		=> $cara_bayar,
+					'keluhan'			=> $keluhan,
+				);
+
+				$save4 = $this->Model_klinik->insert_data('tb_antrean', $data4);
+			}
+			if ($save4) {
+
+				$this->session->set_flashdata(
+					'berhasil_antrean',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+						<script type ="text/JavaScript">  
+						swal("Berhasil","Data Akun Pasien dan Antrean Berhasil Ditambah","success")  
+						</script>'
+				);
+				redirect('Admin/Data_antrean');
+			}
+		}
+		if (isset($_POST['cancel'])) {
+			$this->session->set_flashdata(
+				'berhasil_antrean',
+				'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+								<script type ="text/JavaScript">  
+								swal("Cancel","Data Akun Pasien dan Antrean Gagal Ditambah","warning"); 
+								</script>'
+			);
+			redirect('Admin/Data_antrean');
+		}
+	}
+
+	public function Tambah_riwayat_antrean($id_antrean) {
+
+		$antrean = $this->Model_antrean->get_antrean_byidantrean($id_antrean)->row();
+
+		$data2 = array(
+			'id_pasien'			=> $antrean->id_pasien,
+			'id_dokter'			=> $antrean->id_dokter,
+			'id_jadwal'			=> $antrean->id_jadwal,
+			'no_antrean'		=> $antrean->no_antrean,
+			'tanggal_berobat'	=> $antrean->tanggal_berobat,
+			'cara_bayar'		=> $antrean->cara_bayar,
+			'keluhan'			=> $antrean->keluhan,
+		);
+
+		$this->Model_klinik->insert_data('tb_riwayat_antrean', $data2);
+		$this->db->delete('tb_antrean', array('id_antrean' => $id_antrean));
+
+	}
+
+	public function Delete_antrean($id_antrean)
+	{
+
+		$this->db->delete('tb_antrean', array('id_antrean' => $id_antrean));
 	}
 }

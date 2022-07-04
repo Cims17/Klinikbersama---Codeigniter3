@@ -109,6 +109,9 @@
 
 <?php if ( $footer == 'tambahdataklinik'  ) { ?>
 
+	
+	<script src="<?= base_url() ?>assets/admin/plugins/dropify/js/dropify.min.js"></script>
+    <script src="<?= base_url() ?>assets/admin/pages/jquery.form-upload.init.js"></script>
 <script src="<?= base_url() ?>assets/admin/plugins/leaflet/leaflet.js"></script> 
 <script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-maptambah.init.js"></script> 
 
@@ -135,6 +138,18 @@
 	toggle.addEventListener('click', togglePassword, false);
 	passwordInput.addEventListener('keyup', checkInput, false);
 </script>
+
+<?php } ?>
+
+<?php if ( $footer == 'detailklinik'  ) { ?>
+
+<script src="<?= base_url() ?>assets/admin/plugins/leaflet/leaflet.js"></script> 
+<script src="<?= base_url() ?>assets/admin/plugins/lightpick/lightpick.js"></script>
+<script src="<?= site_url() ?>Admin/Data_klinik/Map_data_byidklinik_admin/<?=  $klinik->id_klinik ?>"></script>
+<script src="<?= base_url() ?>assets/admin/pages/jquery.profile.init.js"></script> 
+<script src="<?= base_url() ?>assets/admin/plugins/dropify/js/dropify.min.js"></script>
+<script src="<?= base_url() ?>assets/admin/pages/jquery.form-upload.init.js"></script>
+<script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-maptambah.init.js"></script> 
 
 <?php } ?>
 
@@ -344,6 +359,8 @@
 <?php } ?>
 
 <?php if ( $footer == 'tambahdatadokter') { ?>
+	<script src="<?= base_url() ?>assets/admin/plugins/dropify/js/dropify.min.js"></script>
+    <script src="<?= base_url() ?>assets/admin/pages/jquery.form-upload.init.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
@@ -352,6 +369,8 @@
 <?php } ?>
 
 <?php if ( $footer == 'editdatadokter') { ?>
+	<script src="<?= base_url() ?>assets/admin/plugins/dropify/js/dropify.min.js"></script>
+    <script src="<?= base_url() ?>assets/admin/pages/jquery.form-upload.init.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
@@ -528,6 +547,17 @@
 <!-- Sweet-Alert  -->
 <script src="<?= base_url() ?>assets/admin/plugins/sweet-alert2/sweetalert2.min.js"></script>
 
+<script type="text/javascript"> 
+$(document).ready(function() {
+	<?php foreach ($dokter as $dkt) { 
+		if ($dkt['id_user'] ==  $this->session->userdata('id_user')) { ?>
+ 	 $('#dataantrean<?= $dkt['id_dokter'] ?>').DataTable();
+
+	<?php } } ?>
+    
+} );
+</script>
+
 <script type="text/javascript">
 
 	!function ($) {
@@ -538,7 +568,7 @@
 			$(".remove").click(function() {
 					var id = $(this).parents("tr").attr("id");
 					swal.fire({
-									title: 'Hapus Data Jadwal Dokter?',
+									title: 'Hapus Data Antrean ?',
 									text: "Anda tidak akan dapat mengembalikan data ini!",
 									type: 'warning',
 									showCancelButton: true,
@@ -548,7 +578,49 @@
 								}).then(function(result) {
 									if (result.value) {
 										$.ajax({
-											url: '<?= base_url() ?>Admin/Data_jadwal/Delete_jadwal/' + id,
+											url: '<?= base_url() ?>Admin/Data_antrean/Delete_antrean/' + id,
+											type: 'DELETE',
+											error: function() {
+													alert('Something is wrong');
+											},
+											success: function(data) {
+												swal.fire(
+											'Selesai',
+											'Data Antrean Dihapus',
+											'success'
+										).then(function() {
+															location.reload();
+													});
+											}
+									});
+										
+									} else if (
+										// Read more about handling dismissals
+										result.dismiss === Swal.DismissReason.cancel
+									) {
+										swal.fire(
+											'Dibatalkan',
+											'Data Antrean Aman',
+											'error'
+										)
+									}
+								})
+			});
+
+			$(".riwayat_antrean").click(function() {
+					var id = $(this).parents("tr").attr("id");
+					swal.fire({
+									title: 'Pasien Sudah Diperiksa ?',
+									text: "Anda tidak akan dapat mengembalikan data ini!",
+									type: 'warning',
+									showCancelButton: true,
+									confirmButtonText: 'Sudah Diperiksa',
+									cancelButtonText: 'Belum Diperiksa',
+									reverseButtons: true
+								}).then(function(result) {
+									if (result.value) {
+										$.ajax({
+											url: '<?= base_url() ?>Admin/Data_antrean/Tambah_riwayat_antrean/' + id,
 											type: 'DELETE',
 											error: function() {
 													alert('Something is wrong');
@@ -556,7 +628,7 @@
 											success: function(data) {
 												swal.fire(
 											'Deleted!',
-											'Data Jadwal Dokter Dihapus',
+											'Pasien Sudah Diperiksa',
 											'success'
 										).then(function() {
 															location.reload();
@@ -570,7 +642,7 @@
 									) {
 										swal.fire(
 											'Cancelled',
-											'Data Jadwal Dokter Aman',
+											'Pasien Belum Diperiksa',
 											'error'
 										)
 									}
@@ -594,6 +666,33 @@
 	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
 	<script src="<?= base_url() ?>assets/admin/pages/jquery.forms-advanced.js"></script>
+
+<?php } ?>
+<?php if ( $footer == 'tambahdatapasienantrean') { ?>
+	<script src="<?= base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
+	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
+	<script src="<?= base_url() ?>assets/admin/pages/jquery.forms-advanced.js"></script>
+
+	<script type="text/javascript">
+		var select = document.getElementById("asuransi_pasien");
+		// select = function() {
+			if (select.value == "BPJS Kesehatan") {
+				document.getElementById("noasuransi_pasien").style.display = "inline";
+			} else {
+				document.getElementById("noasuransi_pasien").style.display = "none";
+			}
+
+		// }
+		select.onchange = function() {
+			if (select.value == "BPJS Kesehatan") {
+				document.getElementById("noasuransi_pasien").style.display = "inline";
+			} else {
+				document.getElementById("noasuransi_pasien").style.display = "none";
+			}
+
+		}
+	</script>
 
 <?php } ?>
 

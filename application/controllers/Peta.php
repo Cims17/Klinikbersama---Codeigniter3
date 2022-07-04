@@ -7,6 +7,7 @@ class Peta extends CI_Controller
 	public function index()
 	{
 		$data['footer'] = 'peta';
+		$data['get_klinik'] = $this->Model_klinik->get_klinik()->result_array();
 
 		$this->load->view('user/template/header');
 		$this->load->view('user/template/navbar');

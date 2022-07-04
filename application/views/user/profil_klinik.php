@@ -31,15 +31,45 @@
 			<div class="row">
 				<div class="col-lg-8 info">
 					<div class="thumb">
-						<img src="<?= base_url() ?>assets/admin/images/klinik/default.png" alt="Thumb">
+						<img src="<?= base_url() ?>assets/admin/images/klinik/<?= $knk['foto_klinik'] ?>" alt="Thumb">
 						<div class="title">
 							<h3><?= $knk['nama_klinik'] ?></h3>
 							<span>Dokter yang tersedia: <?= $jumlah_dokter ?></span>
 						</div>
 					</div>
-					<p>
-						<?= $knk['alamat_klinik'] ?>
-					</p>
+					<div class="row">
+						<div class="col-lg-12 info">
+							<div class="card">
+								<div class="card-header bg-gradient">
+									<h4 class="card-title text-light">Profil Klinik</h4>
+								</div>
+								<!--end card-header-->
+								<div class="card-body">
+									<div class="form-group row">
+										<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">No Telepon</h5>
+										<div class="col-lg-8 col-xl-8">
+											<h5>: <?= $knk['no_telepon'] ?> </h5>
+										</div>
+									</div>
+									<div class="form-group row">
+										<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Alamat Klinik</h5>
+										<div class="col-lg-8 col-xl-8">
+											<h5>: <?= $knk['alamat_klinik'] ?></h5>
+										</div>
+									</div>
+									<div class="form-group row">
+										<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Google Map</h5>
+										<div class="col-lg-8 col-xl-8">
+											<h5>: <a href="<?= $knk['link_gmap'] ?>" target="_blank"><?= $knk['link_gmap'] ?></a><i class="fas fa-link ml-2"></i></h5>
+										</div>
+									</div>
+								</div>
+								<!--end card-body-->
+							</div>
+							<!--end card-->
+						</div>
+
+					</div>
 				</div>
 				<div class="col-lg-4 sidebar">
 
@@ -86,7 +116,7 @@
 					<div class="single-item col-lg-3 col-md-6">
 						<div class="item">
 							<div class="thumb">
-								<img src="<?= base_url() ?>assets/admin/images/dokter/default.png" alt="Thumb">
+								<img src="<?= base_url() ?>assets/admin/images/dokter/<?= $dkt['foto_dokter'] ?>" height="300" width="300" alt="Thumb">
 								<div class="contact">
 									<ul>
 										<li>

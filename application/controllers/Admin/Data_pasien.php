@@ -128,8 +128,9 @@ class Data_pasien extends CI_Controller{
 	}
 
 	public function Delete_pasien($id) {
-
+		$id_user = $this->Model_pasien->get_iduser_byidpasien($id)->row_array();
 		$this->db->delete('tb_pasien', array('id_pasien' => $id));
+		$this->db->delete('tb_user', array('id_user' => $id_user['id_user']));
 
 	}
 }

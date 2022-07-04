@@ -6,10 +6,10 @@
 				<div class="page-title-box">
 					<div class="row">
 						<div class="col">
-							<h4 class="page-title">Tambah Data Pasien <?php echo $this->session->userdata('username') ?></h4>
+							<h4 class="page-title">Tambah Data Akun Pasien</h4>
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a>Data Pasien</a></li>
-								<li class="breadcrumb-item active">Tambah Data Pasien</li>
+								<li class="breadcrumb-item"><a>Data Akun Pasien</a></li>
+								<li class="breadcrumb-item active">Tambah Data Akun Pasien</li>
 							</ol>
 						</div>
 						<!--end col-->
@@ -26,10 +26,10 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Form Tambah Data Pasien <?php echo $this->session->userdata('username') ?></h4>
+						<h4 class="card-title">Form Tambah Data Akun Pasien</h4>
 					</div>
 					<!--end card-header-->
-					<form action="<?php echo base_url() ?>Admin/Data_pasien/Simpan_pasien" method="post" enctype="multipart/form-data">
+					<form action="<?= base_url() ?>Admin/Pasien/Simpan_pasien/" method="post" enctype="multipart/form-data">
 						<div class="card-body">
 							<div class="row">
 								<div class="col-lg-6">
@@ -59,38 +59,69 @@
 										<label class="form-label" style="color: black;">Jenis Kelamin</label>
 										<select class="form-control select2 custom-select" name="jenis_kelamin" required>
 											<option value="" selected disabled>Pilih Jenis Kelamin</option>
-											<option value="Pria">Pria</option>
-											<option value="Wanita">Wanita</option>
+											<option value="Laki-Laki" >Laki-Laki</option>
+											<option value="Perempuan" >Perempuan</option>
 										</select>
 									</div>
 								</div>
 
 								<div class="col-lg-6">
 									<div class="mb-3">
+										<label class="form-label" style="color: black;">Agama Pasien</label>
+										<select class="form-control select2 custom-select" name="agama_pasien" required>
+											<option value="" selected disabled>Pilih Agama</option>
+											<option value="Islam" >Islam</option>
+											<option value="Protestan" >Protestan</option>
+											<option value="Katolik" >Katolik</option>
+											<option value="Hindu" >Hindu</option>
+											<option value="Buddha" >Buddha</option>
+											<option value="Khonghucu" >Khonghucu</option>
+										</select>
+									</div>
+									<div class="mb-3">
 										<label class="form-label" style="color: black;">Alamat</label>
 										<textarea type="text" class="form-control" name="alamat_pasien" required></textarea>
 									</div>
 									<div class="mb-3">
-										<label class="form-label" style="color: black;">Nomor Telepon</label>
-										<input type="text" class="form-control" name="notlp_pasien" placeholder="Masukkan Nomor Telepon Pasien" required>
-									</div>
-									<div class="mb-3">
-									<label class="form-label" style="color: black;">Agama Pasien</label>
-										<select class="form-control select2 custom-select" name="agama_pasien" required>
-											<option value="" selected disabled>Pilih Agama</option>
-											<option value="Islam">Islam</option>
-											<option value="Protestan">Protestan</option>
-											<option value="Katolik">Katolik</option>
-											<option value="Hindu">Hindu</option>
-											<option value="Buddha">Buddha</option>
-											<option value="Khonghucu">Khonghucu</option>
+										<label class="form-label" style="color: black;">Asuransi</label>
+										<select class="form-control select2 custom-select" id="asuransi_pasien" name="asuransi_pasien" required>
+											<option value="" selected disabled>Pilih Asuransi</option>
+											<option value="Tidak Ada Asuransi" >Tidak Ada Asuransi</option>
+											<option value="BPJS Kesehatan" >BPJS Kesehatan</option>
 										</select>
 									</div>
+									<div class="mb-3" id="noasuransi_pasien" style="display:none;">
+										<label class="form-label" style="color: black;">Nomor Asuransi</label>
+										<input type="text" class="form-control" name="no_asuransi" placeholder="Masukkan Nomor Asuransi" >
+									</div>
 								</div>
+
 							</div>
 							<hr />
-							<button type="submit" class="btn btn-primary">Submit</button>
-							<button type="reset" class="btn btn-danger">Cancel</button>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="mb-3">
+										<label class="form-label" style="color: black;">Email</label>
+										<input type="text" class="form-control" name="email_pasien" placeholder="Masukkan Email" required>
+									</div>
+								<div class="mb-3">
+									<label class="form-label" style="color: black;">Password</label>
+									<input type="text" class="form-control" name="password" required>
+								</div>
+								
+								</div>
+
+								<div class="col-lg-6">
+									<div class="mb-3">
+										<label class="form-label" style="color: black;">Nomor Whatsapp</label>
+										<input type="text" class="form-control" name="no_telepon" placeholder="Masukkan Nama Pasien" required>
+									</div>
+								</div>
+
+							</div>
+
+							<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+							<button type="cancel" name="cancel" class="btn btn-danger">Cancel</button>
 						</div>
 						<!--end card-body-->
 					</form>

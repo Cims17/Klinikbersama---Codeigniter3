@@ -43,16 +43,7 @@
     					<div class="title">
     						<h4>Klinik Terdekat</h4>
     					</div>
-    					<ul>
-    						<li > <span> Mon - Tues : </span>
-    							<div class="float-right"> 6.00 am - 10.00 pm </div>
-    						</li>
-    						<li> <span> Wednes - Thurs :</span>
-    							<div class="float-right"> 8.00 am - 6.00 pm </div>
-    						</li>
-    						<li> <span> Sun : </span>
-    							<div class="float-right closed"> Closed </div>
-    						</li>
+    					<ul id="jarak_lokasi">
     					</ul>
     				</div>
     				<!-- End Single Widget -->
@@ -66,3 +57,4 @@
     </div>
     </div>
     <!-- End Department Single -->
+

@@ -34,7 +34,7 @@
 			<div class="row">
 				<div class="col-lg-8 daftar">
 					<div class="thumb">
-						<img src="<?= base_url() ?>/assets/user/img/2440x1578.png" alt="Thumb">
+						<img src="<?= base_url() ?>assets/admin/images/dokter/<?= $dkt['foto_dokter'] ?>" alt="Thumb">
 						<div class="title">
 							<h3>Dokter <?= $knk['nama_dokter'] ?></h3>
 						</div>
@@ -44,7 +44,7 @@
 					<div class="fun-factor-area pb-5">
 						<div class="container">
 							<div class="title">
-								<h3>Antrean Tanggal <?= date("Y-m-d") ?> </h3>
+								<h3>Antrean Tanggal <?= date("Y-m-d") ?> Jadwal Praktik <?= date("h") ?>  </h3>
 							</div>
 							<div class="fun-fact-items bg-gradient text-light text-center">
 
@@ -91,15 +91,28 @@
 												<label for="tanggal_berobat" class="placeholder">Tanggal Berobat</label>
 											</div>
 										</div>
+										
+										<div class="col-md-12">
+											<div class="form-group">
+												<select id="cara_bayar" name="jadwal_dokter" class="form-control input">
+													<option value="" selected disabled>Pilih Jam Praktik</option>
+													<?php foreach($jadwal as $jdl) { ?>
+														<option value="<?= $jdl['id_jadwal'] ?>"><?= $jdl['jam_mulai'] ?> - <?= $jdl['jam_selesai'] ?></option>
+														<?php } ?>
+												</select>
+												<div class="cut"></div>
+												<label for="cara_bayar" class="placeholder">Jam Praktik</label>
+											</div>
+										</div>
 										<div class="col-md-12">
 											<div class="form-group">
 												<select id="cara_bayar" name="cara_bayar" class="form-control input">
 													<option value="" selected disabled>Pilih Cara Bayar</option>
 													<?php if ($asuransi['asuransi'] == 'Tidak Ada Asuransi') { ?>
-														<option value="Bayar Sendiri">Bayar Sendiri</option>
+														<option value="Bayar Mandiri">Bayar Sendiri</option>
 													<?php } ?>
 													<?php if ($asuransi['asuransi'] == 'BPJS Kesehatan') { ?>
-														<option value="Bayar Sendiri">Bayar Sendiri</option>
+														<option value="Bayar Mandiri">Bayar Mandiri</option>
 														<option value="BPJS Kesehatan">BPJS Kesehatan</option>
 													<?php } ?>
 												</select>

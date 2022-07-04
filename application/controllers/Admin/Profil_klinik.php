@@ -55,7 +55,9 @@ class Profil_klinik extends CI_Controller
 					$query = $this->db->get();
 					if ($query->num_rows() > 0) { //hapus gambar sebelumnya
 						$img_name = $query->row()->foto_klinik;
-						unlink("./assets/admin/images/klinik/" . $img_name);
+                        if ($img_name != 'default.png') {
+                            unlink("./assets/admin/images/klinik/" . $img_name);
+                        }
 					}
 					//mengganti gambar
 					$foto_klinik = $this->upload->data('file_name');
@@ -74,7 +76,7 @@ class Profil_klinik extends CI_Controller
 					'dokter_pj_klinik'		=> $dokter_pj_klinik,
 					'nama_pemilik'		=> $nama_pemilik,
 					'alamat_klinik'		=> $alamat_klinik,
-					'foto_klinik'		=> 'default.png'
+					'foto_klinik'		=> 'default.png',
 				);
 			}
 

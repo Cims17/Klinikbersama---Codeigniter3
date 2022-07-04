@@ -33,30 +33,42 @@ class Data_jadwal extends CI_Controller{
 	}
 
 	public function Simpan_jadwal() {
-		$id_dokter		= $this->input->post('id_dokter');
-		$hari_mulai		= $this->input->post('hari_mulai');
-		$hari_selesai	= $this->input->post('hari_selesai');
-		$jam_mulai		= $this->input->post('jam_mulai');
-		$jam_selesai	= $this->input->post('jam_selesai');
+        if (isset($_POST['submit'])) {
+            $id_dokter		= $this->input->post('id_dokter');
+            $hari_mulai		= $this->input->post('hari_mulai');
+            $hari_selesai	= $this->input->post('hari_selesai');
+            $jam_mulai		= $this->input->post('jam_mulai');
+            $jam_selesai	= $this->input->post('jam_selesai');
 
-			$data2 = array(
-				'id_dokter'			=> $id_dokter,
-				'hari_mulai'		=> $hari_mulai,
-				'hari_selesai'		=> $hari_selesai,
-				'jam_mulai'			=> $jam_mulai,
-				'jam_selesai'		=> $jam_selesai,
-			);
-			$save2 = $this->Model_jadwal->insert_data('tb_jadwal',$data2);
-        if ($save2) {
-            $this->session->set_flashdata(
-                'berhasil_jadwal',
-                '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+            $data2 = array(
+                'id_dokter'			=> $id_dokter,
+                'hari_mulai'		=> $hari_mulai,
+                'hari_selesai'		=> $hari_selesai,
+                'jam_mulai'			=> $jam_mulai,
+                'jam_selesai'		=> $jam_selesai,
+            );
+            $save2 = $this->Model_jadwal->insert_data('tb_jadwal', $data2);
+            if ($save2) {
+                $this->session->set_flashdata(
+                    'berhasil_jadwal',
+                    '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 					<script type ="text/JavaScript">  
 					swal("Berhasil","Data Jadwal Dokter Berhasil Ditambah","success")  
 					</script>'
-            );
-            redirect('Admin/Data_jadwal');
+                );
+                redirect('Admin/Data_jadwal');
+            }
         }
+		if (isset($_POST['cancel'])) { 
+			$this->session->set_flashdata(
+			'berhasil_jadwal',
+			'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+							<script type ="text/JavaScript">  
+							swal("Cancel","Data Jadwal Dokter Gagal Ditambah","warning"); 
+							</script>'
+		);
+		redirect('Admin/Data_jadwal');
+		}
 	}
 
 	public function Edit_jadwal($id) {

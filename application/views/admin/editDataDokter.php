@@ -38,14 +38,17 @@
 										<input type="text" class="form-control" id="namaDokter" name="nama_dokter" placeholder="Masukkan Nama Dokter" value="<?= $dokter->nama_dokter ?>" required>
 									</div>
 									<div class="mb-3">
-										<label class="form-label" style="color: black;">Tempat Lahir</label>
-										<input type="text" class="form-control" id="tempatLahir" name="tempat_lahir" value="<?= $dokter->tempat_lahir ?>" placeholder="Masukkan Tempat Lahir" required>
-									</div>
-									<div class="mb-3">
-										<label class="form-label" style="color: black;">Tanggal Lahir</label>
-										<div class="input-group">
-											<input type="text" class="form-control" id="mdate" name="tanggal_lahir" value="<?= $dokter->tanggal_lahir ?>" required>
-											<span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
+										<label class="form-label" style="color: black;">Tempat Tanggal Lahir</label>
+										<div class="row">
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="tempatLahir" name="tempat_lahir" value="<?= $dokter->tempat_lahir ?>" placeholder="Masukkan Tempat Lahir" >
+											</div>
+											<div class="col-lg-6">
+												<div class="input-group">
+													<input type="text" class="form-control" id="mdate" name="tanggal_lahir" value="<?= $dokter->tanggal_lahir ?>" placeholder="Masukkan Tanggal Lahir" >
+													<span class="input-group-text"><i class="ti ti-calendar font-16"></i></span>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="mb-3">
@@ -56,9 +59,6 @@
 											<option value="Wanita" <?= ($dokter->jenis_kelamin === 'Wanita') ? 'selected' : '' ?>>Wanita</option>
 										</select>
 									</div>
-								</div>
-
-								<div class="col-lg-6">
 									<div class="mb-3">
 										<label class="form-label" style="color: black;">Alamat</label>
 										<textarea type="text" class="form-control" id="alamatDokter" name="alamat_dokter" required><?= $dokter->alamat_dokter ?></textarea>
@@ -67,9 +67,22 @@
 										<label class="form-label" style="color: black;">Nomor Telepon</label>
 										<input type="text" class="form-control" id="notlpDokter" name="notlp_dokter" placeholder="Masukkan Nomor Telepon Dokter" value="<?= $dokter->notlp_dokter ?>" required>
 									</div>
+								</div>
+
+								<div class="col-lg-6">
 									<div class="mb-3">
-										<label class="form-label" style="color: black;">Spesialis</label>
-										<input type="text" class="form-control" id="spesialis" name="spesialis" value="<?= $dokter->spesialis ?>" required>
+										<label class="form-label" style="color: black;">Spesialis/Dokter Gigi/Dokter Umum</label>
+										<input type="text" class="form-control" id="spesialis" name="spesialis" value="<?= $dokter->spesialis ?>" placeholder="Masukkan Spesialis"  >
+									</div>
+									<div class="mb-3">
+										<label class="form-label" style="color: black;">Nomor Surat Izin Praktik</label>
+										<input type="text" class="form-control" id="no_SIP" name="no_SIP" value="<?= $dokter->no_SIP ?>" placeholder="Masukkan Nomor SIP" >
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="foto_dokter" style="color: black;">Foto Dokter</label>
+										<div class="col-lg-9 col-xl-8">
+											<input type="file" name="foto_dokter" id="input-file-now-custom-1" class="dropify" data-default-file="<?= base_url() ?>assets/admin/images/dokter/<?= $dokter->foto_dokter ?>" />
+										</div>
 									</div>
 								</div>
 							</div>

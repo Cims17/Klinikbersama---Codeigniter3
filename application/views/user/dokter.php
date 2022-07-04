@@ -30,7 +30,7 @@
     					<div class="single-item col-lg-3 col-md-6">
     						<div class="item">
     							<div class="thumb">
-    								<img src="<?= base_url() ?>assets/admin/images/dokter/default.png" alt="Thumb">
+    								<img src="<?= base_url() ?>assets/admin/images/dokter/<?= $dkt['foto_dokter'] ?>" alt="Thumb">
     								<div class="contact">
     									<ul>
     										<li>

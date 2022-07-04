@@ -8,11 +8,19 @@ class Login extends CI_Controller{
 		$this->load->view('user/auth/login');
 	}
 
-	public function login_user() {
-		$this->form_validation->set_rules('email', 'email', 'required', ['required' => 'Email / No.HP wajib diisi!']);
-		$this->form_validation->set_rules('password', 'Password', 'required', ['required' => 'Password wajib diisi!']);
+	public function Login_user() {
+		$this->form_validation->set_rules('no_whatsapp', 'Nomor Whatsapp', 'required|numeric');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		$this->form_validation->set_message('required', '{field} Wajib Diisi!');
+		$this->form_validation->set_message('numeric', '{field} Wajib Diisi Dengan Angka!');
+
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('user/auth/login');
+			$this->session->set_flashdata('no_whatsapperr', form_error('no_whatsapp'));
+            $this->session->set_flashdata('passworderr', form_error('password'));
+			$this->session->set_flashdata('value_no_whatsapp', set_value('no_whatsapp'));
+
+			redirect('Auth/Login');
 		} else {
 			$auth = $this->Model_login->cek_login_user();
 
@@ -21,8 +29,8 @@ class Login extends CI_Controller{
 				redirect('Auth/Login');
 			} else {
 				$this->session->set_userdata('username', $auth->username);
-				
-				$this->session->set_userdata('email', $auth->email);
+				$this->session->set_userdata('no_telepon', $auth->username);
+				// $this->session->set_userdata('email', $auth->email);
 				$this->session->set_userdata('role', $auth->role);
 				$this->session->set_userdata('id_user', $auth->id_user);
 				redirect('Dashboard');

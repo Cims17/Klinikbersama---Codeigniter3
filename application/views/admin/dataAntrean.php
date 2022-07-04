@@ -26,13 +26,26 @@
 
 			<div class="col-12">
 				<div class="card">
-					<div class="card-header d-flex justify-content-between">
-						<h4 class="card-title">Tabel Data Antrean Pasien <?php echo $this->session->userdata('username') ?></h4>
-						<a href="<?php echo base_url()  ?>Admin/Data_antrean/Tambah_antrean">
-							<button type="button" class="btn btn-sm btn-soft-primary">
-								<i class="fas fa-plus me-2"></i>Tambah Data Antrean
-							</button>
-						</a>
+					<div class="card-header">
+						<div class="row">
+							<div class="col-lg-6">
+								<h4 class="card-title">Tabel Data Antrean Pasien <?php echo $this->session->userdata('username') ?></h4>
+							</div>
+							<div class="col-lg-6 d-flex justify-content-end">
+								<a href="<?php echo base_url()  ?>Admin/Data_antrean/Tambah_pasien">
+									<button type="button" class="btn btn-sm btn-soft-primary me-2">
+										<i class="fas fa-plus me-2"></i>Tambah Data Antrean Pasien Baru
+									</button>
+								</a>
+								<a href="<?php echo base_url()  ?>Admin/Data_antrean/Tambah_antrean">
+									<button type="button" class="btn btn-sm btn-soft-primary">
+										<i class="fas fa-plus me-2"></i>Tambah Data Antrean
+									</button>
+								</a>
+							</div>
+
+
+						</div>
 						<!-- <a class=" btn btn-sm btn-soft-success" href="#" role="button"><i class="fas fa-plus me-2"></i>Tambah Saldo</a> -->
 					</div>
 					<div class="card-body">
@@ -44,12 +57,13 @@
 										<!-- <a class=" btn btn-sm btn-soft-success" href="#" role="button"><i class="fas fa-plus me-2"></i>Tambah Saldo</a> -->
 									</div>
 									<div class="card-body">
-										<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<table id="dataantrean<?= $dkt['id_dokter'] ?>" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
 												<tr>
 													<th>Nomor Antrean</th>
 													<th>Nama Pasien</th>
-													<th>Status</th>
+													<th>Keluhan</th>
+													<th>Cara Bayar</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
@@ -62,16 +76,15 @@
 													if ($antr['id_dokter'] == $dkt['id_dokter']) { ?>
 
 														<tr id="<?= $antr['id_antrean'] ?>">
-															<td><?= $antr['id_antrean'] ?></td>
+															<td><?= $antr['no_antrean'] ?></td>
 															<td><?= $antr['nama_pasien'] ?></td>
-															<td><?= $antr['status_antrean'] ?></td>
+															<td><?= $antr['keluhan'] ?></td>
+															<td><?= $antr['cara_bayar'] ?></td>
 															<td>
 																<div class="d-flex">
-																	<a href="<?php echo base_url() ?>Admin/Data_jadwal/Edit_jadwal/">
-																		<button type="button" class="btn btn-sm btn-soft-success me-2">
-																			<i class="fas fa-edit me-2"></i>Edit
+																		<button type="button" class="btn btn-sm btn-soft-success me-2 riwayat_antrean" id="sa-warning"> 
+																			<i class="fas fa-edit me-2"></i>Sudah Diperiksa
 																		</button>
-																	</a>
 																	<button type="button" class="btn btn-sm btn-soft-danger remove" id="sa-warning">
 																		<i class="fas fa-times me-2"></i>Hapus
 																	</button>

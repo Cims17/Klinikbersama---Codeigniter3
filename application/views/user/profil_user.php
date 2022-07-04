@@ -1,114 +1,100 @@
-   <!-- Start Banner 
+    <!-- Start Breadcrumb 
     ============================================= -->
-   <div class="banner-area content-less">
-   	<div id="bootcarousel" class="carousel text-large slide carousel-fade animate_text" data-ride="carousel">
+    <div class="breadcrumb-area bg-gradient text-center">
+    	<div class="fixed-bg" style="background-image: url(<?= base_url() ?>assets/user/img/shape/9.png);"></div>
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-8 offset-lg-2">
+    				<h1>Profil</h1>
+    				<ul class="breadcrumb">
+    					<li><a href="<?= base_url() ?>"><i class="fas fa-home"></i> Home</a></li>
+    					<li class="active">Profil</li>
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <!-- End Breadcrumb -->
 
-   		<!-- Wrapper for slides -->
-   		<div class="carousel-inner carousel-zoom">
-   			<div class="carousel-item active">
-   				<div class="slider-thumb bg-cover" style="background-image: url(assets/user/img/banner/10.jpg);"></div>
-   				<div class="box-table">
-   					<div class="box-cell">
-   						<div class="container">
-   							<div class="row">
-   								<div class="col-lg-9">
-   									<div class="content">
-   										<h2 data-animation="animated slideInRight">Temukan <strong>Dokter Terbaik</strong></h2>
-   										<h4 data-animation="animated slideInDown">Dapatkan Perawatan Terbaik</h4>
-   										<a data-animation="animated fadeInUp" class="btn btn-md btn-gradient" href="<?= base_url() ?>Dokter"><i class="fas fa-angle-right"></i> Jelajahi</a>
-   									</div>
-   								</div>
-   							</div>
-   						</div>
-   					</div>
-   				</div>
-   			</div>
-   			<div class="carousel-item">
-   				<div class="slider-thumb bg-cover" style="background-image: url(assets/user/img/banner/11.jpg);"></div>
-   				<div class="box-table">
-   					<div class="box-cell">
-   						<div class="container">
-   							<div class="row">
-   								<div class="col-lg-9">
-   									<div class="content">
-   										<h2 data-animation="animated slideInRight">Temukan <strong>Klinik Terbaik</strong></h2>
-   										<h4 data-animation="animated slideInDown">Dapatkan Pelayanan Terbaik</h4>
-   										<a data-animation="animated fadeInUp" class="btn btn-md btn-gradient" href="<?= base_url() ?>Klinik"><i class="fas fa-angle-right"></i> Jelajahi</a>
-   									</div>
-   								</div>
-   							</div>
-   						</div>
-   					</div>
-   				</div>
-   			</div>
-   		</div>
-   		<!-- End Wrapper for slides -->
-
-   		<!-- Left and right controls -->
-   		<a class="left carousel-control theme" href="#bootcarousel" data-slide="prev">
-   			<i class="fa fa-angle-left"></i>
-   			<span class="sr-only">Previous</span>
-   		</a>
-   		<a class="right carousel-control theme" href="#bootcarousel" data-slide="next">
-   			<i class="fa fa-angle-right"></i>
-   			<span class="sr-only">Next</span>
-   		</a>
-
-   	</div>
-   </div>
-   <!-- End Banner -->
-
-   <!-- Start Facilities
+    <!-- Start Department Single 
     ============================================= -->
-   <div class="facilites-area default-padding-bottom">
-   	<div class="container">
-   	</div>
-   </div>
-   <!-- End Facilities -->
+    <div class="department-single-area overflow-hidden default-padding">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-12 info">
+    				<div class="card">
+    					<div class="card-header bg-gradient">
+    						<h4 class="card-title text-light">Profil Pengguna</h4>
+    					</div>
+    					<!--end card-header-->
+    					<div class="card-body">
+    						<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-4 text-end mb-lg-0 align-self-center">Nama Lengkap</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $user->nama_pasien ?></h5>
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Nomor Induk Kependudukan</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $user->no_identitas ?></h5>
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Tempat Lahir</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $user->tempat_lahir ?></h5>
+    							</div>
+    						</div>
 
-   <!-- Start Choose Us Area 
-    ============================================= -->
-   <div class="chooseus-area relative default-padding-bottom">
-   	<div class="container">
-   		<div class="chooseus-box">
-   			<div class="row align-center">
+    						<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Tanggal Lahir</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $user->tanggal_lahir ?></h5>
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Alamat</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $user->alamat_pasien ?></h5>
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Jenis Kelamin</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $user->jenis_kelamin ?></h5>
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Agama</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $user->agama_pasien ?></h5>
+    							</div>
+    						</div>
+    						<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Asuransi</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $user->asuransi ?></h5>
+    							</div>
+    						</div>
+    						<?php if ($user->asuransi == 'BPJS Kesehatan') { ?>
+    							<div class="form-group row">
+    								<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Nomor Asuransi</h5>
+    								<div class="col-lg-8 col-xl-8">
+    									<h5>: <?= $user->no_asuransi ?></h5>
+    								</div>
+    							</div>
+    						<?php } ?>
+    						<hr />
+    						<button class="btn btn-success"><i class="fas fa-edit me-2"></i>Edit</button>
+    					</div>
+    					<!--end card-body-->
+    				</div>
+    				<!--end card-->
+    			</div>
 
-   				<div class="col-lg-6 info">
-   					<h2>A Great Place to Work. A Great <strong>Place to Receive Care</strong>. Leading Medicine Properly.</h2>
-   					<p>
-   						Coming merits and was talent enough far. Sir joy northward sportsmen education. Discovery incommode earnestly no he commanded if. Put still any about manor heard. Calling offence six joy feeling
-   					</p>
-   					<ul>
-   						<li>
-   							<h5>Surgery & Transplants</h5>
-   							<p>
-   								Discourse unwilling am no described dejection incommode no listening of. Before nature his parish boy.
-   							</p>
-   						</li>
-   						<li>
-   							<h5>Outdoor Services</h5>
-   							<p>
-   								Discourse unwilling am no described dejection incommode no listening of. Before nature his parish boy.
-   							</p>
-   						</li>
-   					</ul>
-   					<a class="btn btn-md btn-gradient" href="#"><i class="fas fa-angle-right"></i> Make Appoinment</a>
-   				</div>
-
-   				<div class="col-lg-6">
-   					<div class="thumb">
-   						<img src="<?= base_url() ?>assets/user/img/thumb/4.png" alt="Thumb">
-   					</div>
-   				</div>
-
-   			</div>
-   		</div>
-   	</div>
-   	<!-- Shape -->
-   	<div class="shape-bottom shape">
-   		<img src="<?= base_url() ?>assets/user/img/shape/12.png" alt="Shape">
-   	</div>
-   	<!-- End Shape -->
-   </div>
-   <!-- End Choose Us Area  -->
-
+    		</div>
+    	</div>
+    </div>
+    </div>
+    <!-- End Department Single -->
