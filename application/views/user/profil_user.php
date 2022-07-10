@@ -86,7 +86,7 @@
     							</div>
     						<?php } ?>
     						<hr />
-    						<button class="btn btn-success"><i class="fas fa-edit me-2"></i>Edit</button>
+							<?= anchor('Profil/Edit', '<button class="btn btn-success"><i class="fas fa-edit me-2"></i>Edit</button>') ?>
     					</div>
     					<!--end card-body-->
     				</div>

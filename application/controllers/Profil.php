@@ -12,4 +12,15 @@ class Profil extends CI_Controller{
 		$this->load->view('user/profil_user', $data);
 		$this->load->view('user/template/footer');
 	}
+
+	public function Edit() {
+
+		$data['user'] = $this->Model_pasien->get_pasien_byiduser($this->session->userdata('id_user'))->row();
+
+		$this->load->view('user/template/header');
+		$this->load->view('user/template/navbar');
+		$this->load->view('user/edit_profil', $data);
+		$this->load->view('user/template/footer');
+	}
+
 }

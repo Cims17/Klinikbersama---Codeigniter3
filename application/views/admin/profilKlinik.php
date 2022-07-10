@@ -49,7 +49,6 @@
 								<div class="col-lg-4 ms-auto align-self-center">
 									<ul class="list-unstyled personal-detail mb-0">
 										<li class=""><i class="ti ti-mobile me-2 text-secondary font-16 align-middle"></i> <b> Nomor Telepon </b> : <?= $klinik->no_telepon ?></li>
-										<li class="mt-2"><i class="ti ti-email text-secondary font-16 align-middle me-2"></i> <b> Email </b> : <?= $klinik->email ?></li>
 
 								</div>
 								<!--end col-->
@@ -141,6 +140,31 @@
 							<!--end col-->
 							<div class="col-lg-3">
 								<div class="card">
+									<div class="card-header">
+										<h4>Jadwal Praktik</h4>
+									</div>
+									<div class="card-body">
+										<ul>
+											<li>
+												<h5> Senin - Jumat : 06.00 - 09.00</h5>
+											</li>
+											<li>
+												<h5> Senin - Jumat : 16.00 - 20.00</h5>
+											</li>
+										</ul>
+										<!--end card-body-->
+									</div>
+								</div>
+								<div class="card">
+									<div class="card-header">
+										<h4>Jadwal Praktik</h4>
+									</div>
+									<div class="card-body">
+										<h5>Sabtu, Minggu, dan Hari Besar Tutup</h5>
+									</div>
+								</div>
+								<!--end card-->
+								<div class="card">
 									<div class="card-body">
 										<div class="dash-datepick">
 											<input type="hidden" id="light_datepick" />
@@ -220,41 +244,12 @@
 									<form action="<?= base_url() ?>Admin/Profil_klinik/Updateakun_klinik/<?= $klinik->id_user ?>" method="post" enctype="multipart/form-data">
 										<div class="card-body">
 											<div class="form-group row">
-												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Email</label>
-												<div class="col-lg-9 col-xl-8">
-													<div class="input-group">
-														<span class="input-group-text"><i class="las la-at"></i></span>
-														<input type="text" class="form-control" name="email" value="<?= $klinik->email ?>" placeholder="Email" aria-describedby="basic-addon1">
-													</div>
-												</div>
-											</div>
-											<div class="form-group row">
 												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Nomor Telepon</label>
 												<div class="col-lg-9 col-xl-8">
 													<div class="input-group">
 														<span class="input-group-text"><i class="las la-phone"></i></span>
 														<input type="text" class="form-control" name="no_telepon" value="<?= $klinik->no_telepon ?>" placeholder="Phone" aria-describedby="basic-addon1">
 													</div>
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Password Sekarang</label>
-												<div class="col-lg-9 col-xl-8">
-													<input class="form-control" type="password" placeholder="Password" name="password">
-													<!-- <a href="#" class="text-primary font-12">Forgot password ?</a> -->
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Password Baru</label>
-												<div class="col-lg-9 col-xl-8">
-													<input class="form-control" type="password" placeholder="New Password" name="password_baru">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Ulangi Password Baru</label>
-												<div class="col-lg-9 col-xl-8">
-													<input class="form-control" type="password" placeholder="Re-Password" name="password_ulang">
-													<span class="form-text text-muted font-12">Jangan bagikan password anda</span>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -286,7 +281,7 @@
 									<form action="<?= base_url() ?>Admin/Profil_klinik/Updatepeta_klinik/<?= $klinik->id_klinik ?>" method="post" enctype="multipart/form-data">
 										<div class="card-body">
 											<div class="form-group row">
-												<div id="Leaf_default_tambah" class="" style="height: 400px"></div>
+												<div id="Leaf_default_edit" class="" style="height: 300px"></div>
 											</div>
 											<div class="form-group row">
 												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Link Google Map</label>
@@ -332,11 +327,6 @@
 
 	</div><!-- container -->
 
-	<footer class="footer text-center text-sm-start">
-		&copy; <script>
-			document.write(new Date().getFullYear())
-		</script> Dastone <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
-	</footer>
 	<!--end footer-->
 </div>
 <!-- end page content -->

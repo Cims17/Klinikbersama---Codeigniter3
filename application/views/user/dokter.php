@@ -8,7 +8,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-8 offset-lg-2">
-    				<h1>List Dokter</h1>
+    				<h1>Dokter</h1>
     				<ul class="breadcrumb">
     					<li><a href="#"><i class="fas fa-home"></i> Home</a></li>
     					<li class="active">Doctor</li>

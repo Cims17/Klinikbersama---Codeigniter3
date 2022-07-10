@@ -3,11 +3,11 @@
  <footer class="bg-dark text-light">
  	<div class="container">
  		<div class="f-items default-padding">
- 			<div class="d-flex justify-content-between">
+ 			<div class="row">
  				<div class="col-lg-4 col-md-6 item">
  					<div class="f-item about">
 						<div class="row">
-							<div class="col-lg-6">
+							<div class="col-lg-6 ">
 								<img src="<?= base_url() ?>assets/user/img/logo-light-dinas.png" alt="Logo">
 							</div>
 							<div class="col-lg-6">

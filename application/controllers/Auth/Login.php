@@ -16,8 +16,8 @@ class Login extends CI_Controller{
 		$this->form_validation->set_message('numeric', '{field} Wajib Diisi Dengan Angka!');
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->session->set_flashdata('no_whatsapperr', form_error('no_whatsapp'));
-            $this->session->set_flashdata('passworderr', form_error('password'));
+			$this->session->set_flashdata('err_no_whatsapp', form_error('no_whatsapp'));
+            $this->session->set_flashdata('err_password', form_error('password'));
 			$this->session->set_flashdata('value_no_whatsapp', set_value('no_whatsapp'));
 
 			redirect('Auth/Login');
@@ -28,11 +28,22 @@ class Login extends CI_Controller{
 				$this->session->set_flashdata('pesan', '<div style="justify-content:center;" class="text-center alert alert-danger alert-dismissible fade show" role="alert">Password Anda Salah!</div>');
 				redirect('Auth/Login');
 			} else {
-				$this->session->set_userdata('username', $auth->username);
-				$this->session->set_userdata('no_telepon', $auth->username);
-				// $this->session->set_userdata('email', $auth->email);
+				if($auth->status_pasien == 'Belum Aktif'){
+					$this->session->set_flashdata('pesan', '<div style="justify-content:center;" class="text-center alert alert-danger alert-dismissible fade show" role="alert">Anda Belum Melakukan Aktivasi Akun Silahkan Aktivasi!</div>');
+					redirect('Auth/Login');
+				}
+				$this->session->set_userdata('nama_pasien', $auth->nama_pasien);
+				$this->session->set_userdata('no_telepon', $auth->no_telepon);
+				$this->session->set_userdata('status', $auth->status_pasien);
 				$this->session->set_userdata('role', $auth->role);
 				$this->session->set_userdata('id_user', $auth->id_user);
+				$this->session->set_flashdata(
+					'berhasil_dashboard',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+									<script type ="text/JavaScript">  
+									swal("Sukses","Berhasil Login","success"); 
+									</script>'
+				);
 				redirect('Dashboard');
 				// switch ($auth->role) {
 				// 	case :

@@ -1,8 +1,7 @@
 
 	<footer class="footer text-center text-sm-start">
-  &copy; <script>
-    document.write(new Date().getFullYear())
-  </script> <span class="text-muted d-none d-sm-inline-block float-end"></span>
+	DINKES.PNG @ 2022	
+	<span class="text-muted d-none d-sm-inline-block float-end"></span>
 </footer>
 <!--end footer-->
 </div>
@@ -29,11 +28,11 @@
 
 	<script src="<?= base_url() ?>assets/admin/plugins/leaflet/leaflet.js"></script> 
     <script src="<?= base_url() ?>assets/admin/plugins/lightpick/lightpick.js"></script>
+	<!-- <script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-mapedit.init.js"></script>  -->
 	<script src="<?= site_url() ?>Admin/Profil_klinik/Map_data_byiduserklinik"></script>
     <script src="<?= base_url() ?>assets/admin/pages/jquery.profile.init.js"></script> 
 	<script src="<?= base_url() ?>assets/admin/plugins/dropify/js/dropify.min.js"></script>
     <script src="<?= base_url() ?>assets/admin/pages/jquery.form-upload.init.js"></script>
-	<script src="<?= base_url() ?>assets/admin/pages/jquery.leaflet-maptambah.init.js"></script> 
 
 <?php } ?>
 
@@ -544,7 +543,10 @@
 
 <?php if ( $footer == 'dataantrean') { ?>
 
-<!-- Sweet-Alert  -->
+	<script src="<?= base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
+	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
+	<script src="<?= base_url() ?>assets/admin/pages/jquery.forms-advanced.js"></script>
 <script src="<?= base_url() ?>assets/admin/plugins/sweet-alert2/sweetalert2.min.js"></script>
 
 <script type="text/javascript"> 

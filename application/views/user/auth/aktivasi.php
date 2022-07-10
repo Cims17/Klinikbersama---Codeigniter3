@@ -45,16 +45,15 @@
 	<!-- Start Consultation 
     ============================================= -->
 	<?= $this->session->flashdata('berhasil_daftar') ?>
-	<div class="consultation-area" style="padding-top: 70px; padding-bottom: 50px;">
-		<div class="container pt-4 ">
-			<div class="row align-center justify-content-center">
+	<div class="consultation-area" style="padding-top: 150px;">
+		<div class="container pt-4">
+			<div class="row align-item justify-content-center">
 				<div class="col-lg-5 form">
 					<div class="appoinment-box text-center wow fadeInRight">
 					<a href="<?= base_url() ?>"><img src="<?= base_url() ?>assets/user/img/logo-light.png" class=" logo mb-3" alt="Logo"></a>
 						<div class="heading">
-							<h4>Form Login Calon Pasien</h4>
+							<h4>Aktivasi Akun Calon Pasien</h4>
 						</div>
-						<form action="<?php echo base_url() ?>Auth/Login/Login_user" method="post" enctype="multipart/form-data">
 
 							<div class="row">
 								<div class="col-md-12">
@@ -65,33 +64,18 @@
 								<!--end form-group-->
 								<div class="col-md-12">
 									<div class="form-group">
-										<input class="form-control" id="no_whatsapp" name="no_whatsapp" value="<?php echo $this->session->flashdata('value_no_whatsapp') ?>" placeholder="Nomor Whatsapp" type="text">
+										<h5 class=" text-white">NIK	: <?= $pasien['no_identitas'] ?></h5>
 									</div>
-									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_whatsapp') ?></span> 
 								</div>
 								<div class="col-md-12">
-									<div class="form-group">
-										<input class="form-control" name="password" id="password" placeholder="Password" type="password">
-										<span class="p-viewer">
-											<i id="eyeIcon" class="far fa-eye"></i>
-										</span>
+									<div class="form-group text-white">
+										<h5 class=" text-white">Nama	: <?= $pasien['nama_pasien'] ?></h5>
 									</div>
-									<span class="d-flex ml-2 text-danger"><?php echo $this->session->flashdata('err_password') ?></span>
-								</div>
-								<div class="col-md-12">
-									<a href="<?= base_url() ?>Auth/Lupa_password">Lupa Password ?</a>
-									<button type="submit" name="submit" id="f_submit">
-										Login
-									</button>
 								</div>
 							</div>
-						</form>
-						<div class="m-3 text-center">
-							<p class="mb-0 text-white">Belum memiliki akun ?</p>
-						</div>
-						<div class="col-md-12">
-							<?= anchor('Auth/Registrasi', '<button class="btn-register" > 
-								Registrasi
+						<div class="col-md-12 mt-3">
+							<?= anchor('Auth/Aktivasi/Aktif/'.$pasien['kode_aktivasi'] , '<button class="btn-register" > 
+								Aktivasi Akun
 							</button>') ?>
 							</a>
 						</div>

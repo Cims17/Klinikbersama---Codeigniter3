@@ -64,8 +64,8 @@
 						<li class="<?= ($this->uri->segment(1) == 'Peta') ? 'active' : '' ?>">
 							<a href="<?= base_url() ?>Peta">Peta</a>
 						</li>
-						<?php if ($this->session->userdata('username') != null) {
-							$nama = explode(' ', $this->session->userdata('username')); ?>
+						<?php if ($this->session->userdata('nama_pasien') != null) {
+							$nama = explode(' ', $this->session->userdata('nama_pasien')); ?>
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">Akun</a>
 								<ul class="dropdown-menu">

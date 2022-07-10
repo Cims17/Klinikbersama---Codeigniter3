@@ -29,9 +29,13 @@
 					<div class="card-header">
 						<div class="row">
 							<div class="col-lg-6">
-								<h4 class="card-title">Tabel Data Antrean Pasien <?php echo $this->session->userdata('username') ?></h4>
+								<h4 class="card-title">Tabel Data Antrean Pasien Tanggal <?= date('d-m-Y') ?></h4>
 							</div>
 							<div class="col-lg-6 d-flex justify-content-end">
+								<div class="input-group me-2" style="width: 200px;">
+									<input id="mdateperiksa" name="tanggal" type="text" class="form-control" placeholder="Pilih Tanggal" >
+									<button class="btn btn-primary" type="button" id="button-addon2">Cari</button>
+								</div>
 								<a href="<?php echo base_url()  ?>Admin/Data_antrean/Tambah_pasien">
 									<button type="button" class="btn btn-sm btn-soft-primary me-2">
 										<i class="fas fa-plus me-2"></i>Tambah Data Antrean Pasien Baru
@@ -82,9 +86,9 @@
 															<td><?= $antr['cara_bayar'] ?></td>
 															<td>
 																<div class="d-flex">
-																		<button type="button" class="btn btn-sm btn-soft-success me-2 riwayat_antrean" id="sa-warning"> 
-																			<i class="fas fa-edit me-2"></i>Sudah Diperiksa
-																		</button>
+																	<button type="button" class="btn btn-sm btn-soft-success me-2 riwayat_antrean" id="sa-warning">
+																		<i class="fas fa-edit me-2"></i>Sudah Diperiksa
+																	</button>
 																	<button type="button" class="btn btn-sm btn-soft-danger remove" id="sa-warning">
 																		<i class="fas fa-times me-2"></i>Hapus
 																	</button>

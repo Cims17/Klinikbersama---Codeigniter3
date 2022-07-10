@@ -44,6 +44,7 @@
                                     <th>Hari Selesai</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
+									<th>Pasien</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -61,6 +62,7 @@
                                         <td><?= $jdwl['hari_selesai'] ?></td>
                                         <td><?= $jdwl['jam_mulai'] ?></td>
                                         <td><?= $jdwl['jam_selesai'] ?></td>
+										<td><?= $jdwl['maksimal_pasien'] ?></td>
                                         <td>
                                             <div class="d-flex">
 												<a href="<?php echo base_url() ?>Admin/Data_jadwal/Edit_jadwal/<?= $jdwl['id_jadwal'] ?>">

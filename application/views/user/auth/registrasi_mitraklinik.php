@@ -50,28 +50,29 @@
 				<div class="appoinment-box text-center wow fadeInRight">
 					<div class="heading">
 						<a href="<?= base_url() ?>">
-						<img src="<?= base_url() ?>assets/user/img/logo-light.png" class="logo mb-3" alt="Logo"></a>
-						<h4>Form Registrasi Calon Pasien</h4>
+							<img src="<?= base_url() ?>assets/user/img/logo-light.png" class="logo mb-3" alt="Logo">
+						</a>
+						<h4>Form Registrasi Mitra Klinik</h4>
 					</div>
 					<form action="<?= base_url() ?>Auth/Registrasi/Registrasi_pasien" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-1">
-										<input id="no_identitas" name="no_identitas" class="input" type="text" value="<?php echo $this->session->flashdata('value_no_identitas') ?>" placeholder=" " />
-										<div class="cut cut-long"></div>
-										<label for="no_identitas" class="placeholder">Masukkan NIK</label>
+										<input id="nama_klinik" name="nama_klinik" class="input" type="text" value="<?php echo $this->session->flashdata('value_no_identitas') ?>" placeholder=" " />
+										<div class="cut"></div>
+										<label for="nama_klinik" class="placeholder">Nama Klinik</label>
 									</div>
 								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_identitas') ?></span> 
+								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_identitas') ?></span>
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
-										<input id="nama_pasien" name="nama_pasien" class="input" type="text" value="<?php echo $this->session->flashdata('value_nama_pasien') ?>" placeholder=" " />
-										<div class="cut cut-toolong"></div>
-										<label for="nama_pasien" class="placeholder">Nama Lengkap (Sesuai KTP)</label>
+										<input id="nama_pemilik" name="nama_pemilik" class="input" type="text" value="<?php echo $this->session->flashdata('value_nama_pasien') ?>" placeholder=" " />
+										<div class="cut "></div>
+										<label for="nama_pemilik" class="placeholder">Nama Pemilik</label>
 									</div>
 								</div>
 								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_nama_pasien') ?></span>
@@ -80,9 +81,9 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
-										<input id="tempat_lahir" name="tempat_lahir" class="input" type="text" value="<?php echo $this->session->flashdata('value_tempat_lahir') ?>" placeholder=" " />
-										<div class="cut"></div>
-										<label for="tempat_lahir" class="placeholder">Tempat Lahir</label>
+										<input id="dokter_pj_klinik" name="dokter_pj_klinik" class="input" type="text" value="<?php echo $this->session->flashdata('value_tempat_lahir') ?>" placeholder=" " />
+										<div class="cut cut-toolong"></div>
+										<label for="dokter_pj_klinik" class="placeholder">Dokter Penanggung Jawab</label>
 									</div>
 								</div>
 								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_tempat_lahir') ?></span>
@@ -90,54 +91,10 @@
 
 							<div class="col-md-12">
 								<div class="form-group">
-									<div class="input-container ic-2">
-										<input id="tanggal_lahir" name="tanggal_lahir" type="date" class="input" placeholder="dd-mm-yyyy" value="<?php echo $this->session->flashdata('value_tanggal_lahir') ?>" placeholder=" " />
-										<div class="cut"></div>
-										<label for="tanggal_lahir" class="placeholder">Tanggal Lahir</label>
-									</div>
-								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_tanggal_lahir') ?></span>
-							</div>
-
-							<div class="col-md-12">
-								<div class="form-group">
-									<div class="form-control input ">
-										<input id="laki-laki" name="jenis_kelamin" class="form-control input" type="radio" value="Laki-Laki"  <?= ($this->session->flashdata('value_jenis_kelamin') === 'Laki-Laki') ? 'checked' : '' ?> placeholder=" " />
-										<label for="laki-laki" class="text-white mr-3">Laki-Laki</label>
-										<input id="perempuan" name="jenis_kelamin" class="form-control input " type="radio" value="Perempuan" <?= ($this->session->flashdata('value_jenis_kelamin') === 'Perempuan') ? 'checked' : '' ?> placeholder=" " />
-										<label for="perempuan" class="text-white">Perempuan</label>
-										<div class="cut cut-long"></div>
-										<label for="jenis_kelamin" class="placeholder" style="font-size: 15px ;">Jenis Kelamin</label>
-									</div>
-								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_jenis_kelamin') ?></span>
-							</div>
-
-							<div class="col-md-12">
-								<div class="form-group">
-									<div class="input-container ic-2">
-										<select id="agama_pasien" name="agama_pasien" class="form-control input">
-											<option value="" selected disabled> Pilih Agama</option>
-											<option value="Islam" <?= ($this->session->flashdata('value_agama_pasien') === 'Islam') ? 'selected' : '' ?>>Islam</option>
-											<option value="Protestan" <?= ($this->session->flashdata('value_agama_pasien') === 'Protestan') ? 'selected' : '' ?>>Protestan</option>
-											<option value="Katolik" <?= ($this->session->flashdata('value_agama_pasien') === 'Katolik') ? 'selected' : '' ?>>Katolik</option>
-											<option value="Hindu" <?= ($this->session->flashdata('value_agama_pasien') === 'Hindu') ? 'selected' : '' ?>>Hindu</option>
-											<option value="Buddha" <?= ($this->session->flashdata('value_agama_pasien') === 'Buddha') ? 'selected' : '' ?>>Buddha</option>
-											<option value="Khonghucu" <?= ($this->session->flashdata('value_agama_pasien') === 'Khonghucu') ? 'selected' : '' ?>>Khonghucu</option>
-										</select>
-										<div class="cut cut-short"></div>
-										<label for="agama_pasien" class="placeholder">Agama</label>
-									</div>
-								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_agama_pasien') ?></span>
-							</div>
-
-							<div class="col-md-12">
-								<div class="form-group">
 									<!-- <div class="input-container ic-2"> -->
-									<textarea id="alamat_pasien" name="alamat_pasien" class="form-control input textarea"><?php echo $this->session->flashdata('value_alamat_pasien') ?></textarea>
-									<div class="cut cut-short"></div>
-									<label for="alamat_pasien" class="placeholder">Alamat</label>
+									<textarea id="alamat_klinik" name="alamat_klinik" class="form-control input textarea"><?php echo $this->session->flashdata('value_alamat_pasien') ?></textarea>
+									<div class="cut cut-long"></div>
+									<label for="alamat_klinik" class="placeholder">Alamat Klinik</label>
 									<!-- </div> -->
 								</div>
 								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_alamat_pasien') ?></span>
@@ -146,27 +103,17 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
-										<select id="asuransi_pasien" name="asuransi_pasien" class="form-control input">
-											<option value="Tidak Ada Asuransi" <?= ($this->session->flashdata('value_asuransi_pasien') === 'Tidak Ada Asuransi') ? 'selected' : '' ?>>Tidak Ada Asuransi</option>
+										<select id="asuransi_klinik" name="asuransi_klinik" class="form-control input">
+											<option value="Tidak Menerima Asuransi" <?= ($this->session->flashdata('value_asuransi_pasien') === 'Tidak Ada Asuransi') ? 'selected' : '' ?>>Tidak Ada Asuransi</option>
 											<option value="BPJS Kesehatan" <?= ($this->session->flashdata('value_asuransi_pasien') === 'BPJS Kesehatan') ? 'selected' : '' ?>>BPJS Kesehatan</option>
 										</select>
-										<div class="cut cut-long"></div>
-										<label for="asuransi_pasien" class="placeholder">Pilih Asuransi</label>
+										<div class="cut cut-toolong"></div>
+										<label for="asuransi_klinik" class="placeholder">Pilih Menerima Asuransi</label>
 									</div>
 								</div>
 								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_asuransi_pasien') ?></span>
 							</div>
 
-							<div class="col-md-12" id="noasuransi_pasien" style="display:none;">
-								<div class="form-group">
-									<div class="input-container ic-2">
-										<input name="noasuransi_pasien" class="form-control input" type="number" value="<?php echo $this->session->flashdata('value_noasuransi_pasien') ?>" placeholder=" " />
-										<div class="cut cut-long"></div>
-										<label for="noasuransi_pasien" class="placeholder">Nomor Asuransi</label>
-									</div>
-								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_noasuransi_pasien') ?></span>
-							</div>
 							<hr size="1px" width="100%">
 
 							<!-- <div class="col-md-12">
@@ -183,8 +130,8 @@
 								<div class="form-group">
 									<div class="input-container ic-2">
 										<input id="no_telepon" name="no_telepon" class="form-control input" type="number" value="<?php echo $this->session->flashdata('value_no_telepon') ?>" placeholder=" " />
-										<div class="cut cut-long"></div>
-										<label for="no_telepon" class="placeholder">Nomor Whatsapp</label>
+										<div class="cut cut-toolong"></div>
+										<label for="no_telepon" class="placeholder">Nomor Whatsapp Klinik</label>
 									</div>
 								</div>
 								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_telepon') ?></span>
@@ -250,22 +197,6 @@
 	<script src="<?= base_url() ?>assets/user/js/main.js"></script>
 
 	<script type="text/javascript">
-		var select = document.getElementById("asuransi_pasien");
-		select.onchange = function() {
-			if (select.value == "BPJS Kesehatan") {
-				document.getElementById("noasuransi_pasien").style.display = "inline";
-			} else {
-				document.getElementById("noasuransi_pasien").style.display = "none";
-			}
-		}
-		if (select.value == "BPJS Kesehatan") {
-				document.getElementById("noasuransi_pasien").style.display = "inline";
-			} else {
-				document.getElementById("noasuransi_pasien").style.display = "none";
-			}
-	</script>
-
-	<script type="text/javascript">
 		let passwordInput = document.getElementById('password'),
 			icon = document.getElementById('eyeIcon');
 
@@ -287,7 +218,7 @@
 		passwordInput.addEventListener('keyup', checkInput, false);
 	</script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 		let passwordInput2 = document.getElementById('konfirmasi_password'),
 			icon2 = document.getElementById('eyeIcon2');
 

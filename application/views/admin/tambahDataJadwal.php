@@ -72,7 +72,11 @@
 								<div class="mb-3">
 									<label class="form-label" style="color: black;">Jam Selesai</label>
 									<input class="form-control" id="timepicker2" name="jam_selesai" placeholder="Pilih Jam Selesai" >
-								</div>            
+								</div>  
+								<div class="mb-3">
+									<label class="form-label" style="color: black;">Maksimal Pasien</label>
+									<input class="form-control" type="number" name="jam_selesai" placeholder="Masukkan Maksimal Pasien" >
+								</div>           
 							</div>
 						</div>
 						<hr />

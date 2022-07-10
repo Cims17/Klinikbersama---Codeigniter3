@@ -10,7 +10,7 @@
 			<div class="col-lg-8 offset-lg-2">
 				<?php foreach ($dokter as $dkt) { ?>
 					<h1><?= $dkt['nama_dokter'] ?></h1>
-					<h1>Dokter <?= $dkt['spesialis'] ?></h1>
+					<h1><?= $dkt['spesialis'] ?></h1>
 				<?php } ?>
 				<ul class="breadcrumb">
 					<li><a href="<?= base_url() ?>"><i class="fas fa-home"></i> Home</a></li>
@@ -33,10 +33,12 @@
 		<?php foreach ($dokter as $knk) { ?>
 			<div class="row">
 				<div class="col-lg-8 daftar">
-					<div class="thumb">
-						<img src="<?= base_url() ?>assets/admin/images/dokter/<?= $dkt['foto_dokter'] ?>" alt="Thumb">
+					<div class="thumb" style="height: 410px;">
+						<img src="<?= base_url() ?>assets/admin/images/dokter/<?= $dkt['foto_dokter'] ?>" height="400" width="400" alt="Thumb">
 						<div class="title">
 							<h3>Dokter <?= $knk['nama_dokter'] ?></h3>
+							<span>No.SIP : <?= $knk['no_SIP'] ?></span><br>
+							<span><?= $knk['spesialis'] ?></span>
 						</div>
 					</div>
 					<!-- Start Fun Factor Area
@@ -44,7 +46,7 @@
 					<div class="fun-factor-area pb-5">
 						<div class="container">
 							<div class="title">
-								<h3>Antrean Tanggal <?= date("Y-m-d") ?> Jadwal Praktik <?= date("h") ?>  </h3>
+								<h3>Antrean Tanggal <?= date("Y-m-d") ?> <br> Jadwal Praktik 06.00-09.00 WIB</h3>
 							</div>
 							<div class="fun-fact-items bg-gradient text-light text-center">
 
@@ -84,13 +86,6 @@
 												<input class="form-control" id="id_dokter" name="id_dokter" type="text" value="<?= $knk['id_dokter'] ?>" hidden>
 											</div>
 										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<input class="form-control input" id="tanggal_berobat" name="tanggal_berobat" placeholder=" " type="date">
-												<div class="cut cut-long2"></div>
-												<label for="tanggal_berobat" class="placeholder">Tanggal Berobat</label>
-											</div>
-										</div>
 										
 										<div class="col-md-12">
 											<div class="form-group">
@@ -104,6 +99,15 @@
 												<label for="cara_bayar" class="placeholder">Jam Praktik</label>
 											</div>
 										</div>
+
+										<div class="col-md-12">
+											<div class="form-group">
+												<input class="form-control input" id="tanggal_berobat" name="tanggal_berobat" placeholder=" " type="date">
+												<div class="cut cut-long2"></div>
+												<label for="tanggal_berobat" class="placeholder">Tanggal Berobat</label>
+											</div>
+										</div>
+										
 										<div class="col-md-12">
 											<div class="form-group">
 												<select id="cara_bayar" name="cara_bayar" class="form-control input">
@@ -153,17 +157,14 @@
 					<!-- Single Widget -->
 					<div class="widget opening-hours">
 						<div class="title">
-							<h4>Jadwal Praktik</h4>
+							<h4>Jam Praktik</h4>
 						</div>
 						<ul>
-							<li> <span> Mon - Tues : </span>
-								<div class="float-right"> 6.00 am - 10.00 pm </div>
+							<li> <span> Senin - Jumat : </span>
+								<div class="float-right">06.00 - 09.00</div>
 							</li>
-							<li> <span> Wednes - Thurs :</span>
-								<div class="float-right"> 8.00 am - 6.00 pm </div>
-							</li>
-							<li> <span> Sun : </span>
-								<div class="float-right closed"> Closed </div>
+							<li> <span> Senin - Jumat :</span>
+								<div class="float-right">16.00 - 20.00</div>
 							</li>
 						</ul>
 					</div>

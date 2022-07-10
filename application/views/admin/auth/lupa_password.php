@@ -11,7 +11,7 @@
                                     <div class="text-center p-3">
 									<img src="<?= base_url() ?>assets/user/img/logo-light-dinas.png" alt="Logo">
 									<img src="<?= base_url() ?>assets/user/img/logo-light.png" alt="Logo">
-                                        <h4 class="mt-3 mb-1 fw-semibold text-white font-18">Form Login Admin Klinik</h4>
+                                        <h4 class="mt-3 mb-1 fw-semibold text-white font-18">Form Lupa Password</h4>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -22,7 +22,13 @@
 												<div class="form-group mb-2">
 													<?php echo $this->session->flashdata('pesan') ?> 
 													                                 
-                                                </div><!--end form-group-->
+                                                </div><!--end form-group--> 
+												 
+												<div class="form-group mb-4">
+													<div class="text-center">
+													<h4>Link Reset Password Akan Dikirimkan Melalui Nomor Whatsapp Anda</h4> 
+													</div>                        
+                                                </div><!--end form-group--> 
 
                                                 <div class="form-group mb-4">
                                                     <label class="form-label" for="username">Nomor Whatsapp</label>
@@ -33,24 +39,9 @@
 													<?php echo $this->session->flashdata('email') ?>                             
                                                 </div><!--end form-group--> 
                     
-                                                <div class="form-group mb-4">
-                                                    <label class="form-label" for="userpassword">Password</label>                                            
-                                                    <div class="input-group">                                  
-                                                        <input type="password" class="form-control" name="password" id="password" value="<?php echo $this->session->flashdata('inputpassword') ?>" placeholder="Masukkan password" >
-														<button class="btn btn-secondary" type="button" id="btnToggle"><i id="eyeIcon" class="far fa-eye"></i></button>
-                                                    </div>
-													<?php echo $this->session->flashdata('password') ?>                                  
-                                                </div><!--end form-group--> 
-												
-												<div class="form-group row">
-                                                    <div class="col-sm-6">
-                                                        <a href="<?= base_url() ?>Admin/Auth/Lupa_password" class=" font-13"><i class="dripicons-lock"></i> Lupa password?</a>                                    
-                                                    </div><!--end col--> 
-                                                </div><!--end form-group--> 
-                    
                                                 <div class="form-group mb-0 row">
                                                     <div class="col-12">
-                                                        <button class="btn btn-info w-100 waves-effect waves-light" type="button submit">Login <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                        <button class="btn btn-info w-100 waves-effect waves-light" type="button submit">Kirimkan <i class="fas fa-sign-in-alt ms-1"></i></button>
                                                     </div><!--end col--> 
                                                 </div> <!--end form-group-->                           
                                             </form><!--end form-->

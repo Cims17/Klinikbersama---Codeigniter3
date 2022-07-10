@@ -52,9 +52,9 @@
 					<div class="appoinment-box text-center wow fadeInRight">
 					<a href="<?= base_url() ?>"><img src="<?= base_url() ?>assets/user/img/logo-light.png" class=" logo mb-3" alt="Logo"></a>
 						<div class="heading">
-							<h4>Form Login Calon Pasien</h4>
+							<h4>Reset Password</h4>
 						</div>
-						<form action="<?php echo base_url() ?>Auth/Login/Login_user" method="post" enctype="multipart/form-data">
+						<form action="<?php echo base_url() ?>Auth/Lupa_password/Login_user" method="post" enctype="multipart/form-data">
 
 							<div class="row">
 								<div class="col-md-12">
@@ -62,36 +62,48 @@
 										<?php echo $this->session->flashdata('pesan') ?>
 									</div>
 								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<h5 class=" text-white">No Whatsapp	: <?= $pasien['no_telepon'] ?></h5>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group text-white">
+										<h5 class=" text-white">Nama	: <?= $pasien['nama_pasien'] ?></h5>
+									</div>
+								</div>
 								<!--end form-group-->
 								<div class="col-md-12">
 									<div class="form-group">
-										<input class="form-control" id="no_whatsapp" name="no_whatsapp" value="<?php echo $this->session->flashdata('value_no_whatsapp') ?>" placeholder="Nomor Whatsapp" type="text">
+										<input class="form-control" id="password" name="password" placeholder="Password Baru" type="password">
+										<span class="p-viewer">
+											<i id="eyeIcon" class="far fa-eye"></i>
+										</span>
 									</div>
 									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_whatsapp') ?></span> 
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input class="form-control" name="password" id="password" placeholder="Password" type="password">
+										<input class="form-control" id="konfirmasi_password" name="konfirmasi_password" placeholder="Konfirmasi Password Baru" type="password">
 										<span class="p-viewer">
-											<i id="eyeIcon" class="far fa-eye"></i>
+											<i id="eyeIcon2" class="far fa-eye"></i>
 										</span>
 									</div>
-									<span class="d-flex ml-2 text-danger"><?php echo $this->session->flashdata('err_password') ?></span>
+									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_whatsapp') ?></span> 
 								</div>
 								<div class="col-md-12">
-									<a href="<?= base_url() ?>Auth/Lupa_password">Lupa Password ?</a>
 									<button type="submit" name="submit" id="f_submit">
-										Login
+										Ganti Password
 									</button>
 								</div>
 							</div>
 						</form>
 						<div class="m-3 text-center">
-							<p class="mb-0 text-white">Belum memiliki akun ?</p>
+							<p class="mb-0 text-white">Sudah memiliki akun ?</p>
 						</div>
 						<div class="col-md-12">
-							<?= anchor('Auth/Registrasi', '<button class="btn-register" > 
-								Registrasi
+							<?= anchor('Auth/Login', '<button class="btn-register" > 
+								Login
 							</button>') ?>
 							</a>
 						</div>
@@ -120,6 +132,7 @@
 	<script src="<?= base_url() ?>assets/user/js/bootsnav.js"></script>
 	<script src="<?= base_url() ?>assets/user/js/main.js"></script>
 
+
 	<script type="text/javascript">
 		let passwordInput = document.getElementById('password'),
 			icon = document.getElementById('eyeIcon');
@@ -140,6 +153,28 @@
 
 		icon.addEventListener('click', togglePassword, false);
 		passwordInput.addEventListener('keyup', checkInput, false);
+	</script>
+
+<script type="text/javascript">
+		let passwordInput2 = document.getElementById('konfirmasi_password'),
+			icon2 = document.getElementById('eyeIcon2');
+
+		function togglePassword2() {
+			if (passwordInput2.type === 'password') {
+				passwordInput2.type = 'text';
+				icon2.classList.add("fa-eye-slash");
+				//toggle.innerHTML = 'hide';
+			} else {
+				passwordInput2.type = 'password';
+				icon2.classList.remove("fa-eye-slash");
+				//toggle.innerHTML = 'show';
+			}
+		}
+
+		function checkInput2() {}
+
+		icon2.addEventListener('click', togglePassword2, false);
+		passwordInput2.addEventListener('keyup', checkInput2, false);
 	</script>
 
 </body>

@@ -61,6 +61,10 @@
     								<h5>: <?= $antr['cara_bayar'] ?></h5>
     							</div>
     						</div>
+							<hr />
+								<div class="d-flex justify-content-start" >
+									<?= anchor('Profil/Edit', '<button class="btn btn-danger">Batalkan</button>') ?>
+								</div>
     					</div>
     					<!--end card-body-->
     				</div>

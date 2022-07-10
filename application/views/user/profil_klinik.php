@@ -29,7 +29,7 @@
 	<div class="container">
 		<?php foreach ($klinik as $knk) { ?>
 			<div class="row">
-				<div class="col-lg-8 info">
+				<div class="col-lg-8 daftar">
 					<div class="thumb">
 						<img src="<?= base_url() ?>assets/admin/images/klinik/<?= $knk['foto_klinik'] ?>" alt="Thumb">
 						<div class="title">
@@ -58,6 +58,12 @@
 										</div>
 									</div>
 									<div class="form-group row">
+										<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Asuransi</h5>
+										<div class="col-lg-8 col-xl-8">
+											<h5>: <?= $knk['asuransi_klinik'] ?></h5>
+										</div>
+									</div>
+									<div class="form-group row">
 										<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Google Map</h5>
 										<div class="col-lg-8 col-xl-8">
 											<h5>: <a href="<?= $knk['link_gmap'] ?>" target="_blank"><?= $knk['link_gmap'] ?></a><i class="fas fa-link ml-2"></i></h5>
@@ -76,17 +82,25 @@
 					<!-- Single Widget -->
 					<div class="widget opening-hours">
 						<div class="title">
-							<h4>Jam Oprasional</h4>
+							<h4>Jam Praktik</h4>
 						</div>
 						<ul>
-							<li> <span> Mon - Tues : </span>
-								<div class="float-right"> 6.00 am - 10.00 pm </div>
+							<li> <span> Senin - Jumat : </span>
+								<div class="float-right">06.00 - 09.00</div>
 							</li>
-							<li> <span> Wednes - Thurs :</span>
-								<div class="float-right"> 8.00 am - 6.00 pm </div>
+							<li> <span> Senin - Jumat :</span>
+								<div class="float-right">16.00 - 20.00</div>
 							</li>
-							<li> <span> Sun : </span>
-								<div class="float-right closed"> Closed </div>
+						</ul>
+					</div>
+					<!-- End Single Widget -->
+					<!-- Single Widget -->
+					<div class="widget opening-hours">
+						<div class="title">
+							<h4>Libur</h4>
+						</div>
+						<ul>
+							<li> <span>Sabtu, Minggu, dan Hari Besar Tutup</span>
 							</li>
 						</ul>
 					</div>

@@ -7,7 +7,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-8 offset-lg-2">
-    				<h1>List Klinik</h1>
+    				<h1>Klinik</h1>
     				<ul class="breadcrumb">
     					<li><a href="<?= base_url() ?>"><i class="fas fa-home"></i> Home</a></li>
     					<li class="active">Klinik</li>
@@ -28,13 +28,14 @@
     				<!-- <div class="department-items department-carousel owl-carousel owl-theme"> -->
     				<?php foreach ($klinik as $knk) { ?>
     					<!-- Single Item -->
+						<a href="<?= base_url() ?>Klinik/Profil/<?=  $knk['id_klinik']?>">
     					<div class="single-item col-lg-4 col-md-6" >
-    						<div class="item" style="height: 510px; width: 370px;">
+    						<div class="item" style="height: 510px;">
     							<div class="thumb">
     								<img src="<?= base_url() ?>assets/admin/images/klinik/<?= $knk['foto_klinik'] ?>" height="200" width="500" alt="Foto Klinik">
     							</div>
     							<div class="info">
-    								<h4><a href="#"><?php echo $knk['nama_klinik'] ?></a></h4>
+    								<h4><a href="<?= base_url() ?>Klinik/Profil/<?=  $knk['id_klinik']?>"><?php echo $knk['nama_klinik'] ?></a></h4>
     								<p>
     									<?php echo $knk['alamat_klinik'] ?>
     								</p>
@@ -49,6 +50,7 @@
     							</div>
     						</div>
     					</div>
+						</a>
     					<!-- End Single Item -->
     				<?php } ?>
 
