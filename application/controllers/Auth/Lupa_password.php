@@ -43,10 +43,10 @@ class Lupa_password extends CI_Controller
 					$data = array(
 						'token' => 'exi5XttgY5yrDcHfklesiOXFdkkNvPBdKDG3NFxUKTlr3fg1eO',
 						'phone' => $no_telepon,
-						'message' => preg_replace("/<br>/", "", nl2br("*Silahkan Reset Password Akun Anda Pada Link Di Bawah Ini* \n https://klinikbersama.saranaa.com/Auth/Lupa_password/Kode/".$kode_reset. " \n Bila anda tidak meminta link reset password, abaikan saja pesan ini" , false)),
+						'message' => preg_replace("/<br>/", "", nl2br("*Silahkan Reset Password Akun Anda Pada Link Di Bawah Ini* \n https://klinikbersama.saranaa.com/Auth/Lupa_password/Kode/" . $kode_reset . " \n Bila anda tidak meminta link reset password, abaikan saja pesan ini", false)),
 					);
 					$curl = curl_init();
-	
+
 					curl_setopt_array($curl, array(
 						// CURLOPT_URL => 'http://nusagateway.com/api/check-number.php',
 						CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
@@ -59,8 +59,8 @@ class Lupa_password extends CI_Controller
 						CURLOPT_CUSTOMREQUEST => 'POST',
 						CURLOPT_POSTFIELDS => $data,
 					));
-	
-	
+
+
 					$response = curl_exec($curl);
 					// $hasil = json_decode($response);
 					curl_close($curl);
@@ -82,33 +82,45 @@ class Lupa_password extends CI_Controller
 
 	public function Kode($kode_reset)
 	{
-			$this->db->where('kode_reset',$kode_reset);
-			$query = $this->db->get('tb_user');
-			if ($query->num_rows() > 0){
-				$data['pasien']	= $this->Model_pasien->get_pasien_bykode_reset($kode_reset)->row_array();
-			
-			$this->load->view('user/auth/ganti_password',$data);
-			}
-			else{
-				$this->load->view('user/404');
-			}
+		$this->db->where('kode_reset', $kode_reset);
+		$query = $this->db->get('tb_user');
+		if ($query->num_rows() > 0) {
+			$data['pasien']	= $this->Model_pasien->get_pasien_bykode_reset($kode_reset)->row_array();
+
+			$this->load->view('user/auth/ganti_password', $data);
+		} else {
+			$this->load->view('user/404');
+		}
 	}
 
-	public function Reset($kode_aktivasi) {
-		$data2 = array(
-			'status_pasien'		=> 'Aktif',
-			'kode_aktivasi'		=> null,
-		);
+	public function Reset($kode_reset)
+	{
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'required|matches[password]');
 
-		$where2 = array('kode_aktivasi' => $kode_aktivasi);
-		$this->db->update('tb_pasien', $data2, $where2);
+		$this->form_validation->set_message('required', '{field} Wajib Diisi!');
+		$this->form_validation->set_message('matches', '{field} Tidak Sesuai Dengan Password Yang Anda Masukkan!');
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('err_password', form_error('password'));
+			$this->session->set_flashdata('err_konfirmasi_password', form_error('konfirmasi_password'));
+			redirect('Auth/Lupa_password/Kode/'. $kode_reset);
+		} else {
+			$password			= password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+			$data2 = array(
+				'password'		=> $password,
+				'kode_reset'	=> null,
+			);
+
+			$where2 = array('kode_reset' => $kode_reset);
+			$this->db->update('tb_user', $data2, $where2);
 			$this->session->set_flashdata(
-			'berhasil_daftar',
-			'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
-                            <script type ="text/JavaScript">  
-                            swal("Sukses","Akun Anda Sudah Diaktivasi Silahkan Melakukan Login","success"); 
-                            </script>'
-		);
-		redirect('Auth/Login');
+				'berhasil_daftar',
+				'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+								<script type ="text/JavaScript">  
+								swal("Sukses","Password Akun Anda Sudah Diganti, Silahkan Melakukan Login Dengan Password Baru","success"); 
+								</script>'
+			);
+			redirect('Auth/Login');
+		}
 	}
 }

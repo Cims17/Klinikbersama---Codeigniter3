@@ -5,7 +5,20 @@ class Registrasi extends CI_Controller
 {
 	public function index()
 	{
-		$this->load->view('user/auth/registrasi');
+		if ($this->session->userdata('role') != null){
+			$this->session->set_flashdata(
+				'berhasil_dashboard',
+				'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+								<script type ="text/JavaScript">  
+								swal("Sudah Login","Anda Sudah Punya Akun","warning"); 
+								</script>'
+			);
+			redirect('/');
+		}
+		if ($this->session->userdata('role') == null){
+			$this->load->view('user/auth/registrasi');
+		}
+		
 	}
 
 	public function Registrasi_pasien()
@@ -119,7 +132,7 @@ class Registrasi extends CI_Controller
 						'jenis_kelamin'		=> $jenis_kelamin,
 						'agama_pasien'		=> $agama_pasien,
 						'asuransi'			=> $asuransi_pasien,
-						'status'			=> 'Belum Aktif',
+						'status_pasien'		=> 'Belum Aktif',
 						'kode_aktivasi'		=> $kode_aktivasi,
 					);
 				}
@@ -135,7 +148,7 @@ class Registrasi extends CI_Controller
 						'agama_pasien'		=> $agama_pasien,
 						'asuransi'			=> $asuransi_pasien,
 						'no_asuransi'		=> $noasuransi_pasien,
-						'status'			=> 'Belum Aktif',
+						'status_pasien'		=> 'Belum Aktif',
 						'kode_aktivasi'		=> $kode_aktivasi,
 					);
 				}
@@ -182,6 +195,134 @@ class Registrasi extends CI_Controller
 	public function Mitra_klinik()
 	{
 		$this->load->view('user/auth/registrasi_mitraklinik');
+	}
+
+	public function Registrasi_mitra_klinik()
+	{
+		$this->form_validation->set_rules('nama_klinik', 'Nama Klinik', 'required|is_unique[tb_klinik.nama_klinik]');
+		$this->form_validation->set_rules('nama_pemilik', 'Nama Pemilik', 'required');
+		$this->form_validation->set_rules('dokter_pj_klinik', 'Dokter Penanggung Jawab', 'required');
+		$this->form_validation->set_rules('alamat_klinik', 'Alamat Klinik', 'required');
+		$this->form_validation->set_rules('asuransi_klinik', 'Asuransi Klinik', 'required');
+
+		$this->form_validation->set_rules('no_telepon', 'Nomor Whatsapp', 'required|numeric|is_unique[tb_user.no_telepon]');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('konfirmasi_password', 'Konfirmasi Password', 'required|matches[password]');
+
+		$this->form_validation->set_message('required', '{field} Wajib Diisi!');
+		$this->form_validation->set_message('numeric', '{field} Wajib Diisi Dengan Angka!');
+		$this->form_validation->set_message('is_unique', '{field} Sudah Digunakan!');
+		$this->form_validation->set_message('matches', '{field} Tidak Sesuai Dengan Password Yang Anda Masukkan!');
+
+		$data = array(
+			'token' => 'exi5XttgY5yrDcHfklesiOXFdkkNvPBdKDG3NFxUKTlr3fg1eO',
+			'phone' => $this->input->post('no_telepon'),
+		);
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://nusagateway.com/api/check-number.php',
+			// CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => $data,
+		));
+
+
+		$response = curl_exec($curl);
+		$hasil = json_decode($response);
+		curl_close($curl);
+
+		if ($this->form_validation->run() == false || $hasil->message == 'belum terdaftar di whatsapp') {
+			$this->session->set_flashdata('err_nama_klinik', form_error('nama_klinik'));
+			$this->session->set_flashdata('err_nama_pemilik', form_error('nama_pemilik'));
+			$this->session->set_flashdata('err_dokter_pj_klinik', form_error('dokter_pj_klinik'));
+			$this->session->set_flashdata('err_alamat_klinik', form_error('alamat_klinik'));
+			$this->session->set_flashdata('err_asuransi_klinik', form_error('asuransi_klinik'));
+			$this->session->set_flashdata('err_no_telepon', form_error('no_telepon'));
+			if($hasil->message == 'belum terdaftar di whatsapp'){
+                $this->session->set_flashdata('err_no_telepon', $hasil->message);
+            }
+			$this->session->set_flashdata('err_password', form_error('password'));
+			$this->session->set_flashdata('err_konfirmasi_password', form_error('konfirmasi_password'));
+
+			$this->session->set_flashdata('value_no_telepon', set_value('no_telepon'));
+			$this->session->set_flashdata('value_asuransi_klinik', set_value('asuransi_klinik'));
+			$this->session->set_flashdata('value_alamat_klinik', set_value('alamat_klinik'));
+			$this->session->set_flashdata('value_dokter_pj_klinik', set_value('dokter_pj_klinik'));
+			$this->session->set_flashdata('value_nama_pemilik', set_value('nama_pemilik'));
+			$this->session->set_flashdata('value_nama_klinik', set_value('nama_klinik'));
+			
+			redirect('Auth/Registrasi/Mitra_klinik');
+		} else {
+			$nama_klinik		= $this->input->post('nama_klinik');
+			$nama_pemilik		= $this->input->post('nama_pemilik');
+			$dokter_pj_klinik	= $this->input->post('dokter_pj_klinik');
+			$alamat_klinik		= $this->input->post('alamat_klinik');
+			$asuransi_klinik	= $this->input->post('asuransi_klinik');
+			$no_telepon			= $this->input->post('no_telepon');
+			$password			= password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+
+			$data2 = array(
+				'no_telepon'	=> $no_telepon,
+				'password'		=> $password,
+				'role'			=> '2',
+			);
+			$save2 = $this->Model_klinik->insert_data('tb_user', $data2);
+
+			if ($save2) {
+					$data3 = array(
+						'id_user'			=> $this->db->insert_id(),
+						'nama_klinik'		=> $nama_klinik,
+						'dokter_pj_klinik'	=> $dokter_pj_klinik,
+						'nama_pemilik'		=> $nama_pemilik,
+						'alamat_klinik'		=> $alamat_klinik,
+						'asuransi_klinik'	=> $asuransi_klinik,
+						'status_klinik'		=> 'Belum Aktif',
+					);
+
+				$save3 = $this->Model_klinik->insert_data('tb_klinik', $data3);
+			}
+			if ($save3) {
+				$data = array(
+					'token' => 'exi5XttgY5yrDcHfklesiOXFdkkNvPBdKDG3NFxUKTlr3fg1eO',
+					'phone' => $no_telepon,
+					'message' => preg_replace("/<br>/", "", nl2br("*Terimakasih Telah Mendaftar Sebagai Mitra Klinik Bersama Kabupaten Ponorogo* \n silahkan menunggu konfirmasi dan aktivasi akun mitra klinik dari admin" , false)),
+				);
+				$curl = curl_init();
+
+				curl_setopt_array($curl, array(
+					// CURLOPT_URL => 'http://nusagateway.com/api/check-number.php',
+					CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => '',
+					CURLOPT_MAXREDIRS => 10,
+					CURLOPT_TIMEOUT => 0,
+					CURLOPT_FOLLOWLOCATION => true,
+					CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+					CURLOPT_CUSTOMREQUEST => 'POST',
+					CURLOPT_POSTFIELDS => $data,
+				));
+
+
+				$response = curl_exec($curl);
+				// $hasil = json_decode($response);
+				curl_close($curl);
+				$this->session->set_flashdata(
+					'berhasil_dashboard',
+					'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+					<script type ="text/JavaScript">  
+					swal("Berhasil","Akun Mitra Klinik Berhasil Terdaftarkan, Silahkan Menunggu Konfirmasi dan Aktivasi Akun Oleh Admin","success")  
+					</script>'
+				);
+				redirect('/');
+			}
+		}
 	}
 
 }

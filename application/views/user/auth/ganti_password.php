@@ -54,7 +54,7 @@
 						<div class="heading">
 							<h4>Reset Password</h4>
 						</div>
-						<form action="<?php echo base_url() ?>Auth/Lupa_password/Login_user" method="post" enctype="multipart/form-data">
+						<form action="<?php echo base_url() ?>Auth/Lupa_password/Reset/<?= $pasien['kode_reset'] ?>" method="post" enctype="multipart/form-data">
 
 							<div class="row">
 								<div class="col-md-12">
@@ -80,7 +80,7 @@
 											<i id="eyeIcon" class="far fa-eye"></i>
 										</span>
 									</div>
-									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_whatsapp') ?></span> 
+									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_password') ?></span> 
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
@@ -89,7 +89,7 @@
 											<i id="eyeIcon2" class="far fa-eye"></i>
 										</span>
 									</div>
-									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_whatsapp') ?></span> 
+									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_konfirmasi_password') ?></span> 
 								</div>
 								<div class="col-md-12">
 									<button type="submit" name="submit" id="f_submit">

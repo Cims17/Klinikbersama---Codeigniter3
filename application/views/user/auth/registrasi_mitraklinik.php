@@ -54,84 +54,74 @@
 						</a>
 						<h4>Form Registrasi Mitra Klinik</h4>
 					</div>
-					<form action="<?= base_url() ?>Auth/Registrasi/Registrasi_pasien" method="post" enctype="multipart/form-data">
+					<form action="<?= base_url() ?>Auth/Registrasi/Registrasi_mitra_klinik" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-1">
-										<input id="nama_klinik" name="nama_klinik" class="input" type="text" value="<?php echo $this->session->flashdata('value_no_identitas') ?>" placeholder=" " />
+										<input id="nama_klinik" name="nama_klinik" class="input" type="text" value="<?php echo $this->session->flashdata('value_nama_klinik') ?>" placeholder=" " />
 										<div class="cut"></div>
 										<label for="nama_klinik" class="placeholder">Nama Klinik</label>
 									</div>
 								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_identitas') ?></span>
+								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_nama_klinik') ?></span>
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
-										<input id="nama_pemilik" name="nama_pemilik" class="input" type="text" value="<?php echo $this->session->flashdata('value_nama_pasien') ?>" placeholder=" " />
+										<input id="nama_pemilik" name="nama_pemilik" class="input" type="text" value="<?php echo $this->session->flashdata('value_nama_pemilik') ?>" placeholder=" " />
 										<div class="cut "></div>
 										<label for="nama_pemilik" class="placeholder">Nama Pemilik</label>
 									</div>
 								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_nama_pasien') ?></span>
+								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_nama_pemilik') ?></span>
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
-										<input id="dokter_pj_klinik" name="dokter_pj_klinik" class="input" type="text" value="<?php echo $this->session->flashdata('value_tempat_lahir') ?>" placeholder=" " />
+										<input id="dokter_pj_klinik" name="dokter_pj_klinik" class="input" type="text" value="<?php echo $this->session->flashdata('value_dokter_pj_klinik') ?>" placeholder=" " />
 										<div class="cut cut-toolong"></div>
 										<label for="dokter_pj_klinik" class="placeholder">Dokter Penanggung Jawab</label>
 									</div>
 								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_tempat_lahir') ?></span>
+								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_dokter_pj_klinik') ?></span>
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<!-- <div class="input-container ic-2"> -->
-									<textarea id="alamat_klinik" name="alamat_klinik" class="form-control input textarea"><?php echo $this->session->flashdata('value_alamat_pasien') ?></textarea>
+									<textarea id="alamat_klinik" name="alamat_klinik" class="form-control input textarea"><?php echo $this->session->flashdata('value_alamat_klinik') ?></textarea>
 									<div class="cut cut-long"></div>
 									<label for="alamat_klinik" class="placeholder">Alamat Klinik</label>
 									<!-- </div> -->
 								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_alamat_pasien') ?></span>
+								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_alamat_klinik') ?></span>
 							</div>
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
 										<select id="asuransi_klinik" name="asuransi_klinik" class="form-control input">
-											<option value="Tidak Menerima Asuransi" <?= ($this->session->flashdata('value_asuransi_pasien') === 'Tidak Ada Asuransi') ? 'selected' : '' ?>>Tidak Ada Asuransi</option>
-											<option value="BPJS Kesehatan" <?= ($this->session->flashdata('value_asuransi_pasien') === 'BPJS Kesehatan') ? 'selected' : '' ?>>BPJS Kesehatan</option>
+											<option value="Tidak Menerima Asuransi" <?= ($this->session->flashdata('value_asuransi_klinik') === 'Tidak Menerima Asuransi') ? 'selected' : '' ?>>Tidak Menerima Asuransi</option>
+											<option value="BPJS Kesehatan" <?= ($this->session->flashdata('value_asuransi_klinik') === 'BPJS Kesehatan') ? 'selected' : '' ?>>BPJS Kesehatan</option>
 										</select>
 										<div class="cut cut-toolong"></div>
 										<label for="asuransi_klinik" class="placeholder">Pilih Menerima Asuransi</label>
 									</div>
 								</div>
-								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_asuransi_pasien') ?></span>
+								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_asuransi_klinik') ?></span>
 							</div>
 
 							<hr size="1px" width="100%">
-
-							<!-- <div class="col-md-12">
-								<div class="form-group">
-									<div class="input-container ic-2">
-										<input id="email" name="email" class="form-control input" type="email" placeholder=" " />
-										<div class="cut cut-short"></div>
-										<label for="email" class="placeholder">Email</label>
-									</div>
-								</div>
-							</div> -->
 
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="input-container ic-2">
 										<input id="no_telepon" name="no_telepon" class="form-control input" type="number" value="<?php echo $this->session->flashdata('value_no_telepon') ?>" placeholder=" " />
 										<div class="cut cut-toolong"></div>
-										<label for="no_telepon" class="placeholder">Nomor Whatsapp Klinik</label>
+										<label for="no_telepon" class="placeholder">Nomor Whatsapp</label>
 									</div>
 								</div>
 								<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_no_telepon') ?></span>

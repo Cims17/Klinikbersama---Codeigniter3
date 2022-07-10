@@ -44,7 +44,7 @@ class Login extends CI_Controller{
 									swal("Sukses","Berhasil Login","success"); 
 									</script>'
 				);
-				redirect('Dashboard');
+				redirect('/');
 				// switch ($auth->role) {
 				// 	case :
 						

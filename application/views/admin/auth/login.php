@@ -27,19 +27,19 @@
                                                 <div class="form-group mb-4">
                                                     <label class="form-label" for="username">Nomor Whatsapp</label>
                                                     <div class="input-group">                                                                                         
-                                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo $this->session->flashdata('inputemail') ?>" placeholder="Masukkan Nomor Whatsapp" >
-														
-                                                    </div>       
-													<?php echo $this->session->flashdata('email') ?>                             
+                                                        <input type="text" class="form-control" name="no_whatsapp" id="no_whatsapp" value="<?php echo $this->session->flashdata('value_no_whatsapp') ?>" placeholder="Masukkan Nomor Whatsapp" >
+																										
+                                                    </div>     
+													<small class="form-text text-danger"><?php echo $this->session->flashdata('err_no_whatsapp') ?> </small>		  													                      
                                                 </div><!--end form-group--> 
                     
                                                 <div class="form-group mb-4">
                                                     <label class="form-label" for="userpassword">Password</label>                                            
                                                     <div class="input-group">                                  
-                                                        <input type="password" class="form-control" name="password" id="password" value="<?php echo $this->session->flashdata('inputpassword') ?>" placeholder="Masukkan password" >
+                                                        <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password" >
 														<button class="btn btn-secondary" type="button" id="btnToggle"><i id="eyeIcon" class="far fa-eye"></i></button>
                                                     </div>
-													<?php echo $this->session->flashdata('password') ?>                                  
+													<small class="form-text text-danger"><?php echo $this->session->flashdata('err_password') ?> </small>
                                                 </div><!--end form-group--> 
 												
 												<div class="form-group row">
