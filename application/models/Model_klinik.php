@@ -9,6 +9,15 @@ class Model_klinik extends CI_Model {
 
         return $this->db->get();
     }
+
+	public function get_klinik_aktif(){
+        $this->db->select('*');
+        $this->db->from('tb_klinik');
+		$this->db->join('tb_user', 'tb_klinik.id_user=tb_user.id_user');
+		$this->db->where('tb_klinik.status_klinik', 'Aktif');
+
+        return $this->db->get();
+    }
 	
 	public function get_klinik_byidklinik($id_klinik){
         $this->db->select('*');

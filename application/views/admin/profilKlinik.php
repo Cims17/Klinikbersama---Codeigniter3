@@ -145,22 +145,21 @@
 									</div>
 									<div class="card-body">
 										<ul>
-											<li>
-												<h5> Senin - Jumat : 06.00 - 09.00</h5>
-											</li>
-											<li>
-												<h5> Senin - Jumat : 16.00 - 20.00</h5>
-											</li>
+											<?php foreach ($jadwal_klinik as $jdl_knk) { ?>
+												<li>
+													<h5> <?= $jdl_knk['hari_mulai_klinik'] ?> - <?= $jdl_knk['hari_selesai_klinik'] ?> : <?= date("H:i", strtotime($jdl_knk['jam_mulai_klinik'])) ?> - <?= date("H:i", strtotime($jdl_knk['jam_selesai_klinik'])) ?> WIB</h5>
+												</li>
+											<?php } ?>
 										</ul>
 										<!--end card-body-->
 									</div>
 								</div>
 								<div class="card">
 									<div class="card-header">
-										<h4>Jadwal Praktik</h4>
+										<h4>Keterangan Libur</h4>
 									</div>
 									<div class="card-body">
-										<h5>Sabtu, Minggu, dan Hari Besar Tutup</h5>
+										<h5><?= $klinik->keterangan_libur ?></h5>
 									</div>
 								</div>
 								<!--end card-->
@@ -219,6 +218,27 @@
 												</div>
 											</div>
 											<div class="form-group row">
+												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Menerima Asuransi</label>
+												<div class="col-lg-9 col-xl-8">
+													<select class="form-select" name="asuransi_klinik" aria-label="Default select example">
+														<option value="Tidak Menerima Asuransi" <?= ($klinik->asuransi_klinik === 'Tidak Menerima Asuransi') ? 'selected' : '' ?>>Tidak Menerima Asuransi</option>
+														<option value="BPJS Kesehatan" <?= ($klinik->asuransi_klinik === 'BPJS Kesehatan') ? 'selected' : '' ?>>BPJS Kesehatan</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Nomor Telepon Untuk Pasien</label>
+												<div class="col-lg-9 col-xl-8">
+													<input class="form-control" type="text" name="no_telepon_klinik" value="<?= $klinik->no_telepon_klinik ?>">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Keterangan Libur</label>
+												<div class="col-lg-9 col-xl-8">
+													<textarea class="form-control" name="keterangan_libur"><?= $klinik->keterangan_libur ?></textarea>
+												</div>
+											</div>
+											<div class="form-group row">
 												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Foto Klinik</label>
 												<div class="col-lg-9 col-xl-8">
 													<input type="file" name="foto_klinik" id="input-file-now-custom-1" class="dropify" data-default-file="<?= base_url() ?>assets/admin/images/klinik/<?= $klinik->foto_klinik ?>" />
@@ -249,6 +269,22 @@
 													<div class="input-group">
 														<span class="input-group-text"><i class="las la-phone"></i></span>
 														<input type="text" class="form-control" name="no_telepon" value="<?= $klinik->no_telepon ?>" placeholder="Phone" aria-describedby="basic-addon1">
+													</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Password Baru</label>
+												<div class="col-lg-9 col-xl-8">
+													<div class="input-group">
+														<input type="text" class="form-control" name="password_baru"  aria-describedby="basic-addon1">
+													</div>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Konfirmasi Password Baru</label>
+												<div class="col-lg-9 col-xl-8">
+													<div class="input-group">
+														<input type="text" class="form-control" name="password_baru_conff" aria-describedby="basic-addon1">
 													</div>
 												</div>
 											</div>

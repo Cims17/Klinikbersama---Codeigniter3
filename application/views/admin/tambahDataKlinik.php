@@ -51,10 +51,6 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="mb-3">
-										<label class="form-label" for="kode" style="color: black;">Kode Klinik</label>
-										<input type="text" class="form-control" name="kode_klinik" aria-describedby="emailHelp" value="<?php echo $kode_klinik ?>" readonly>
-									</div>
-									<div class="mb-3">
 										<label class="form-label" for="nama" style="color: black;">Nama Klinik</label>
 										<input type="text" class="form-control"name="nama_klinik" placeholder="Masukkan Nama Klinik" >
 									</div>
@@ -98,10 +94,6 @@
 							<hr />
 							<div class="row">
 								<div class="col-lg-6">
-									<div class="mb-3">
-										<label class="form-label" for="email" style="color: black;">Email Klinik</label>
-										<input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email Klinik" >
-									</div>
 									<div class="mb-3">
 										<label class="form-label" for="notlpklinik" style="color: black;">Nomor Telepon Klinik</label>
 										<input type="text" class="form-control" name="no_telepon" placeholder="Masukkan Nomor Telepon Klinik" >

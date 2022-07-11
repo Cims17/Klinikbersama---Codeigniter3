@@ -98,16 +98,6 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="mb-2">Id Dokter</label>
-                                            <input type="text" class="form-control" value="<?= $dkt['id_dokter'] ?>" readonly>
-                                        </div>
-
-                                    </div>
-                                    <!--end col-->
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
                                             <label class="mb-2">Nama Dokter</label>
                                             <input type="text" class="form-control" value="<?= $dkt['nama_dokter'] ?>" readonly>
                                         </div>
@@ -120,6 +110,15 @@
                                         <div class="form-group">
                                             <label class="mb-2">Spesialis</label>
                                             <input type="text" class="form-control" value="<?= $dkt['spesialis'] ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+								<div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="mb-2">Nomor SIP</label>
+                                            <input type="text" class="form-control" value="<?= $dkt['no_SIP'] ?>" readonly>
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -175,5 +174,6 @@
                 </div>
                 <!--end modal-dialog-->
             </div>
+			
+			</div><!-- container -->
         <?php } ?>
-    </div><!-- container -->

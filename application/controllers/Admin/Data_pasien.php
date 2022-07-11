@@ -86,23 +86,65 @@ class Data_pasien extends CI_Controller{
 			$tanggal_lahir		= $this->input->post('tanggal_lahir');
 			$alamat_pasien		= $this->input->post('alamat_pasien');
 			$jenis_kelamin		= $this->input->post('jenis_kelamin');
-			$notlp_pasien		= $this->input->post('notlp_pasien');
 			$agama_pasien		= $this->input->post('agama_pasien');
+			$asuransi		= $this->input->post('asuransi_pasien');
+			if($asuransi == 'BPJS Kesehatan'){
+				$no_asuransi		= $this->input->post('no_asuransi');
+			}
+			$no_telepon		= $this->input->post('no_telepon');
+            if ($this->input->post('password') != null) {
+                $password		= $this->input->post('password');
+            }
 
-			$data2 = array(
-				'no_identitas'		=> $no_identitas,
-				'nama_pasien'		=> $nama_pasien,
-				'tempat_lahir'		=> $tempat_lahir,
-				'tanggal_lahir'		=> $tanggal_lahir,
-				'alamat_pasien'		=> $alamat_pasien,
-				'jenis_kelamin'		=> $jenis_kelamin,
-				'notlp_pasien'		=> $notlp_pasien,
-				'agama_pasien'		=> $agama_pasien,
-			);
+			if($asuransi == 'BPJS Kesehatan'){
+				$data2 = array(
+					'no_identitas'		=> $no_identitas,
+					'nama_pasien'		=> $nama_pasien,
+					'tempat_lahir'		=> $tempat_lahir,
+					'tanggal_lahir'		=> $tanggal_lahir,
+					'alamat_pasien'		=> $alamat_pasien,
+					'jenis_kelamin'		=> $jenis_kelamin,
+					'agama_pasien'		=> $agama_pasien,
+					'asuransi'			=> $asuransi,
+					'no_asuransi'			=> $no_asuransi,
+				);
+			}
+
+			if($asuransi == 'Tidak Ada Asuransi'){
+				$data2 = array(
+					'no_identitas'		=> $no_identitas,
+					'nama_pasien'		=> $nama_pasien,
+					'tempat_lahir'		=> $tempat_lahir,
+					'tanggal_lahir'		=> $tanggal_lahir,
+					'alamat_pasien'		=> $alamat_pasien,
+					'jenis_kelamin'		=> $jenis_kelamin,
+					'agama_pasien'		=> $agama_pasien,
+					'asuransi'			=> $asuransi,
+					'no_asuransi'		=> null,
+				);
+			}
 
 			$where = array('id_pasien' => $id);
-
 			$this->db->update('tb_pasien', $data2, $where);
+
+			if($this->input->post('password') == null){
+				$data3 = array(
+					'no_telepon'		=> $no_telepon,
+				);
+			}
+
+			if($this->input->post('password') != null){
+				$data3 = array(
+					'no_telepon'		=> $no_telepon,
+					'password'		=> $password,
+				);
+			}
+
+			$id_user = $this->Model_pasien->get_iduser_byidpasien($id)->row_array();
+
+			$where2 = array('id_user' => $id_user['id_user']);
+			$this->db->update('tb_user', $data3, $where2);
+
 			$this->session->set_flashdata(
 			'berhasil_pasien',
 			'<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
@@ -129,6 +171,8 @@ class Data_pasien extends CI_Controller{
 
 	public function Delete_pasien($id) {
 		$id_user = $this->Model_pasien->get_iduser_byidpasien($id)->row_array();
+		$this->db->delete('tb_riwayat_antrean', array('id_pasien' => $id));
+		$this->db->delete('tb_antrean', array('id_pasien' => $id));
 		$this->db->delete('tb_pasien', array('id_pasien' => $id));
 		$this->db->delete('tb_user', array('id_user' => $id_user['id_user']));
 

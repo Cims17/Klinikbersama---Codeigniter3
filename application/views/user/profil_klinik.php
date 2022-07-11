@@ -12,7 +12,7 @@
 				<?php } ?>
 				<ul class="breadcrumb">
 					<li><a href="<?= base_url() ?>"><i class="fas fa-home"></i> Home</a></li>
-					<li><a href="">Klinik</a></li>
+					<li><a href="<?= base_url() ?>/Klinik">Klinik</a></li>
 					<?php foreach ($klinik as $knk) { ?>
 						<li class="active"><?= $knk['nama_klinik'] ?></li>
 					<?php } ?>
@@ -48,7 +48,7 @@
 									<div class="form-group row">
 										<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">No Telepon</h5>
 										<div class="col-lg-8 col-xl-8">
-											<h5>: <?= $knk['no_telepon'] ?> </h5>
+											<h5>: <?= $knk['no_telepon_klinik'] ?> </h5>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -58,7 +58,7 @@
 										</div>
 									</div>
 									<div class="form-group row">
-										<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Asuransi</h5>
+										<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Menerima Asuransi</h5>
 										<div class="col-lg-8 col-xl-8">
 											<h5>: <?= $knk['asuransi_klinik'] ?></h5>
 										</div>
@@ -85,12 +85,11 @@
 							<h4>Jam Praktik</h4>
 						</div>
 						<ul>
-							<li> <span> Senin - Jumat : </span>
-								<div class="float-right">06.00 - 09.00</div>
+							<?php foreach($jadwal_klinik as $jdl_knk) { ?>
+							<li> <span> <?= $jdl_knk['hari_mulai_klinik'] ?> - <?= $jdl_knk['hari_selesai_klinik'] ?> :</span>
+								<div class="float-right"><?= date("H:i", strtotime($jdl_knk['jam_mulai_klinik'])) ?> - <?= date("H:i", strtotime($jdl_knk['jam_selesai_klinik'])) ?> WIB</div>
 							</li>
-							<li> <span> Senin - Jumat :</span>
-								<div class="float-right">16.00 - 20.00</div>
-							</li>
+							<?php } ?>
 						</ul>
 					</div>
 					<!-- End Single Widget -->
@@ -100,8 +99,10 @@
 							<h4>Libur</h4>
 						</div>
 						<ul>
-							<li> <span>Sabtu, Minggu, dan Hari Besar Tutup</span>
+							<?php foreach($klinik as $knk) { ?>
+							<li> <span><?= $knk['keterangan_libur'] ?></span>
 							</li>
+							<?php } ?>
 						</ul>
 					</div>
 					<!-- End Single Widget -->

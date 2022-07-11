@@ -65,7 +65,7 @@
 									}).then(function(result) {
 										if (result.value) {
 											$.ajax({
-												url: '<?= base_url() ?>admin/data_klinik/delete_klinik/' + id,
+												url: '<?= base_url() ?>Admin/Data_klinik/Delete_klinik/' + id,
 												type: 'DELETE',
 												error: function() {
 														alert('Something is wrong');
@@ -88,6 +88,47 @@
 											swal.fire(
 												'Cancelled',
 												'Data Klinik Aman',
+												'error'
+											)
+										}
+									})
+				});
+				$(".aktivasi").click(function() {
+						var id = $(this).parents("tr").attr("id");
+						swal.fire({
+										title: 'Aktivasi Data Klinik?',
+										text: "Anda Akan Mengaktifkan Admin Klinik!",
+										type: 'warning',
+										showCancelButton: true,
+										confirmButtonText: 'Yes!',
+										cancelButtonText: 'No, cancel!',
+										reverseButtons: true
+									}).then(function(result) {
+										if (result.value) {
+											$.ajax({
+												url: '<?= base_url() ?>Admin/Data_klinik/Aktivasi_klinik/' + id,
+												type: 'DELETE',
+												error: function() {
+														alert('Something is wrong');
+												},
+												success: function(data) {
+													swal.fire(
+												'Deleted!',
+												'Data Klinik Diaktivasi',
+												'success'
+											).then(function() {
+																location.reload();
+														});
+												}
+										});
+											
+										} else if (
+											// Read more about handling dismissals
+											result.dismiss === Swal.DismissReason.cancel
+										) {
+											swal.fire(
+												'Cancelled',
+												'Data Klinik Tidak Diaktivasi',
 												'error'
 											)
 										}
@@ -456,6 +497,26 @@
 	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
 	<script src="<?= base_url() ?>assets/admin/pages/jquery.forms-advanced.js"></script>
+
+	<script type="text/javascript">
+		var select = document.getElementById("asuransi_pasien");
+		// select = function() {
+			if (select.value == "BPJS Kesehatan") {
+				document.getElementById("noasuransi_pasien").style.display = "inline";
+			} else {
+				document.getElementById("noasuransi_pasien").style.display = "none";
+			}
+
+		// }
+		select.onchange = function() {
+			if (select.value == "BPJS Kesehatan") {
+				document.getElementById("noasuransi_pasien").style.display = "inline";
+			} else {
+				document.getElementById("noasuransi_pasien").style.display = "none";
+			}
+
+		}
+	</script>
 
 <?php } ?>
 

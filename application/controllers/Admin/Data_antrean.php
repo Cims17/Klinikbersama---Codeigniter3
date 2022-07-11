@@ -28,6 +28,28 @@ class Data_antrean extends CI_Controller
 		$this->load->view('admin/template/footer');
 	}
 
+	public function Cari($tanggal)
+	{
+
+
+		$data['antrean'] = $this->Model_antrean->get_antrean_tanggalberobat($tanggal)->result_array();
+		$data['dokter'] = $this->Model_dokter->get_dokter()->result_array();
+		$data['tanggal'] = $tanggal;
+		$data['footer'] = 'dataantrean';
+
+
+		$this->load->view('admin/template/header');
+		$this->load->view('admin/template/sidebar');
+		$this->load->view('admin/dataAntrean', $data);
+		$this->load->view('admin/template/footer');
+	}
+
+	public function Tanggal()
+	{
+		$tanggal			= $this->input->post('tanggal');
+		redirect('Admin/Data_antrean/Cari/'.$tanggal);
+	}
+
 	public function Tambah_antrean()
 	{
 		$data['footer'] = 'tambahdataantrean';
@@ -66,6 +88,7 @@ class Data_antrean extends CI_Controller
 			$data2 = array(
 				'id_pasien'			=> $id_pasien,
 				'id_dokter'			=> $id_dokter,
+				'id_jadwal'			=> 6,
 				'no_antrean'		=> $no_antrean,
 				'tanggal_berobat'	=> $tanggal_berobat,
 				'cara_bayar'		=> $cara_bayar,
@@ -131,7 +154,6 @@ class Data_antrean extends CI_Controller
 			$alamat_pasien		= $this->input->post('alamat_pasien');
 			$asuransi_pasien	= $this->input->post('asuransi_pasien');
 			$noasuransi_pasien	= $this->input->post('no_asuransi');
-			$email				= $this->input->post('email_pasien');
 			$no_telepon			= $this->input->post('no_telepon');
 			$password			= password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
@@ -144,8 +166,6 @@ class Data_antrean extends CI_Controller
 
 
 			$data2 = array(
-				'username'		=> $nama_pasien,
-				'email'			=> $email,
 				'no_telepon'	=> $no_telepon,
 				'password'		=> $password,
 				'role'			=> '3',
@@ -187,6 +207,7 @@ class Data_antrean extends CI_Controller
 				$data4 = array(
 					'id_pasien'			=> $this->db->insert_id(),
 					'id_dokter'			=> $id_dokter,
+					'id_jadwal'			=> 6,
 					'no_antrean'		=> $no_antrean,
 					'tanggal_berobat'	=> $tanggal_berobat,
 					'cara_bayar'		=> $cara_bayar,

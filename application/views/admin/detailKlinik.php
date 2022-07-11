@@ -50,7 +50,6 @@
 								<div class="col-lg-4 ms-auto align-self-center">
 									<ul class="list-unstyled personal-detail mb-0">
 										<li class=""><i class="ti ti-mobile me-2 text-secondary font-16 align-middle"></i> <b> Nomor Telepon </b> : <?= $klinik->no_telepon ?></li>
-										<li class="mt-2"><i class="ti ti-email text-secondary font-16 align-middle me-2"></i> <b> Email </b> : <?= $klinik->email ?></li>
 
 								</div>
 								<!--end col-->
@@ -221,15 +220,6 @@
 									<form action="<?= base_url() ?>Admin/Data_klinik/Updateakun_klinik/<?= $klinik->id_klinik ?>" method="post" enctype="multipart/form-data">
 										<div class="card-body">
 											<div class="form-group row">
-												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Email</label>
-												<div class="col-lg-9 col-xl-8">
-													<div class="input-group">
-														<span class="input-group-text"><i class="las la-at"></i></span>
-														<input type="text" class="form-control" name="email" value="<?= $klinik->email ?>" placeholder="Email" aria-describedby="basic-addon1">
-													</div>
-												</div>
-											</div>
-											<div class="form-group row">
 												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Nomor Telepon</label>
 												<div class="col-lg-9 col-xl-8">
 													<div class="input-group">
@@ -239,23 +229,10 @@
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Password Sekarang</label>
+												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Password Baru</label>
 												<div class="col-lg-9 col-xl-8">
 													<input class="form-control" type="password" placeholder="Password" name="password">
 													<!-- <a href="#" class="text-primary font-12">Forgot password ?</a> -->
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Password Baru</label>
-												<div class="col-lg-9 col-xl-8">
-													<input class="form-control" type="password" placeholder="New Password" name="password_baru">
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Ulangi Password Baru</label>
-												<div class="col-lg-9 col-xl-8">
-													<input class="form-control" type="password" placeholder="Re-Password" name="password_ulang">
-													<span class="form-text text-muted font-12">Jangan bagikan password anda</span>
 												</div>
 											</div>
 											<div class="form-group row">

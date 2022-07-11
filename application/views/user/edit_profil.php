@@ -29,7 +29,7 @@
     					</div>
     					<!--end card-header-->
     					<div class="card-body">
-    						<form action="">
+    						<form action="<?= base_url() ?>Profil/Update_profil/<?= $user->id_pasien ?>" method="post" enctype="multipart/form-data">
 
     							<div class="form-group row ">
     								<div class="col-xl-4 col-lg-4">
@@ -37,7 +37,7 @@
     								</div>
     								<div class="col-lg-8 col-xl-8">
     									<input class="form-control" type="text" name="nama_pasien" placeholder="" value="<?= $user->nama_pasien ?>" disabled>
-										<small>* Hubungi Admin Klinik Jika Ingin Mengubah Nama Lengkap</small>
+    									<small>* Hubungi Admin Klinik Jika Ingin Mengubah Nama Lengkap</small>
     								</div>
     							</div>
     							<div class="form-group row ">
@@ -46,7 +46,16 @@
     								</div>
     								<div class="col-lg-8 col-xl-8">
     									<input class="form-control" type="text" name="no_identitas" placeholder="" value="<?= $user->no_identitas ?>" disabled>
-										<small>* Hubungi Admin Klinik Jika Ingin Mengubah Nomor Induk Kependudukan</small>
+    									<small>* Hubungi Admin Klinik Jika Ingin Mengubah Nomor Induk Kependudukan</small>
+    								</div>
+    							</div>
+    							<div class="form-group row ">
+    								<div class="col-xl-4 col-lg-4 text-end mb-lg-0">
+    									<h5>Nomor Whatsapp</h5>
+    								</div>
+    								<div class="col-lg-8 col-xl-8">
+    									<input class="form-control" type="text" name="no_identitas" placeholder="" value="<?= $user->no_telepon ?>" disabled>
+    									<small>* Hubungi Admin Klinik Jika Ingin Mengubah Nomor Whatsapp</small>
     								</div>
     							</div>
     							<div class="form-group row ">
@@ -55,6 +64,7 @@
     								</div>
     								<div class="col-lg-8 col-xl-8">
     									<input class="form-control" type="text" name="tempat_lahir" placeholder="" value="<?= $user->tempat_lahir ?>">
+    									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_tempat_lahir') ?></span>
     								</div>
     							</div>
     							<div class="form-group row ">
@@ -62,7 +72,8 @@
     									<h5>Tanggal Lahir</h5>
     								</div>
     								<div class="col-lg-8 col-xl-8">
-    									<input class="form-control" type="text" name="tanggal_lahir" placeholder="" value="<?= $user->tanggal_lahir ?>">
+    									<input class="form-control" type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="" value="<?= $user->tanggal_lahir ?>">
+    									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_tanggal_lahir') ?></span>
     								</div>
     							</div>
     							<div class="form-group row ">
@@ -71,6 +82,7 @@
     								</div>
     								<div class="col-lg-8 col-xl-8">
     									<input class="form-control" type="text" name="alamat_pasien" placeholder="" value="<?= $user->alamat_pasien ?>">
+    									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_alamat_pasien') ?></span>
     								</div>
     							</div>
     							<div class="form-group row ">
@@ -83,6 +95,7 @@
     										<option value="Laki-Laki" <?= ($user->jenis_kelamin === 'Laki-Laki') ? 'selected' : '' ?>>Laki-laki</option>
     										<option value="Perempuan" <?= ($user->jenis_kelamin === 'Perempuan') ? 'selected' : '' ?>>Perempuan</option>
     									</select>
+    									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_jenis_kelamin') ?></span>
     								</div>
     							</div>
     							<div class="form-group row ">
@@ -99,6 +112,7 @@
     										<option value="Buddha" <?= ($user->agama_pasien === 'Buddha') ? 'selected' : '' ?>>Buddha</option>
     										<option value="Khonghucu" <?= ($user->agama_pasien === 'Khonghucu') ? 'selected' : '' ?>>Khonghucu</option>
     									</select>
+    									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_agama_pasien') ?></span>
     								</div>
     							</div>
     							<div class="form-group row ">
@@ -106,28 +120,30 @@
     									<h5>Asuransi</h5>
     								</div>
     								<div class="col-lg-8 col-xl-8">
-									<select name="asuransi" id="">
-											<option value="Tidak Ada Asuransi" <?= ($user->asuransi === 'Tidak Ada Asuransi') ? 'selected' : '' ?>>Tidak Ada Asuransi</option>
-											<option value="BPJS Kesehatan" <?= ($user->asuransi === 'BPJS Kesehatan') ? 'selected' : '' ?>>BPJS Kesehatan</option>
-										</select>
+    									<select name="asuransi_pasien" id="asuransi_pasien">
+    										<option value="Tidak Ada Asuransi" <?= ($user->asuransi === 'Tidak Ada Asuransi') ? 'selected' : '' ?>>Tidak Ada Asuransi</option>
+    										<option value="BPJS Kesehatan" <?= ($user->asuransi === 'BPJS Kesehatan') ? 'selected' : '' ?>>BPJS Kesehatan</option>
+    									</select>
+    								</div>										
+									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_noasuransi_pasien') ?></span>
+    							</div>
+    							<div class="form-group row " id="noasuransi_pasien" style="display:none;">
+    								<div class="col-xl-4 col-lg-4 text-end mb-lg-0">
+    									<h5>Nomor Asuransi</h5>
+    								</div>
+    								<div class="col-lg-8 col-xl-8">
+    									<input class="form-control" type="text" name="no_asuransi" placeholder="" value="<?= $user->no_asuransi ?>">
     								</div>
     							</div>
-    							<?php if ($user->asuransi == 'BPJS Kesehatan') { ?>
-    								<div class="form-group row ">
-    									<div class="col-xl-4 col-lg-4 text-end mb-lg-0">
-    										<h5>Nomor Asuransi</h5>
-    									</div>
-    									<div class="col-lg-8 col-xl-8">
-    										<input class="form-control" type="text" name="no_asuransi" placeholder="" value="<?= $user->no_asuransi ?>">
-    									</div>
-    								</div>
-    							<?php } ?>
 
     							<hr />
-								<div class="d-flex justify-content-end" >
-									<?= anchor('Profil/Edit', '<button class="btn btn-success"><i class="fas fa-edit me-2"></i>Edit</button>') ?>
-								</div>
-    							
+    							<div class="d-flex justify-content-end">
+    								<button class="btn btn-success" type="submit" name="submit" id="f_submit">
+    									<i class="fas fa-edit me-2"></i>
+    									Edit
+    								</button>
+    							</div>
+
     						</form>
     					</div>
     					<!--end card-body-->
@@ -140,3 +156,36 @@
     </div>
     </div>
     <!-- End Department Single -->
+
+    <script type="text/javascript">
+    	var select = document.getElementById("asuransi_pasien");
+    	select.onchange = function() {
+    		if (select.value == "BPJS Kesehatan") {
+    			document.getElementById("noasuransi_pasien").style.display = "flex";
+    		} else {
+    			document.getElementById("noasuransi_pasien").style.display = "none";
+    		}
+    	}
+    	if (select.value == "BPJS Kesehatan") {
+    		document.getElementById("noasuransi_pasien").style.display = "flex";
+    	} else {
+    		document.getElementById("noasuransi_pasien").style.display = "none";
+    	}
+    </script>
+
+    <script>
+    	// Use Javascript
+    	var today = new Date();
+    	var dd = today.getDate();
+    	var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+    	var yyyy = today.getFullYear();
+    	if (dd < 10) {
+    		dd = '0' + dd
+    	}
+    	if (mm < 10) {
+    		mm = '0' + mm
+    	}
+
+    	today = yyyy + '-' + mm + '-' + dd;
+    	document.getElementById("tanggal_lahir").setAttribute("max", today);
+    </script>

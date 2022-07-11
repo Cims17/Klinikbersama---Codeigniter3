@@ -66,7 +66,6 @@ class Data_klinik extends CI_Controller
 	public function Simpan_klinik()
 	{
 		if (isset($_POST['submit'])) {
-			$kode_klinik		= $this->input->post('kode_klinik');
 			$nama_klinik		= $this->input->post('nama_klinik');
 			$dokter_pj_klinik	= $this->input->post('dokter_pj_klinik');
 			$nama_pemilik		= $this->input->post('nama_pemilik');
@@ -76,13 +75,10 @@ class Data_klinik extends CI_Controller
 			$nama				= explode(' ', $this->input->post('nama_klinik'));
 			$latitude_klinik	= $this->input->post('latitude');
 			$longitude_klinik	= $this->input->post('longitude');
-			$email				= $this->input->post('email');
 			$no_telepon			= $this->input->post('no_telepon');
 			$password			= password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 			$data2 = array(
-				'username'		=> $nama_klinik,
-				'email'			=> $email,
 				'no_telepon'	=> $no_telepon,
 				'password'		=> $password,
 				'role'			=> '2',
@@ -99,7 +95,6 @@ class Data_klinik extends CI_Controller
 				if (!$this->upload->do_upload('foto_klinik')) {
 					$data3 = array(
 						'id_user'			=> $this->db->insert_id(),
-						'kode_klinik'		=> $kode_klinik,
 						'nama_klinik'		=> $nama_klinik,
 						'dokter_pj_klinik'	=> $dokter_pj_klinik,
 						'nama_pemilik'		=> $nama_pemilik,
@@ -112,7 +107,6 @@ class Data_klinik extends CI_Controller
 					$foto_klinik = $this->upload->data('file_name');
 					$data3 = array(
 						'id_user'			=> $this->db->insert_id(),
-						'kode_klinik'		=> $kode_klinik,
 						'nama_klinik'		=> $nama_klinik,
 						'dokter_pj_klinik'	=> $dokter_pj_klinik,
 						'nama_pemilik'		=> $nama_pemilik,
@@ -126,7 +120,6 @@ class Data_klinik extends CI_Controller
 			} else {
 				$data3 = array(
 					'id_user'			=> $this->db->insert_id(),
-					'kode_klinik'		=> $kode_klinik,
 					'nama_klinik'		=> $nama_klinik,
 					'dokter_pj_klinik'	=> $dokter_pj_klinik,
 					'nama_pemilik'		=> $nama_pemilik,
@@ -363,10 +356,47 @@ class Data_klinik extends CI_Controller
 		echo "var data_klinik=" . json_encode($response, JSON_PRETTY_PRINT);
 	}
 
-	public function delete_klinik($id)
+	public function Delete_klinik($id)
 	{
 		$id_user = $this->Model_klinik->get_iduser_byidklinik($id)->row_array();
 		$this->db->delete('tb_klinik', array('id_klinik' => $id));
 		$this->db->delete('tb_user', array('id_user' => $id_user['id_user']));
+	}
+
+	public function Aktivasi_klinik($id_klinik)
+	{
+		$data2 = array(
+			'status_klinik'		=> 'Aktif',
+		);
+
+		$where2 = array('id_klinik' => $id_klinik);
+		$this->db->update('tb_klinik', $data2, $where2);
+
+		$knk = $this->Model_klinik->get_klinik_byidklinik($id_klinik)->row_array();
+
+		$data = array(
+			'token' => 'exi5XttgY5yrDcHfklesiOXFdkkNvPBdKDG3NFxUKTlr3fg1eO',
+			'phone' => $knk['no_telepon'],
+			'message' => preg_replace("/<br>/", "", nl2br("*Akun Klinik Anda Sudah Diaktivasi Oleh Admin Silahkan Login Menggunakan Link Dibawah Ini* \n https://klinikbersama.saranaa.com/admin \n Silahkan Untuk Melengkapi Data Klinik", false)),
+		);
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			// CURLOPT_URL => 'http://nusagateway.com/api/check-number.php',
+			CURLOPT_URL => 'http://nusagateway.com/api/send-message.php',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS => $data,
+		));
+
+
+		$response = curl_exec($curl);
+		// $hasil = json_decode($response);
+		curl_close($curl);
 	}
 }

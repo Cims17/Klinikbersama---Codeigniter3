@@ -52,7 +52,7 @@
     					</div>
 						</a>
     					<!-- End Single Item -->
-    				<?php } ?>
+    				<?php  } ?>
 
     				<!-- </div> -->
     				<!-- </div> -->

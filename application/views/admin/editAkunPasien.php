@@ -92,7 +92,7 @@
 									</div>
 									<div class="mb-3" id="noasuransi_pasien" style="display:none;">
 										<label class="form-label" style="color: black;">Nomor Asuransi</label>
-										<input type="text" class="form-control" name="no_asuransi" value="<?= $pasien->no_asuransi ?>" placeholder="Masukkan Nomor Asuransi" >
+										<input type="text" class="form-control" name="no_asuransi" value="<?= $pasien->no_asuransi ?>" placeholder="Masukkan Nomor Asuransi">
 									</div>
 								</div>
 
@@ -100,21 +100,19 @@
 							<hr />
 							<div class="row">
 								<div class="col-lg-6">
+
 									<div class="mb-3">
-										<label class="form-label" style="color: black;">Email</label>
-										<input type="text" class="form-control" name="email_pasien" value="<?= $pasien->email ?>" placeholder="Masukkan Email" >
+										<label class="form-label" style="color: black;">Nomor Whatsapp</label>
+										<input type="text" class="form-control" name="no_telepon" value="<?= $pasien->no_telepon ?>" placeholder="Masukkan Nama Pasien">
 									</div>
-								<div class="mb-3">
-									<label class="form-label" style="color: black;">Password</label>
-									<input type="text" class="form-control" name="password">
-								</div>
-								
+
 								</div>
 
 								<div class="col-lg-6">
-									<div class="mb-3">
-										<label class="form-label" style="color: black;">Nomor Whatsapp</label>
-										<input type="text" class="form-control" name="no_telepon" value="<?= $pasien->no_telepon ?>" placeholder="Masukkan Nama Pasien" >
+									
+								<div class="mb-3">
+										<label class="form-label" style="color: black;">Password</label>
+										<input type="text" class="form-control" name="password">
 									</div>
 								</div>
 

@@ -29,13 +29,15 @@
 					<div class="card-header">
 						<div class="row">
 							<div class="col-lg-6">
-								<h4 class="card-title">Tabel Data Antrean Pasien Tanggal <?= date('d-m-Y') ?></h4>
+								<h4 class="card-title">Tabel Data Antrean Pasien Tanggal <?= $tanggal ?></h4>
 							</div>
 							<div class="col-lg-6 d-flex justify-content-end">
-								<div class="input-group me-2" style="width: 200px;">
-									<input id="mdateperiksa" name="tanggal" type="text" class="form-control" placeholder="Pilih Tanggal" >
-									<button class="btn btn-primary" type="button" id="button-addon2">Cari</button>
-								</div>
+								<form action="<?php echo base_url() ?>Admin/Data_antrean/Tanggal" method="post" enctype="multipart/form-data">
+									<div class="input-group me-2" style="width: 200px;">
+										<input id="mdateperiksa" name="tanggal" type="text" class="form-control" placeholder="Pilih Tanggal" value="<?= $tanggal ?>">
+										<button class="btn btn-primary"  type="submit" name="submit" id="button-addon2">Cari</button>
+									</div>
+								</form>
 								<a href="<?php echo base_url()  ?>Admin/Data_antrean/Tambah_pasien">
 									<button type="button" class="btn btn-sm btn-soft-primary me-2">
 										<i class="fas fa-plus me-2"></i>Tambah Data Antrean Pasien Baru
@@ -68,6 +70,7 @@
 													<th>Nama Pasien</th>
 													<th>Keluhan</th>
 													<th>Cara Bayar</th>
+													<th>Jadwal</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
@@ -84,6 +87,7 @@
 															<td><?= $antr['nama_pasien'] ?></td>
 															<td><?= $antr['keluhan'] ?></td>
 															<td><?= $antr['cara_bayar'] ?></td>
+															<td><?= $antr['jam_mulai'] ?> WIB</td>
 															<td>
 																<div class="d-flex">
 																	<button type="button" class="btn btn-sm btn-soft-success me-2 riwayat_antrean" id="sa-warning">

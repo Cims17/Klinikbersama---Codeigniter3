@@ -44,7 +44,7 @@
 												
 												<div class="form-group row">
                                                     <div class="col-sm-6">
-                                                        <a href="<?= base_url() ?>Admin/Auth/Lupa_password" class=" font-13"><i class="dripicons-lock"></i> Lupa password?</a>                                    
+                                                        <!-- <a href="<?= base_url() ?>Admin/Auth/Lupa_password" class=" font-13"><i class="dripicons-lock"></i> Lupa password?</a>                                     -->
                                                     </div><!--end col--> 
                                                 </div><!--end form-group--> 
                     

@@ -19,6 +19,7 @@ class Profil_klinik extends CI_Controller
 
 		$id_user 			= $this->session->userdata('id_user');
 		$data['klinik'] 	= $this->Model_klinik->get_klinik_byadmin($id_user)->row();
+		$data['jadwal_klinik']	= $this->Model_jadwal->get_jadwalklinik_byiduser($id_user)->result_array();
 
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/template/sidebar');
@@ -34,6 +35,9 @@ class Profil_klinik extends CI_Controller
 			$dokter_pj_klinik	= $this->input->post('dokter_pj_klinik');
 			$nama_pemilik		= $this->input->post('nama_pemilik');
 			$alamat_klinik		= $this->input->post('alamat_klinik');
+			$asuransi_klinik	= $this->input->post('asuransi_klinik');
+			$no_telepon_klinik	= $this->input->post('no_telepon_klinik');
+			$keterangan_libur	= $this->input->post('keterangan_libur');
 			$foto_klinik		= $_FILES['foto_klinik']['name'];
 			$nama = explode(' ', $this->input->post('nama_klinik'));
 
@@ -49,6 +53,9 @@ class Profil_klinik extends CI_Controller
 						'dokter_pj_klinik'		=> $dokter_pj_klinik,
 						'nama_pemilik'		=> $nama_pemilik,
 						'alamat_klinik'		=> $alamat_klinik,
+						'asuransi_klinik'		=> $asuransi_klinik,
+						'no_telepon_klinik'		=> $no_telepon_klinik,
+						'keterangan_libur'		=> $keterangan_libur,
 					);
 				} else {
 					$this->db->select('foto_klinik')->from('tb_klinik')->where('id_klinik', $id_klinik);
@@ -67,16 +74,23 @@ class Profil_klinik extends CI_Controller
 						'dokter_pj_klinik'		=> $dokter_pj_klinik,
 						'nama_pemilik'		=> $nama_pemilik,
 						'alamat_klinik'		=> $alamat_klinik,
+						'asuransi_klinik'		=> $asuransi_klinik,
+						'no_telepon_klinik'		=> $no_telepon_klinik,
+						'keterangan_libur'		=> $keterangan_libur,
 						'foto_klinik'		=> $foto_klinik,
 					);
 				}
 			} else {
+				$knk = $this->Model_klinik->get_klinik_byidklinik_admin($id_klinik)->row_array();
 				$data2 = array(
 					'nama_klinik'		=> $nama_klinik,
-					'dokter_pj_klinik'		=> $dokter_pj_klinik,
+					'dokter_pj_klinik'	=> $dokter_pj_klinik,
 					'nama_pemilik'		=> $nama_pemilik,
 					'alamat_klinik'		=> $alamat_klinik,
-					'foto_klinik'		=> 'default.png',
+					'asuransi_klinik'		=> $asuransi_klinik,
+					'no_telepon_klinik'		=> $no_telepon_klinik,
+					'keterangan_libur'		=> $keterangan_libur,
+					'foto_klinik'		=> $knk['foto_klinik'],
 				);
 			}
 
@@ -110,22 +124,18 @@ class Profil_klinik extends CI_Controller
 	{
 		if (isset($_POST['submit'])) {
 			date_default_timezone_set('Asia/Jakarta');
-			$email		= $this->input->post('email');
 			$no_telepon		= $this->input->post('no_telepon');
-			$password		= $this->input->post('password');
 			$password_baru		= $this->input->post('password_baru');
 			$password_ulang		= $this->input->post('password_ulang');
 
 			if ($password_baru != null) {
 				$data2 = array(
-					'email'		=> $email,
 					'no_telepon'		=> $no_telepon,
 					'password'		=> password_hash($password_baru, PASSWORD_DEFAULT),
 				);
 			}
 			if ($password_baru == null) {
 				$data2 = array(
-					'email'		=> $email,
 					'no_telepon'		=> $no_telepon,
 				);
 			}

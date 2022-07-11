@@ -75,7 +75,7 @@
 								</div>  
 								<div class="mb-3">
 									<label class="form-label" style="color: black;">Maksimal Pasien</label>
-									<input class="form-control" type="number" name="jam_selesai" placeholder="Masukkan Maksimal Pasien" >
+									<input class="form-control" type="number" name="maksimal_pasien" placeholder="Masukkan Maksimal Pasien" >
 								</div>           
 							</div>
 						</div>

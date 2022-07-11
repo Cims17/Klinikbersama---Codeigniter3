@@ -1,5 +1,6 @@
     <!-- Start Breadcrumb 
     ============================================= -->
+	<?= $this->session->flashdata('berhasil_profil_user') ?>
     <div class="breadcrumb-area bg-gradient text-center">
     	<div class="fixed-bg" style="background-image: url(<?= base_url() ?>assets/user/img/shape/9.png);"></div>
     	<div class="container">

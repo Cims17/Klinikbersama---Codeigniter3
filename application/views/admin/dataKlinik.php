@@ -74,6 +74,11 @@
 										<td><?php echo $knk['alamat_klinik'] ?></td>
 										<td>
 											<div class="d-flex">
+												<?php if ($knk['status_klinik'] == 'Belum Aktif') { ?>
+													<button type="button" class="btn btn-sm btn-soft-primary aktivasi me-2" id="sa-warning">
+														<i class="fas fa-check me-2"></i>Aktivasi
+													</button>
+												<?php } ?>
 												<a href="<?= base_url() ?>Admin/Data_klinik/Detail_klinik/<?= $knk['id_klinik'] ?>">
 													<button type="button" class="btn btn-sm btn-soft-success me-2">
 														<i class="fas fa-edit me-2"></i>Detail dan Edit

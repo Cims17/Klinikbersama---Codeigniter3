@@ -42,6 +42,12 @@
     								<h5>: <?= $antr['tanggal_berobat'] ?></h5>
     							</div>
     						</div>
+							<div class="form-group row">
+    							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Jadwal Praktik</h5>
+    							<div class="col-lg-8 col-xl-8">
+    								<h5>: <?= $antr['jam_mulai'] ?> - <?= $antr['jam_selesai'] ?> WIB</h5>
+    							</div>
+    						</div>
     						<div class="form-group row">
     							<h5 class="col-xl-4 col-lg-3 text-end mb-lg-0 align-self-center">Dokter / Spesialis</h5>
     							<div class="col-lg-8 col-xl-8">
@@ -61,9 +67,10 @@
     								<h5>: <?= $antr['cara_bayar'] ?></h5>
     							</div>
     						</div>
+							
 							<hr />
 								<div class="d-flex justify-content-start" >
-									<?= anchor('Profil/Edit', '<button class="btn btn-danger">Batalkan</button>') ?>
+									<button class="btn btn-danger batalkan<?= $antr['id_antrean'] ?>">Batalkan</button>
 								</div>
     					</div>
     					<!--end card-body-->

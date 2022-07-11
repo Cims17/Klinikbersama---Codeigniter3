@@ -46,13 +46,10 @@ class Pasien extends CI_Controller
 		$alamat_pasien		= $this->input->post('alamat_pasien');
 		$asuransi_pasien	= $this->input->post('asuransi_pasien');
 		$noasuransi_pasien	= $this->input->post('no_asuransi');
-		$email				= $this->input->post('email_pasien');
 		$no_telepon			= $this->input->post('no_telepon');
 		$password			= password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 		$data2 = array(
-			'username'		=> $nama_pasien,
-			'email'			=> $email,
 			'no_telepon'	=> $no_telepon,
 			'password'		=> $password,
 			'role'			=> '3',
@@ -171,16 +168,12 @@ class Pasien extends CI_Controller
 
 			if ($this->input->post('password') == null) {
 				$data3 = array(
-					'username'			=> $nama_pasien,
-					'email'				=> $email,
 					'no_telepon'		=> $no_telepon,
 				);
 			}
 
 			if ($this->input->post('password') != null) {
 				$data3 = array(
-					'username'			=> $nama_pasien,
-					'email'				=> $email,
 					'no_telepon'		=> $no_telepon,
 					'password'			=> $password,
 				);
@@ -215,6 +208,8 @@ class Pasien extends CI_Controller
 
 	public function Delete_pasien($id) {
 		$id_user = $this->Model_pasien->get_iduser_byidpasien($id)->row_array();
+		$this->db->delete('tb_riwayat_antrean', array('id_pasien' => $id));
+		$this->db->delete('tb_antrean', array('id_pasien' => $id));
 		$this->db->delete('tb_pasien', array('id_pasien' => $id));
 		$this->db->delete('tb_user', array('id_user' => $id_user['id_user']));
 

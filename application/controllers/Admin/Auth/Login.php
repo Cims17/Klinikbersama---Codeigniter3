@@ -32,13 +32,22 @@ class Login extends CI_Controller
 				redirect('Admin/Auth/Login');
 			} else {
 				if ($auth->status_klinik == 'Belum Aktif') {
-					$this->session->set_flashdata('pesan', '<div style="justify-content:center;" class="text-center alert alert-danger alert-dismissible fade show" role="alert">Admin Belum Melakukan Aktivasi Akun Admin Klinik Anda Silahkan Menunggu!</div>');
+					$this->session->set_flashdata('pesan', '<div style="justify-content:center;" class="text-center alert alert-danger alert-dismissible fade show" role="alert">Admin Belum Melakukan Aktivasi Akun Admin Klinik Anda, Silahkan Menunggu!</div>');
 					redirect('Admin/Auth/Login');
 				}
 
-				$this->session->set_userdata('email', $auth->email);
-				$this->session->set_userdata('role', $auth->role);
-				$this->session->set_userdata('id_user', $auth->id_user);
+                if ($auth->role == 2) {
+                    $this->session->set_userdata('username', $auth->nama_klinik);
+                    $this->session->set_userdata('no_telepon', $auth->no_telepon);
+                    $this->session->set_userdata('role', $auth->role);
+                    $this->session->set_userdata('id_user', $auth->id_user);
+                }
+				if ($auth->role == 1) {
+					$this->session->set_userdata('username', 'Dinas Kesehatan');
+                    $this->session->set_userdata('no_telepon', $auth->no_telepon);
+                    $this->session->set_userdata('role', $auth->role);
+                    $this->session->set_userdata('id_user', $auth->id_user);
+                }
 				redirect('Admin/Beranda');
 				// switch ($auth->role) {
 				// 	case :

@@ -44,7 +44,7 @@
         </li>
 
 		<li class="<?= ($this->uri->segment(2) == 'Data_antrean') ? 'active' : '' ?>">
-            <a href="<?php echo base_url() ?>Admin/Data_antrean" class="<?= ($this->uri->segment(2) == 'Data_antrean') ? 'active' : '' ?>"><i class="fas fa-users align-self-center menu-icon"></i><span>Data Antrean Pasien</span></a>
+            <a href="<?php echo base_url() ?>Admin/Data_antrean/Cari/<?php date_default_timezone_set('Asia/Jakarta'); echo date("Y-m-d") ?>" class="<?= ($this->uri->segment(2) == 'Data_antrean') ? 'active' : '' ?>"><i class="fas fa-users align-self-center menu-icon"></i><span>Data Antrean Pasien</span></a>
         </li>
 
 		<?php } ?>

@@ -30,7 +30,7 @@ class Registrasi extends CI_Controller
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
 		$this->form_validation->set_rules('agama_pasien', 'Agama', 'required');
 		$this->form_validation->set_rules('alamat_pasien', 'Alamat', 'required');
-		$this->form_validation->set_rules('asuransi_pasien', 'Alamat', 'required');
+		$this->form_validation->set_rules('asuransi_pasien', 'Asuransi', 'required');
 		if ($this->input->post('asuransi_pasien') == 'BPJS Kesehatan') {
 			$this->form_validation->set_rules('noasuransi_pasien', 'Nomor Asuransi', 'required|numeric|min_length[13]|max_length[13]');
 		}
@@ -284,6 +284,7 @@ class Registrasi extends CI_Controller
 						'alamat_klinik'		=> $alamat_klinik,
 						'asuransi_klinik'	=> $asuransi_klinik,
 						'status_klinik'		=> 'Belum Aktif',
+						'foto_klinik'		=> 'default.png'
 					);
 
 				$save3 = $this->Model_klinik->insert_data('tb_klinik', $data3);

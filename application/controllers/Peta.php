@@ -7,7 +7,7 @@ class Peta extends CI_Controller
 	public function index()
 	{
 		$data['footer'] = 'peta';
-		$data['get_klinik'] = $this->Model_klinik->get_klinik()->result_array();
+		$data['get_klinik'] = $this->Model_klinik->get_klinik_aktif()->result_array();
 
 		$this->load->view('user/template/header');
 		$this->load->view('user/template/navbar');
@@ -28,7 +28,7 @@ class Peta extends CI_Controller
 
 	public function Map_data_klinik() {
 		$response=[];
-			$get_klinik = $this->Model_klinik->get_klinik()->result_array();
+			$get_klinik = $this->Model_klinik->get_klinik_aktif()->result_array();
 			foreach ($get_klinik as $knk) {
 				$data=null;
 				$data['nama_klinik']= $knk['nama_klinik'];

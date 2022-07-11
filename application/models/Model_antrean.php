@@ -13,10 +13,23 @@ class Model_antrean extends CI_Model {
         return $this->db->get();
     }
 
+	public function get_antrean_tanggalberobat($tanggal_berobat){
+        $this->db->select('*');
+        $this->db->from('tb_antrean');
+		$this->db->join('tb_pasien', 'tb_antrean.id_pasien=tb_pasien.id_pasien');
+		$this->db->join('tb_dokter', 'tb_antrean.id_dokter=tb_dokter.id_dokter');
+		$this->db->join('tb_jadwal', 'tb_antrean.id_jadwal=tb_jadwal.id_jadwal');
+		$this->db->join('tb_klinik', 'tb_dokter.id_klinik=tb_klinik.id_klinik');
+		$this->db->join('tb_user', 'tb_klinik.id_user=tb_user.id_user');
+		$this->db->where('tb_antrean.tanggal_berobat', $tanggal_berobat);
+        return $this->db->get();
+    }
+
 	public function get_antrean_byidantrean($id_antrean){
         $this->db->select('*');
         $this->db->from('tb_antrean');
 		$this->db->join('tb_pasien', 'tb_antrean.id_pasien=tb_pasien.id_pasien');
+		$this->db->join('tb_jadwal', 'tb_jadwal.id_jadwal=tb_antrean.id_jadwal');
 		$this->db->join('tb_dokter', 'tb_antrean.id_dokter=tb_dokter.id_dokter');
 		$this->db->join('tb_klinik', 'tb_dokter.id_klinik=tb_klinik.id_klinik');
 		$this->db->join('tb_user', 'tb_klinik.id_user=tb_user.id_user');
@@ -25,10 +38,24 @@ class Model_antrean extends CI_Model {
         return $this->db->get();
     }
 
+	public function get_antrean_byiddokter($id_dokter){
+        $this->db->select('*');
+        $this->db->from('tb_antrean');
+		$this->db->join('tb_pasien', 'tb_antrean.id_pasien=tb_pasien.id_pasien');
+		$this->db->join('tb_jadwal', 'tb_jadwal.id_jadwal=tb_antrean.id_jadwal');
+		$this->db->join('tb_dokter', 'tb_antrean.id_dokter=tb_dokter.id_dokter');
+		$this->db->join('tb_klinik', 'tb_dokter.id_klinik=tb_klinik.id_klinik');
+		$this->db->join('tb_user', 'tb_klinik.id_user=tb_user.id_user');
+		$this->db->where('tb_antrean.id_dokter', $id_dokter);
+
+        return $this->db->get();
+    }
+
 	public function get_antrean_byidpasien($id_pasien){
         $this->db->select('*');
         $this->db->from('tb_antrean');
 		$this->db->join('tb_pasien', 'tb_antrean.id_pasien=tb_pasien.id_pasien');
+		$this->db->join('tb_jadwal', 'tb_jadwal.id_jadwal=tb_antrean.id_jadwal');
 		$this->db->join('tb_dokter', 'tb_antrean.id_dokter=tb_dokter.id_dokter');
 		$this->db->join('tb_klinik', 'tb_dokter.id_klinik=tb_klinik.id_klinik');
 		$this->db->where('tb_pasien.id_pasien', $id_pasien);
@@ -56,6 +83,20 @@ class Model_antrean extends CI_Model {
 		// $this->db->where('tb_antrean.id_dokter', $id_user);
 		return $this->db->get();
 	}
+
+	public function get_now_jmlantrean($id_dokter, $tanggal_berobat, $jamnow)
+	{
+		$this->db->select('*');
+        $this->db->from('tb_antrean');
+		$this->db->join('tb_jadwal', 'tb_antrean.id_jadwal=tb_jadwal.id_jadwal');
+		$this->db->having('tb_antrean.id_dokter', $id_dokter);
+		$this->db->having('tb_antrean.tanggal_berobat', $tanggal_berobat);
+		$this->db->where('tb_jadwal.jam_selesai >=',  $jamnow);
+		// $this->db->where('tb_antrean.id_dokter', $id_user);
+		return $this->db->get();
+	}
+
+	
 
 	public function insert_data($tabel, $data){
 

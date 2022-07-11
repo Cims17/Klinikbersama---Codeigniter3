@@ -83,16 +83,6 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="mb-2">Id Dokter</label>
-                                            <input type="text" class="form-control" value="<?= $dkt['id_dokter'] ?>" readonly>
-                                        </div>
-
-                                    </div>
-                                    <!--end col-->
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
                                             <label class="mb-2">Nama Dokter</label>
                                             <input type="text" class="form-control" value="<?= $dkt['nama_dokter'] ?>" readonly>
                                         </div>
@@ -160,5 +150,5 @@
                 </div>
                 <!--end modal-dialog-->
             </div>
-        <?php } ?>
     </div><!-- container -->
+        <?php } ?>

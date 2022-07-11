@@ -1,4 +1,5 @@
 <?= $this->session->flashdata('berhasil_jadwal') ?>
+<?php date_default_timezone_set('Asia/Jakarta'); ?>
 <!-- Start Breadcrumb 
     ============================================= -->
 <div class="breadcrumb-area bg-gradient text-center">
@@ -46,7 +47,13 @@
 					<div class="fun-factor-area pb-5">
 						<div class="container">
 							<div class="title">
-								<h3>Antrean Tanggal <?= date("Y-m-d") ?> <br> Jadwal Praktik 06.00-09.00 WIB</h3>
+								<h3>Antrean Tanggal <?= date("Y-m-d") ?> <br> Jadwal Praktik
+									<?php if ($jadwalnow != null) { ?>
+										<?= date("H:i", strtotime($jadwalnow['jam_mulai'])) ?> - <?= date("H:i", strtotime($jadwalnow['jam_selesai'])) ?> WIB
+									<?php } else { ?>
+										Tutup
+									<?php } ?>
+								</h3>
 							</div>
 							<div class="fun-fact-items bg-gradient text-light text-center">
 
@@ -56,10 +63,10 @@
 											<?php if ($antrean == null) { ?>
 												<div class="timer" data-to="0" data-speed="500"></div>
 												<span class="medium">No Antrean dilayani</span>
-											<?php } else{?>
+											<?php } else { ?>
 												<div class="timer" data-to="<?= $antrean[0]['no_antrean'] ?>" data-speed="500"></div>
 												<span class="medium">No Antrean dilayani</span>
-												<?php } ?>
+											<?php } ?>
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-6 item">
@@ -86,18 +93,21 @@
 												<input class="form-control" id="id_dokter" name="id_dokter" type="text" value="<?= $knk['id_dokter'] ?>" hidden>
 											</div>
 										</div>
-										
+
 										<div class="col-md-12">
 											<div class="form-group">
-												<select id="cara_bayar" name="jadwal_dokter" class="form-control input">
-													<option value="" selected disabled>Pilih Jam Praktik</option>
-													<?php foreach($jadwal as $jdl) { ?>
-														<option value="<?= $jdl['id_jadwal'] ?>"><?= $jdl['jam_mulai'] ?> - <?= $jdl['jam_selesai'] ?></option>
+												<div class="input-container ic-2">
+													<select id="cara_bayar" name="jadwal_dokter" class="form-control input">
+														<option value="" selected disabled>Pilih Jam Praktik</option>
+														<?php foreach ($jadwal as $jdl) { ?>
+															<option value="<?= $jdl['id_jadwal'] ?>"><?= date("H:i", strtotime($jdl['jam_mulai'])) ?> - <?= date("H:i", strtotime($jdl['jam_selesai'])) ?> WIB</option>
 														<?php } ?>
-												</select>
-												<div class="cut"></div>
-												<label for="cara_bayar" class="placeholder">Jam Praktik</label>
+													</select>
+													<div class="cut"></div>
+													<label for="cara_bayar" class="placeholder">Jam Praktik</label>
+												</div>
 											</div>
+											<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_jadwal_dokter') ?></span>
 										</div>
 
 										<div class="col-md-12">
@@ -106,23 +116,27 @@
 												<div class="cut cut-long2"></div>
 												<label for="tanggal_berobat" class="placeholder">Tanggal Berobat</label>
 											</div>
+											<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_tanggal_berobat') ?></span>
 										</div>
-										
+
 										<div class="col-md-12">
 											<div class="form-group">
-												<select id="cara_bayar" name="cara_bayar" class="form-control input">
-													<option value="" selected disabled>Pilih Cara Bayar</option>
-													<?php if ($asuransi['asuransi'] == 'Tidak Ada Asuransi') { ?>
-														<option value="Bayar Mandiri">Bayar Sendiri</option>
-													<?php } ?>
-													<?php if ($asuransi['asuransi'] == 'BPJS Kesehatan') { ?>
-														<option value="Bayar Mandiri">Bayar Mandiri</option>
-														<option value="BPJS Kesehatan">BPJS Kesehatan</option>
-													<?php } ?>
-												</select>
-												<div class="cut"></div>
-												<label for="cara_bayar" class="placeholder">Cara Bayar</label>
+												<div class="input-container ic-2">
+													<select id="cara_bayar" name="cara_bayar" class="form-control input">
+														<option value="" selected disabled>Pilih Cara Bayar</option>
+														<?php if ($asuransi['asuransi'] == 'Tidak Ada Asuransi') { ?>
+															<option value="Bayar Mandiri">Bayar Sendiri</option>
+														<?php } ?>
+														<?php if ($asuransi['asuransi'] == 'BPJS Kesehatan') { ?>
+															<option value="Bayar Mandiri">Bayar Mandiri</option>
+															<option value="BPJS Kesehatan">BPJS Kesehatan</option>
+														<?php } ?>
+													</select>
+													<div class="cut"></div>
+													<label for="cara_bayar" class="placeholder">Cara Bayar</label>
+												</div>
 											</div>
+											<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_cara_bayar') ?></span>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
@@ -130,8 +144,9 @@
 												<div class="cut cut-short"></div>
 												<label for="keluhan" class="placeholder">Keluhan</label>
 											</div>
+											<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_keluhan') ?></span>
 										</div>
-										<?php if ($this->session->userdata('username') != null) { ?>
+										<?php if ($this->session->userdata('id_user') != null) { ?>
 											<div class="col-md-12">
 												<button type="submit" name="submit" id="f_submit">
 													Mendaftar
@@ -160,12 +175,11 @@
 							<h4>Jam Praktik</h4>
 						</div>
 						<ul>
-							<li> <span> Senin - Jumat : </span>
-								<div class="float-right">06.00 - 09.00</div>
-							</li>
-							<li> <span> Senin - Jumat :</span>
-								<div class="float-right">16.00 - 20.00</div>
-							</li>
+							<?php foreach ($jadwal as $jdl) { ?>
+								<li> <span><?= $jdl['hari_mulai'] ?> - <?= $jdl['hari_selesai'] ?> : </span>
+									<div class="float-right"><?= date("H:i", strtotime($jdl['jam_mulai'])) ?> - <?= date("H:i", strtotime($jdl['jam_selesai'])) ?> WIB</div>
+								</li>
+							<?php } ?>
 						</ul>
 					</div>
 					<!-- End Single Widget -->
@@ -179,7 +193,7 @@
 	</div>
 </div>
 </div>
-<!-- End Department Single -->
+
 
 <script>
 	// Use Javascript
@@ -195,5 +209,11 @@
 	}
 
 	today = yyyy + '-' + mm + '-' + dd;
+	var lastday = function(y, m) {
+		return new Date(y, m, 0).getDate();
+	}
+	hari_terakhir = yyyy + '-' + mm + '-' + lastday(yyyy, mm);
 	document.getElementById("tanggal_berobat").setAttribute("min", today);
+	document.getElementById("tanggal_berobat").setAttribute("max", hari_terakhir);
+
 </script>

@@ -180,15 +180,6 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="form-group">
-										<label class="mb-2">Email</label>
-										<textarea class="form-control" readonly><?= $psn['email'] ?></textarea>
-									</div>
-								</div>
-								<!--end col-->
-							</div>
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="form-group">
 										<label class="mb-2">Nomor Telepon Pasien</label>
 										<input type="text" class="form-control" value="<?= $psn['no_telepon'] ?>" readonly>
 									</div>
@@ -318,15 +309,6 @@
 									</div>
 								<?php } ?>
 								<hr />
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="form-group">
-											<label class="mb-2">Email</label>
-											<textarea class="form-control"><?= $psn['email'] ?></textarea>
-										</div>
-									</div>
-									<!--end col-->
-								</div>
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="form-group">

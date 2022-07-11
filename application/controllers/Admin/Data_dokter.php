@@ -146,6 +146,7 @@ class Data_dokter extends CI_Controller{
 	public function Update_dokter($id_dokter) {
 		
 		if(isset($_POST['submit'])) {
+			date_default_timezone_set('Asia/Jakarta');
 			$nama_dokter		= $this->input->post('nama_dokter');
 			$tempat_lahir		= $this->input->post('tempat_lahir');
 			$tanggal_lahir		= $this->input->post('tanggal_lahir');
@@ -201,15 +202,7 @@ class Data_dokter extends CI_Controller{
 				}
 
 			} else {
-				$this->db->select('foto_dokter')->from('tb_dokter')->where('id_dokter', $id_dokter);
-					$query = $this->db->get();
-					if ($query->num_rows() > 0) { //hapus gambar sebelumnya
-						$img_name = $query->row()->foto_dokter;
-						
-					}
-				if ($img_name != 'default.png') {
-					// unlink("./assets/admin/images/dokter/" . $img_name);
-						
+				$dkt = $this->Model_dokter->get_dokter_byid($id_dokter)->row_array();
 					$data2 = array(
 						'nama_dokter'		=> $nama_dokter,
 						'tempat_lahir'		=> $tempat_lahir,
@@ -219,22 +212,8 @@ class Data_dokter extends CI_Controller{
 						'notlp_dokter'		=> $notlp_dokter,
 						'spesialis'			=> $spesialis,
 						'no_SIP'			=> $no_SIP,
+						'foto_dokter'		=> $dkt['foto_dokter'],
 					);
-				}	
-				else{
-					$data2 = array(
-						'nama_dokter'		=> $nama_dokter,
-						'tempat_lahir'		=> $tempat_lahir,
-						'tanggal_lahir'		=> $tanggal_lahir,
-						'jenis_kelamin'		=> $jenis_kelamin,
-						'alamat_dokter'		=> $alamat_dokter,
-						'notlp_dokter'		=> $notlp_dokter,
-						'spesialis'			=> $spesialis,
-						'no_SIP'			=> $no_SIP,
-						'foto_dokter'		=> 'default.png'
-					);
-				}
-				
 			}
 
 			$where2 = array('id_dokter' => $id_dokter);
@@ -264,9 +243,13 @@ class Data_dokter extends CI_Controller{
 		
 	}
 
-	public function Delete_dokter($id) {
+	public function Delete_dokter($id_dokter) {
 
-		$this->db->delete('tb_dokter', array('id_dokter' => $id));
+		
+		$this->db->delete('tb_jadwal', array('id_dokter' => $id_dokter));
+		$this->db->delete('tb_antrean', array('id_dokter' => $id_dokter));
+		$this->db->delete('tb_riwayat_antrean', array('id_dokter' => $id_dokter));
+		$this->db->delete('tb_dokter', array('id_dokter' => $id_dokter));
 
 	}
 }

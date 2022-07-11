@@ -54,6 +54,17 @@
 										</select>
 									</div>
 									<div class="mb-3">
+										<label class="form-label" style="color: black;">Jadwal Praktik</label>
+										<select class="form-control select2 custom-select" name="id_jadwal" >
+											<option value="" selected disabled>Pilih Jadwal Praktik</option>
+											<?php foreach ($dokter as $dkt) { ?>
+												<?php if ($dkt['id_user'] ==  $this->session->userdata('id_user')) { ?>
+													<option value="<?= $dkt['id_dokter'] ?>"><?= $dkt['nama_dokter'] ?> / <?= $dkt['spesialis'] ?> </option>
+												<?php } ?>
+											<?php } ?>
+										</select>
+									</div>
+									<div class="mb-3">
 										<label class="form-label" style="color: black;">Tanggal Berobat</label>
 										<div class="input-group">
 											<input type="text" class="form-control" id="mdateperiksa" name="tanggal_berobat" placeholder="Pilih Tanggal Periksa" >

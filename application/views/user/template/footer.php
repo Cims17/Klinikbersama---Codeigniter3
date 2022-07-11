@@ -92,6 +92,71 @@
  
 <script src="<?= base_url() ?>assets/admin/plugins/sweet-alert2/sweetalert2.min.js"></script>
 
+<?php if($this->uri->segment(1) == 'Antrean' ) { ?>
+
+	<script type="text/javascript">
+
+	!function ($) {
+
+		var SweetAlert = function () {
+			};
+		SweetAlert.prototype.init = function () {
+			<?php foreach($antrean as $antr) { ?>
+			$(".batalkan<?= $antr['id_antrean'] ?>").click(function() {
+					var id = <?= $antr['id_antrean'] ?>;
+					swal.fire({
+									title: 'Batalkan Antrean ?',
+									text: "Anda tidak akan dapat mengembalikan data ini!",
+									type: 'warning',
+									showCancelButton: true,
+									confirmButtonText: 'Yes, delete it!',
+									cancelButtonText: 'No, cancel!',
+									reverseButtons: true
+								}).then(function(result) {
+									if (result.value) {
+										$.ajax({
+											url: '<?= base_url() ?>Antrean/Batalkan_antrean/' + id,
+											type: 'DELETE',
+											error: function() {
+													alert('Something is wrong');
+											},
+											success: function(data) {
+												swal.fire(
+											'Selesai',
+											'Data Antrean Dihapus',
+											'success'
+										).then(function() {
+															location.reload();
+													});
+											}
+									});
+										
+									} else if (
+										// Read more about handling dismissals
+										result.dismiss === Swal.DismissReason.cancel
+									) {
+										swal.fire(
+											'Dibatalkan',
+											'Data Antrean Aman',
+											'error'
+										)
+									}
+								})
+			});
+			<?php } ?>
+		},
+			//init
+			$.SweetAlert = new SweetAlert, $.SweetAlert.Constructor = SweetAlert
+	}(window.jQuery),
+	//initializing
+	function ($) {
+					"use strict";
+					$.SweetAlert.init()
+			}(window.jQuery);
+	</script>
+
+<?php } ?>
+
  <?php if ($this->uri->segment(1) == 'Peta') { ?>
  	<script src="<?= base_url() ?>assets/admin/plugins/leaflet/leaflet.js"></script>
  	<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.1/dist/L.Control.Locate.min.js" charset="utf-8"></script>
