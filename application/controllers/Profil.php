@@ -32,7 +32,7 @@ class Profil extends CI_Controller{
 		$this->form_validation->set_rules('alamat_pasien', 'Alamat', 'required');
 		$this->form_validation->set_rules('asuransi_pasien', 'Asuransi', 'required');
 		if ($this->input->post('asuransi_pasien') == 'BPJS Kesehatan') {
-			$this->form_validation->set_rules('noasuransi_pasien', 'Nomor Asuransi', 'required|numeric|min_length[13]|max_length[13]');
+			$this->form_validation->set_rules('no_asuransi', 'Nomor Asuransi', 'required|numeric|min_length[13]|max_length[13]');
 		}
 
 		$this->form_validation->set_message('required', '{field} Wajib Diisi!');
@@ -47,7 +47,7 @@ class Profil extends CI_Controller{
 			$this->session->set_flashdata('err_agama_pasien', form_error('agama_pasien'));
 			$this->session->set_flashdata('err_alamat_pasien', form_error('alamat_pasien'));
 			$this->session->set_flashdata('err_asuransi_pasien', form_error('asuransi_pasien'));
-			$this->session->set_flashdata('err_noasuransi_pasien', form_error('noasuransi_pasien'));
+			$this->session->set_flashdata('err_noasuransi', form_error('no_asuransi'));
 			
 			redirect('Profil/Edit');
 		} else {

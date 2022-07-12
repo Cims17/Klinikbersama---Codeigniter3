@@ -125,7 +125,7 @@
     										<option value="BPJS Kesehatan" <?= ($user->asuransi === 'BPJS Kesehatan') ? 'selected' : '' ?>>BPJS Kesehatan</option>
     									</select>
     								</div>										
-									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_noasuransi_pasien') ?></span>
+									<span class="d-flex ml-2 text-danger"><?php echo  $this->session->flashdata('err_noasuransi') ?></span>
     							</div>
     							<div class="form-group row " id="noasuransi_pasien" style="display:none;">
     								<div class="col-xl-4 col-lg-4 text-end mb-lg-0">
