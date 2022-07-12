@@ -103,7 +103,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <div class="dropdown-divider mb-0"></div>
-                        <a class="dropdown-item" href="<?php echo base_url() ?>admin/auth/login/logout"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
+                        <a class="dropdown-item" href="<?php echo base_url() ?>Admin/Auth/Login/Logout"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
                     </div>
                 </li>
             </ul>
