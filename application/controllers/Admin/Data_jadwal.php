@@ -92,6 +92,7 @@ class Data_jadwal extends CI_Controller{
 			$hari_selesai	= $this->input->post('hari_selesai');
 			$jam_mulai		= $this->input->post('jam_mulai');
 			$jam_selesai	= $this->input->post('jam_selesai');
+			$maksimal_pasien	= $this->input->post('maksimal_pasien');
 
 			$data2 = array(
 				'id_dokter'			=> $id_dokter,
@@ -99,6 +100,7 @@ class Data_jadwal extends CI_Controller{
 				'hari_selesai'		=> $hari_selesai,
 				'jam_mulai'			=> $jam_mulai,
 				'jam_selesai'		=> $jam_selesai,
+				'maksimal_pasien'	=> $maksimal_pasien,
 			);
 
 			$where = array('id_jadwal' => $id);
@@ -129,6 +131,8 @@ class Data_jadwal extends CI_Controller{
 
 	public function Delete_jadwal($id) {
 
+		$this->db->delete('tb_riwayat_antrean', array('id_jadwal' => $id));
+		$this->db->delete('tb_antrean', array('id_jadwal' => $id));
 		$this->db->delete('tb_jadwal', array('id_jadwal' => $id));
 
 	}
