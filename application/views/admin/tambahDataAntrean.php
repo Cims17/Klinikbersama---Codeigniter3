@@ -44,7 +44,7 @@
 									</div>
 									<div class="mb-3">
 										<label class="form-label" style="color: black;">Nama Dokter / Spesialis</label>
-										<select class="form-control select2 custom-select" name="id_dokter" >
+										<select class="form-control select2 custom-select" name="id_dokter" id="nama_dokter">
 											<option value="" selected disabled>Pilih Dokter / Spesialis</option>
 											<?php foreach ($dokter as $dkt) { ?>
 												<?php if ($dkt['id_user'] ==  $this->session->userdata('id_user')) { ?>
@@ -55,13 +55,8 @@
 									</div>
 									<div class="mb-3">
 										<label class="form-label" style="color: black;">Jadwal Praktik</label>
-										<select class="form-control select2 custom-select" name="id_jadwal" >
+										<select class="form-control select2 custom-select" name="id_jadwal" id="jadwal_praktik">
 											<option value="" selected disabled>Pilih Jadwal Praktik</option>
-											<?php foreach ($dokter as $dkt) { ?>
-												<?php if ($dkt['id_user'] ==  $this->session->userdata('id_user')) { ?>
-													<option value="<?= $dkt['id_dokter'] ?>"><?= $dkt['nama_dokter'] ?> / <?= $dkt['spesialis'] ?> </option>
-												<?php } ?>
-											<?php } ?>
 										</select>
 									</div>
 									<div class="mb-3">

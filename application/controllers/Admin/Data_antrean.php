@@ -78,6 +78,7 @@ class Data_antrean extends CI_Controller
 	{
 		if (isset($_POST['submit'])) {
 			$id_dokter			= $this->input->post('id_dokter');
+			$id_jadwal			= $this->input->post('id_jadwal');
 			$tanggal_berobat	= $this->input->post('tanggal_berobat');
 			$keluhan			= $this->input->post('keluhan');
 			$cara_bayar			= $this->input->post('cara_bayar');
@@ -88,7 +89,7 @@ class Data_antrean extends CI_Controller
 			$data2 = array(
 				'id_pasien'			=> $id_pasien,
 				'id_dokter'			=> $id_dokter,
-				'id_jadwal'			=> 6,
+				'id_jadwal'			=> $id_jadwal,
 				'no_antrean'		=> $no_antrean,
 				'tanggal_berobat'	=> $tanggal_berobat,
 				'cara_bayar'		=> $cara_bayar,
@@ -103,7 +104,8 @@ class Data_antrean extends CI_Controller
 					swal("Berhasil","Data Antrean Pasien Berhasil Ditambah","success")  
 					</script>'
 				);
-				redirect('Admin/Data_antrean');
+
+				redirect('Admin/Data_antrean/Cari/' . date("Y-m-d"));
 			}
 		}
 		if (isset($_POST['cancel'])) {
@@ -114,7 +116,7 @@ class Data_antrean extends CI_Controller
 								swal("Cancel","Data Akun Pasien dan Antrean Gagal Ditambah","warning"); 
 								</script>'
 			);
-			redirect('Admin/Data_antrean');
+			redirect('Admin/Data_antrean/Cari/' . date("Y-m-d"));
 		}
 	}
 
@@ -235,7 +237,7 @@ class Data_antrean extends CI_Controller
 						swal("Berhasil","Data Akun Pasien dan Antrean Berhasil Ditambah","success")  
 						</script>'
 				);
-				redirect('Admin/Data_antrean');
+				redirect('Admin/Data_antrean/Cari/' . date("Y-m-d"));
 			}
 		}
 		if (isset($_POST['cancel'])) {
@@ -246,7 +248,7 @@ class Data_antrean extends CI_Controller
 								swal("Cancel","Data Akun Pasien dan Antrean Gagal Ditambah","warning"); 
 								</script>'
 			);
-			redirect('Admin/Data_antrean');
+			redirect('Admin/Data_antrean/Cari/' . date("Y-m-d"));
 		}
 	}
 

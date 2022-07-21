@@ -729,6 +729,23 @@ $(document).ready(function() {
 	<script src="<?= base_url() ?>assets/admin/plugins/select2/select2.min.js"></script>
 	<script src="<?= base_url() ?>assets/admin/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
 	<script src="<?= base_url() ?>assets/admin/pages/jquery.forms-advanced.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#nama_dokter').on('change', function() {
+			x = $(this).val();
+			fetch("<?= base_url('Admin/Data_antrean/Jadwal_praktik/') ?>" + x, {
+					method: 'GET',
+				})
+				.then((response) => response.text())
+				.then((data) => {
+					$('#jadwal_praktik option:not(:first)').remove();
+
+					$('#jadwal_praktik').append(data); //menambah data option select dari controller
+				})
+		});
+		});
+	</script>
+	
 
 <?php } ?>
 <?php if ( $footer == 'tambahdatapasienantrean') { ?>
