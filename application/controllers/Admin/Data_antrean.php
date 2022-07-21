@@ -47,7 +47,7 @@ class Data_antrean extends CI_Controller
 	public function Tanggal()
 	{
 		$tanggal			= $this->input->post('tanggal');
-		redirect('Admin/Data_antrean/Cari/'.$tanggal);
+		redirect('Admin/Data_antrean/Cari/' . $tanggal);
 	}
 
 	public function Tambah_antrean()
@@ -142,6 +142,15 @@ class Data_antrean extends CI_Controller
 		$this->load->view('admin/template/footer');
 	}
 
+	public function Jadwal_praktik($id_dokter)
+	{
+		$jadwal = $this->Model_jadwal->get_jadwal_byiddokter($id_dokter)->result_array();
+		// echo json_encode($data['rajaongkir']['results']);
+		foreach ($jadwal as $jwd) {
+			echo "<option value='$jwd[id_jadwal]'>$jwd[jam_mulai] - $jwd[jam_selesai] </option>";
+		}
+	}
+
 	public function Simpan_pasien_antrean()
 	{
 		if (isset($_POST['submit'])) {
@@ -158,6 +167,7 @@ class Data_antrean extends CI_Controller
 			$password			= password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 			$id_dokter			= $this->input->post('id_dokter');
+			$id_jadwal			= $this->input->post('id_jadwal');
 			$tanggal_berobat	= $this->input->post('tanggal_berobat');
 			$keluhan			= $this->input->post('keluhan');
 			$cara_bayar			= $this->input->post('cara_bayar');
@@ -207,7 +217,7 @@ class Data_antrean extends CI_Controller
 				$data4 = array(
 					'id_pasien'			=> $this->db->insert_id(),
 					'id_dokter'			=> $id_dokter,
-					'id_jadwal'			=> 6,
+					'id_jadwal'			=> $id_jadwal,
 					'no_antrean'		=> $no_antrean,
 					'tanggal_berobat'	=> $tanggal_berobat,
 					'cara_bayar'		=> $cara_bayar,
@@ -240,7 +250,8 @@ class Data_antrean extends CI_Controller
 		}
 	}
 
-	public function Tambah_riwayat_antrean($id_antrean) {
+	public function Tambah_riwayat_antrean($id_antrean)
+	{
 
 		$antrean = $this->Model_antrean->get_antrean_byidantrean($id_antrean)->row();
 
@@ -256,7 +267,6 @@ class Data_antrean extends CI_Controller
 
 		$this->Model_klinik->insert_data('tb_riwayat_antrean', $data2);
 		$this->db->delete('tb_antrean', array('id_antrean' => $id_antrean));
-
 	}
 
 	public function Delete_antrean($id_antrean)

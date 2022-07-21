@@ -48,11 +48,11 @@ class Model_jadwal extends CI_Model
 		return $this->db->get();
 	}
 
-	
+
 	public function get_jadwalnow_byjamnow($id_dokter, $jamnow)
 	{
 		$this->db->select('*');
-        $this->db->from('tb_jadwal');
+		$this->db->from('tb_jadwal');
 		$this->db->having('id_dokter', $id_dokter);
 		$this->db->where('jam_selesai >=',  $jamnow);
 		$this->db->order_by('jam_selesai', 'ASC');
