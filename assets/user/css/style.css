@@ -3648,7 +3648,7 @@ body,
 }
 
 .consultation-area .form .appoinment-box {
-	background: #1ebeb6;
+	background: #02a49c;
 	padding: 60px 37px;
 	position: relative;
 	z-index: 1;
@@ -3661,7 +3661,7 @@ body,
 	content: "";
 	height: 100%;
 	width: 100%;
-	background: #1ebeb6;
+	background: #02a49c;
 	z-index: -1;
 	opacity: 0.2;
 }
@@ -5996,7 +5996,7 @@ textarea {
 
 .form-group textarea:focus {
 	color: #ffffff;
-	background: #35c5bd;
+	background: #04afa7;
 }
 
 .input-container {
@@ -6020,7 +6020,7 @@ textarea {
 }
 
 .input {
-	background-color: #35c5bd;
+	background-color: #02a49c;
 	border-radius: 12px;
 	box-sizing: border-box;
 	color: #ffffff;
@@ -6032,7 +6032,7 @@ textarea {
 }
 
 .cut {
-	background-color: #1ebeb6;
+	background-color: #02a49c;
 	border-radius: 10px;
 	height: 20px;
 	left: 20px;
